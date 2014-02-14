@@ -1,5 +1,7 @@
 Can I Use Python 3?
 ===================
+[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](https://travis-ci.org/brettcannon/caniusepython3)
+
 This script takes in a set of dependencies and then figures out which
 of them are holding you up from porting to Python 3.
 
