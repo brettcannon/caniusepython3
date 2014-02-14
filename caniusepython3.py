@@ -31,19 +31,23 @@ if sys.version_info.major == 3:
 
 PROJECT_NAME = re.compile(r'[\w.-]+')
 
-OVERRIDES = {x.lower for x in {
+OVERRIDES = {x.lower() for x in {
     'beautifulsoup',  # beautifulsoup4
     'ipaddress',  # stdlib
     'mox',  # mox3
     'mox3', # Missing classifier
     'multiprocessing',  # stdlib
     'ordereddict', # stdlib
+    'pbr',  # Missing classifier
     'pylint',  # Missing classifier
     'pysqlite',  # stdlib
+    'python-keystoneclient',  # Missing classifier
     'python-memcached',  # python3-memcached
+    'python-novaclient',  # Missing classifier
     'pyvirtualdisplay',  # Missing classifier
     'rsa',  # Missing classifier
     'ssl',  # stdlib
+    'trollius',  # asyncio
     'unittest2',  # stdlib
     'uuid',  # stdlib
     'wsgiref',  #stdlib
@@ -76,9 +80,9 @@ def all_py3_projects():
     finally:
         client('close')()
     stale_overrides = projects.intersection(OVERRIDES)
-    log.info('Adding {} overrides'.format(len(OVERRIDES)))
+    logging.info('Adding {} overrides'.format(len(OVERRIDES)))
     if stale_overrides:
-        log.warn('Stale overrides: {}'.format(stale_overrides))
+        logging.warn('Stale overrides: {}'.format(stale_overrides))
     projects.update(OVERRIDES)
     return projects
 
@@ -180,7 +184,14 @@ def projects_from_cli(args):
 if __name__ == '__main__':
     projects = projects_from_cli(sys.argv[1:])
     logging.info('{} top-level projects to check'.format(len(projects)))
+    print('Finding and checking dependencies ...')
     blocking = blocking_dependencies(projects, all_py3_projects())
-    logging.info('{} dependencies need to be ported to Python 3'.format(len(blocking)))
+    flattened_blockers = set()
+    for blocker_reasons in blocking:
+        for blocker in blocker_reasons:
+            flattened_blockers.add(blocker)
+    print()
+    print('{} total dependencies need to be ported to Python 3.'.format(len(flattened_blockers)))
+    print('{} dependencies have no other dependencies blocking a port to Python 3:'.format(len(blocking)))
     for blocker in sorted(blocking, key=lambda x: tuple(reversed(x))):
         print(' <- '.join(blocker))
