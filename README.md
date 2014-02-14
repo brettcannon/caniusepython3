@@ -1,11 +1,10 @@
 Can I Use Python 3?
 ===================
-[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](https://travis-ci.org/brettcannon/caniusepython3)
 
 This script takes in a set of dependencies and then figures out which
 of them are holding you up from porting to Python 3.
 
-You can specify your dependencies in multiple ways:
+You can specify your dependencies in multiple ways::
 
    python3 caniusepython3.py -r requirements.txt
    python3 caniusepython3.py -m PKG-INFO
@@ -17,6 +16,10 @@ For instance, `ecdsa <- paramiko` means that the `ecdsa` project is blocking
 `paramiko` from being ported to Python 3. Any project listed without a
 blocking dependency means there is no external project holding up a port and
 thus the project can be ported when they have the time and manpower to do so.
+
+<!-- END long_description -->
+
+[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](https://travis-ci.org/brettcannon/caniusepython3)
 
 
 How do you tell a project has been ported to Python 3?
