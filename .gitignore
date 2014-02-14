@@ -1,3 +1,5 @@
+venv
+
 *.py[cod]
 
 # C extensions
