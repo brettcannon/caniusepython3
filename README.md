@@ -6,9 +6,9 @@ of them are holding you up from porting to Python 3.
 
 You can specify your dependencies in multiple ways::
 
-   python3 caniusepython3.py -r requirements.txt
-   python3 caniusepython3.py -m PKG-INFO
-   python3 caniusepython3.py -p numpy,scipy,ipython
+    python3 caniusepython3.py -r requirements.txt
+    python3 caniusepython3.py -m PKG-INFO
+    python3 caniusepython3.py -p numpy,scipy,ipython
 
 The output of the script will list which projects are directly holding up some
 (implicit) dependency from working on Python 3.
