@@ -129,7 +129,7 @@ def blocking_dependencies(projects, py3_projects):
     while len(check) > 0:
         project = check.pop(0)
         logging.info('Locating {}'.format(project))
-        located = distlib.locators.locate(project)
+        located = distlib.locators.locate(project, prereleases=True)
         if located is None:
             logging.warn('{} not found'.format(project))
             continue
