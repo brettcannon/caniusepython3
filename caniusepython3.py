@@ -184,7 +184,7 @@ def projects_from_cli(args):
     return projects
 
 
-if __name__ == '__main__':
+def main():
     projects = projects_from_cli(sys.argv[1:])
     logging.info('{} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
@@ -198,3 +198,7 @@ if __name__ == '__main__':
     print('{} dependencies have no other dependencies blocking a port to Python 3:'.format(len(blocking)))
     for blocker in sorted(blocking, key=lambda x: tuple(reversed(x))):
         print(' <- '.join(blocker))
+
+
+if __name__ == '__main__':
+    main()

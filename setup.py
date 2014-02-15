@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 with open('README.md') as file:
     # Try my best to have at least the intro in Markdown/reST.
@@ -16,7 +16,7 @@ setup(name='caniusepython3',
       author_email='brett@python.org',
       url='https://github.com/brettcannon/caniusepython3',
       py_modules=['caniusepython3'],
-      requires=requires,
+      install_requires=requires,
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
@@ -24,4 +24,9 @@ setup(name='caniusepython3',
           'License :: OSI Approved :: Apache Software License',
           'Programming Language :: Python :: 3',
       ],
+      entry_points={
+          'console_scripts': [
+              'caniusepython3=caniusepython3:main',
+          ]
+      },
 )
