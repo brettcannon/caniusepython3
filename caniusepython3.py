@@ -160,13 +160,13 @@ def projects_from_cli(args):
     description = ('Determine if a set of project dependencies will work with '
                    'Python 3')
     parser = argparse.ArgumentParser(description=description)
-    parser.add_argument('--requirements', nargs='?',
+    parser.add_argument('--requirements', '-r', nargs='?',
         help='path to a pkg_resources requirements file (e.g. requirements.txt)')
-    parser.add_argument('--metadata', nargs='?',
+    parser.add_argument('--metadata', '-m', nargs='?',
         help='path to a PEP 426 metadata file (e.g. PKG-INFO, pydist.json)')
-    parser.add_argument('--projects', type=lambda arg: arg.split(','), nargs='?',
+    parser.add_argument('--projects', '-p', type=lambda arg: arg.split(','), nargs='?',
         help='a comma-separated list of projects')
-    parser.add_argument('--verbose', action='store_true', help='verbose output')
+    parser.add_argument('--verbose', '-v', action='store_true', help='verbose output')
     parsed = parser.parse_args(args)
 
     projects = []
