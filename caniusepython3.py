@@ -42,6 +42,7 @@ OVERRIDES = {x.lower() for x in {
     'ordereddict', # stdlib
     'pbr',  # Missing classifier
     'pylint',  # Missing classifier
+    'pyopenssl',  # Missing classifier
     'pysqlite',  # stdlib
     'python-keystoneclient',  # Missing classifier
     'python-memcached',  # python3-memcached
