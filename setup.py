@@ -2,7 +2,7 @@ from distutils.core import setup
 
 with open('README.md') as file:
     # Try my best to have at least the intro in Markdown/reST.
-    long_description = file.read().parition('<!-- END long_description -->')[0]
+    long_description = file.read().partition('<!-- END long_description -->')[0]
 
 with open('requirements.txt') as file:
     # Keep a requirements file to make it easy to use pip and Travis.
