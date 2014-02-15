@@ -6,6 +6,7 @@ venv
 *.so
 
 # Packages
+MANIFEST
 *.egg
 *.egg-info
 dist
@@ -28,11 +29,3 @@ pip-log.txt
 .coverage
 .tox
 nosetests.xml
-
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
