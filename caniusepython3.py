@@ -188,8 +188,8 @@ def projects_from_cli(args):
     return projects
 
 
-def main():
-    projects = projects_from_cli(sys.argv[1:])
+def main(args=sys.argv[1:]):
+    projects = projects_from_cli(args)
     logging.info('{} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
     blocking = blocking_dependencies(projects, all_py3_projects())
