@@ -14,8 +14,10 @@
 
 import caniusepython3 as ciu
 
+import io
 import tempfile
 import unittest
+import unittest.mock
 
 
 EXAMPLE_REQUIREMENTS = """
@@ -149,6 +151,10 @@ class NetworkTests(unittest.TestCase):
         self.assertGreater(len(projects), 3000)
         self.assertTrue(all(project == project.lower() for project in projects))
         self.assertTrue(ciu.OVERRIDES.issubset(projects))
+
+    @unittest.mock.patch('sys.stdout', io.StringIO())
+    def test_e2e(self):
+        ciu.main(['--projects', 'numpy,scipy,matplotlib,ipython'])
 
 
 if __name__ == '__main__':
