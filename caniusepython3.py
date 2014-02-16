@@ -210,6 +210,25 @@ def message(blockers):
             'their' if len(blockers) != 1 else 'its')
     return formatted_need, formatted_can_port
 
+def pprint_blockers(blockers):
+    """Pretty print blockers into a sequence of strings.
+
+    Results will be sorted by top-level project name. This means that if a
+    project is blocking another project then the dependent project will be
+    what is used in the sorting, not the project at the bottom of the
+    dependency graph.
+
+    """
+    pprinted = []
+    for blocker in sorted(blockers, key=lambda x: tuple(reversed(x))):
+        buf = [blocker[0]]
+        if len(blocker) > 1:
+            buf += ' (which is blocking '
+            buf += ', which is blocking '.join(blocker[1:])
+            buf += ')'
+        pprinted += ''.join(buf)
+    return pprinted
+
 
 def main(args=sys.argv[1:]):
     projects = projects_from_cli(args)
@@ -222,13 +241,8 @@ def main(args=sys.argv[1:]):
         print(line)
 
     print()
-    for blocker in sorted(blockers, key=lambda x: tuple(reversed(x))):
-        print('  ' + blocker[0], end='')
-        if len(blocker) > 1:
-            print(' (which is blocking ', end='')
-            print(', which is blocking '.join(blocker[1:]), end='')
-            print(')', end='')
-        print()
+    for line in pprint_blockers(blockers):
+        print(' ', line)
 
 
 if __name__ == '__main__':
