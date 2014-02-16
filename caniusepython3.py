@@ -189,7 +189,9 @@ def projects_from_cli(args):
 
 
 def message(blockers):
-    """Return the two key messages to tell users about what is holding them up."""
+    """Create a sequence of key messages based on what is blocking."""
+    if not blockers:
+        return ['You have 0 projects blocking you from using Python 3!']
     flattened_blockers = set()
     for blocker_reasons in blockers:
         for blocker in blocker_reasons:

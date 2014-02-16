@@ -76,6 +76,7 @@ class CLITests(unittest.TestCase):
     def test_message_plural(self):
         blockers = [['A'], ['B']]
         messages = ciu.message(blockers)
+        self.assertEqual(2, len(messages))
         want = 'You need 2 projects to transition to Python 3.'
         self.assertEqual(messages[0], want)
         want = ('Of those 2 projects, 2 have no direct dependencies blocking '
@@ -85,11 +86,18 @@ class CLITests(unittest.TestCase):
     def test_message_plural(self):
         blockers = [['A']]
         messages = ciu.message(blockers)
+        self.assertEqual(2, len(messages))
         want = 'You need 1 project to transition to Python 3.'
         self.assertEqual(messages[0], want)
         want = ('Of that 1 project, 1 has no direct dependencies blocking '
                 'its transition:')
         self.assertEqual(messages[1], want)
+
+    def test_message_no_blockers(self):
+        messages = ciu.message([])
+        self.assertEqual(
+            ['You have no projects blocking you from using Python 3!'],
+            messages)
 
 
 class NameTests(unittest.TestCase):
