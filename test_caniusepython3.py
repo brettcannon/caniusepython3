@@ -96,7 +96,7 @@ class CLITests(unittest.TestCase):
     def test_message_no_blockers(self):
         messages = ciu.message([])
         self.assertEqual(
-            ['You have no projects blocking you from using Python 3!'],
+            ['You have 0 projects blocking you from using Python 3!'],
             messages)
 
 
