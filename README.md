@@ -10,14 +10,10 @@ You can specify your dependencies in multiple ways::
     caniusepython3 -m PKG-INFO
     caniusepython3 -p numpy,scipy,ipython
 
-The output of the script will list which projects are directly holding up some
-(implicit) dependency from working on Python 3.
-For instance, `ecdsa <- paramiko` means that the `ecdsa` project is blocking
-`paramiko` from being ported to Python 3. Any project listed without a
-blocking dependency means there is no external project holding up a port and
-thus the project can be ported whenever they have the time and manpower to do
-so.
-
+The output of the script will tell you how many (implicit) dependencies you need
+to transition to Python 3 in order to allow you to make the same transition. It
+will also list what projects have no explicit dependency blocking their
+transition so you can ask them consider starting a port to Python 3.
 <!-- END long_description -->
 
 [![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](https://travis-ci.org/brettcannon/caniusepython3)

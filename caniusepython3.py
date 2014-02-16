@@ -223,8 +223,12 @@ def main(args=sys.argv[1:]):
 
     print()
     for blocker in sorted(blockers, key=lambda x: tuple(reversed(x))):
-        print('  ', end='')
-        print(' <- '.join(blocker))
+        print('  ' + blocker[0], end='')
+        if len(blocker) > 1:
+            print(' (which is blocking ', end='')
+            print(', which is blocking '.join(blocker[1:]), end='')
+            print(')', end='')
+        print()
 
 
 if __name__ == '__main__':
