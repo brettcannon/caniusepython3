@@ -29,4 +29,5 @@ setup(name='caniusepython3',
               'caniusepython3=caniusepython3:main',
           ]
       },
+      zip_safe=True,
 )
