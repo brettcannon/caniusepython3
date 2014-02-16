@@ -73,6 +73,24 @@ class CLITests(unittest.TestCase):
         got = ciu.projects_from_cli(args)
         self.assertEqual(set(got), {'foo', 'bar'})
 
+    def test_message_plural(self):
+        blockers = [['A'], ['B']]
+        messages = ciu.message(blockers)
+        want = 'You need 2 projects to transition to Python 3.'
+        self.assertEqual(messages[0], want)
+        want = ('Of those 2 projects, 2 have no direct dependencies blocking '
+                'their transition:')
+        self.assertEqual(messages[1], want)
+
+    def test_message_plural(self):
+        blockers = [['A']]
+        messages = ciu.message(blockers)
+        want = 'You need 1 project to transition to Python 3.'
+        self.assertEqual(messages[0], want)
+        want = ('Of that 1 project, 1 has no direct dependencies blocking '
+                'its transition:')
+        self.assertEqual(messages[1], want)
+
 
 class NameTests(unittest.TestCase):
 

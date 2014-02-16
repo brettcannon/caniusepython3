@@ -188,19 +188,40 @@ def projects_from_cli(args):
     return projects
 
 
+def message(blockers):
+    """Return the two key messages to tell users about what is holding them up."""
+    flattened_blockers = set()
+    for blocker_reasons in blockers:
+        for blocker in blocker_reasons:
+            flattened_blockers.add(blocker)
+    need = 'You need {} project{} to transition to Python 3.'
+    formatted_need = need.format(len(flattened_blockers),
+                      's' if len(flattened_blockers) != 1 else '')
+    can_port = ('Of {} {} project{}, {} {} no direct dependencies blocking '
+                '{} transition:')
+    formatted_can_port = can_port.format(
+            'those' if len(flattened_blockers) != 1 else 'that',
+            len(flattened_blockers),
+            's' if len(flattened_blockers) != 1 else '',
+            len(blockers),
+            'have' if len(blockers) != 1 else 'has',
+            'their' if len(blockers) != 1 else 'its')
+    return formatted_need, formatted_can_port
+
+
 def main(args=sys.argv[1:]):
     projects = projects_from_cli(args)
     logging.info('{} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
-    blocking = blocking_dependencies(projects, all_py3_projects())
-    flattened_blockers = set()
-    for blocker_reasons in blocking:
-        for blocker in blocker_reasons:
-            flattened_blockers.add(blocker)
+    blockers = blocking_dependencies(projects, all_py3_projects())
+
     print()
-    print('{} total dependencies need to be ported to Python 3.'.format(len(flattened_blockers)))
-    print('{} dependencies have no other dependencies blocking a port to Python 3:'.format(len(blocking)))
-    for blocker in sorted(blocking, key=lambda x: tuple(reversed(x))):
+    for line in message(blockers):
+        print(line)
+
+    print()
+    for blocker in sorted(blockers, key=lambda x: tuple(reversed(x))):
+        print('  ', end='')
         print(' <- '.join(blocker))
 
 
