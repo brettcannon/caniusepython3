@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Calculate whether the specified and their dependencies support Python 3."""
+"""Calculate whether the specified package(s) and their dependencies support Python 3."""
 
 import distlib.locators
 import distlib.metadata
