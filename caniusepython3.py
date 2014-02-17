@@ -21,8 +21,10 @@ import distlib.metadata
 import pip.req
 
 import argparse  # Python 3.2
+import concurrent.futures  # Python 3.2
 import io
 import logging
+import os
 import re
 import sys
 import xmlrpc.client
@@ -70,20 +72,27 @@ class LowerDict(dict):
         return super().__setitem__(key.lower(), value)
 
 
+def projects_matching_classifier(classifier):
+    """Find all projects matching the specified trove classifier."""
+    client = xmlrpc.client.ServerProxy('http://pypi.python.org/pypi')
+    try:
+        logging.info('Fetching project list for {!r}'.format(classifier))
+        return (result[0].lower() for result in client.browse([classifier]))
+    finally:
+        client('close')()
+
+
 def all_py3_projects():
     base_classifier = 'Programming Language :: Python :: 3'
     classifiers = [base_classifier]
     classifiers.extend('{}.{}'.format(base_classifier, i)
                        for i in range(NEWEST_MINOR_VERSION + 1))
     projects = set()
-    client = xmlrpc.client.ServerProxy('http://pypi.python.org/pypi')
-    try:
-        for classifier in classifiers:
-            logging.info('Fetching project list for {!r}'.format(classifier))
-            projects.update(result[0].lower()
-                            for result in client.browse([classifier]))
-    finally:
-        client('close')()
+    thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
+            max_workers=os.cpu_count())
+    with thread_pool_executor as executor:
+        for result in executor.map(projects_matching_classifier, classifiers):
+            projects.update(result)
     stale_overrides = projects.intersection(OVERRIDES)
     logging.info('Adding {} overrides'.format(len(OVERRIDES)))
     if stale_overrides:
@@ -115,6 +124,20 @@ def reasons_to_paths(reasons):
     return paths
 
 
+def dependencies(project_name):
+    """Get the dependencies for a project."""
+    deps = []
+    logging.info('Locating {}'.format(project_name))
+    located = distlib.locators.locate(project_name, prereleases=True)
+    if located is None:
+        logging.warn('{} not found'.format(project_name))
+        return []
+    for dep in located.run_requires:
+        # Drop any version details from the dependency name.
+        deps.append(just_name(dep))
+    return deps
+
+
 def blocking_dependencies(projects, py3_projects):
     """Starting from 'projects', find all projects which are blocking Python 3 usage.
 
@@ -128,20 +151,18 @@ def blocking_dependencies(projects, py3_projects):
     check = [project.lower()
              for project in projects if project.lower() not in py3_projects]
     reasons = LowerDict({project: None for project in check})
-    while len(check) > 0:
-        project = check.pop(0)
-        logging.info('Locating {}'.format(project))
-        located = distlib.locators.locate(project, prereleases=True)
-        if located is None:
-            logging.warn('{} not found'.format(project))
-            continue
-        for dep in located.run_requires:
-            # Drop any version details from the dependency name.
-            dep_name = just_name(dep)
-            if dep_name in py3_projects:
-                continue
-            reasons[dep_name] = project
-            check.append(dep_name)
+    thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
+            max_workers=os.cpu_count())
+    with thread_pool_executor as executor:
+        while len(check) > 0:
+            new_check = []
+            for parent, deps in zip(check, executor.map(dependencies, check)):
+                for dep in deps:
+                    if dep in py3_projects:
+                        continue
+                    reasons[dep] = parent
+                    new_check.append(dep)
+            check = new_check
     return reasons_to_paths(reasons)
 
 

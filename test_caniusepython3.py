@@ -176,7 +176,9 @@ class NetworkTests(unittest.TestCase):
 
     @unittest.mock.patch('sys.stdout', io.StringIO())
     def test_e2e(self):
-        ciu.main(['--projects', 'numpy,scipy,matplotlib,ipython'])
+        # Make sure at least one project that will never be in Python 3 is
+        # included.
+        ciu.main(['--projects', 'numpy,scipy,matplotlib,ipython,unittest2'])
 
 
 if __name__ == '__main__':
