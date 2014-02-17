@@ -223,10 +223,10 @@ def pprint_blockers(blockers):
     for blocker in sorted(blockers, key=lambda x: tuple(reversed(x))):
         buf = [blocker[0]]
         if len(blocker) > 1:
-            buf += ' (which is blocking '
-            buf += ', which is blocking '.join(blocker[1:])
-            buf += ')'
-        pprinted += ''.join(buf)
+            buf.append(' (which is blocking ')
+            buf.append(', which is blocking '.join(blocker[1:]))
+            buf.append(')')
+        pprinted.append(''.join(buf))
     return pprinted
 
 

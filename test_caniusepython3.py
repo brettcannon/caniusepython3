@@ -101,6 +101,21 @@ class CLITests(unittest.TestCase):
             ['You have 0 projects blocking you from using Python 3!'],
             messages)
 
+    def test_pprint_blockers(self):
+        simple = [['A']]
+        fancy = [['A', 'B']]
+        nutty = [['A', 'B', 'C']]
+        repeated = [['A', 'C'], ['B']]  # Also tests sorting.
+        got = ciu.pprint_blockers(simple)
+        self.assertEqual(list(got), ['A'])
+        got = ciu.pprint_blockers(fancy)
+        self.assertEqual(list(got), ['A (which is blocking B)'])
+        got = ciu.pprint_blockers(nutty)
+        self.assertEqual(list(got),
+                         ['A (which is blocking B, which is blocking C)'])
+        got = ciu.pprint_blockers(repeated)
+        self.assertEqual(list(got), ['B', 'A (which is blocking C)'])
+
 
 class NameTests(unittest.TestCase):
 
@@ -144,6 +159,7 @@ class GraphResolutionTests(unittest.TestCase):
         self.assertEqual({('C', 'B', 'A')}, ciu.reasons_to_paths(reasons))
 
 
+#@unittest.skip('faster testing')
 class NetworkTests(unittest.TestCase):
 
     def test_all_py3_projects(self):
