@@ -27,6 +27,8 @@ import re
 import sys
 import xmlrpc.client
 
+# Make sure we are using all possible trove classifiers to tell if a project
+# supports Python 3.
 NEWEST_MINOR_VERSION = 4
 if sys.version_info.major == 3:
     assert NEWEST_MINOR_VERSION >= sys.version_info.minor
