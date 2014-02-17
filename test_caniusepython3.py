@@ -21,6 +21,9 @@ import unittest.mock  # Python 3.3
 
 
 EXAMPLE_REQUIREMENTS = """
+# From
+#  http://www.pip-installer.org/en/latest/reference/pip_install.html#requirement-specifiers
+# but without the quotes for shell protection.
 FooProject >= 1.2
 Fizzy [foo, bar]
 PickyThing<1.6,>1.9,!=1.9.6,<2.0a0,==2.4c1
@@ -47,7 +50,10 @@ class CLITests(unittest.TestCase):
     expected_metadata = {'foo', 'bar'}
 
     def test_requirements(self):
-        got = ciu.projects_from_requirements(EXAMPLE_REQUIREMENTS)
+        with tempfile.NamedTemporaryFile('w') as file:
+            file.write(EXAMPLE_REQUIREMENTS)
+            file.flush()
+            got = ciu.projects_from_requirements(file.name)
         self.assertEqual(set(got), self.expected_requirements)
 
     def test_metadata(self):

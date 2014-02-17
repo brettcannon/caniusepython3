@@ -18,7 +18,7 @@
 
 import distlib.locators
 import distlib.metadata
-import pkg_resources
+import pip.req
 
 import argparse  # Python 3.2
 import io
@@ -145,10 +145,10 @@ def blocking_dependencies(projects, py3_projects):
     return reasons_to_paths(reasons)
 
 
-def projects_from_requirements(requirements):
+def projects_from_requirements(requirements_path):
     """Extract the project dependencies from a Requirements specification."""
-    reqs = pkg_resources.parse_requirements(requirements)
-    return [req.project_name for req in reqs]
+    reqs = pip.req.parse_requirements(requirements_path)
+    return [req.name for req in reqs]
 
 
 def projects_from_metadata(metadata):
@@ -179,8 +179,7 @@ def projects_from_cli(args):
     if parsed.verbose:
         logging.getLogger().setLevel(logging.INFO)
     if parsed.requirements:
-        with open(parsed.requirements) as file:
-            projects.extend(projects_from_requirements(file.read()))
+        projects.extend(projects_from_requirements(parsed.requirements))
     if parsed.metadata:
         with open(parsed.metadata) as file:
             projects.extend(projects_from_metadata(file.read()))

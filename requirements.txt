@@ -1,2 +1,5 @@
-distlib
+# Installation
 setuptools
+# Usage
+distlib
+pip
