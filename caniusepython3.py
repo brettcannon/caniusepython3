@@ -24,10 +24,15 @@ import argparse  # Python 3.2
 import concurrent.futures  # Python 3.2
 import io
 import logging
-import os
+import multiprocessing
 import re
 import sys
 import xmlrpc.client
+
+try:
+    CPU_COUNT = max(2, multiprocessing.cpu_count())
+except NotImplementedError:
+    CPU_COUNT = 2
 
 # Make sure we are using all possible trove classifiers to tell if a project
 # supports Python 3.
@@ -89,7 +94,7 @@ def all_py3_projects():
                        for i in range(NEWEST_MINOR_VERSION + 1))
     projects = set()
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
-            max_workers=os.cpu_count())
+            max_workers=CPU_COUNT)
     with thread_pool_executor as executor:
         for result in executor.map(projects_matching_classifier, classifiers):
             projects.update(result)
@@ -152,7 +157,7 @@ def blocking_dependencies(projects, py3_projects):
              for project in projects if project.lower() not in py3_projects]
     reasons = LowerDict({project: None for project in check})
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
-            max_workers=os.cpu_count())
+            max_workers=CPU_COUNT)
     with thread_pool_executor as executor:
         while len(check) > 0:
             new_check = []
