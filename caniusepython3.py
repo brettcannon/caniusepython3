@@ -20,7 +20,7 @@ import distlib.locators
 import distlib.metadata
 import pkg_resources
 
-import argparse
+import argparse  # Python 3.2
 import io
 import logging
 import re

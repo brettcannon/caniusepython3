@@ -17,7 +17,7 @@ import caniusepython3 as ciu
 import io
 import tempfile
 import unittest
-import unittest.mock
+import unittest.mock  # Python 3.3
 
 
 EXAMPLE_REQUIREMENTS = """
