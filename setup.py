@@ -14,7 +14,7 @@ setup(name='caniusepython3',
       py_modules=['caniusepython3'],
       setup_requires=['setuptools'],
       install_requires=['distlib', 'pip'],
-      test_require=['mock'],
+      tests_require=['mock'],
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
