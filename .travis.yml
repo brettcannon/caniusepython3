@@ -1,7 +1,8 @@
 language: python
 
 python:
+    - "3.2"
     - "3.3"
 
-install: pip install -r requirements.txt
+install: pip install -e .
 script:  python test_caniusepython3.py

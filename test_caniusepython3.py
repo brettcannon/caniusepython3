@@ -17,7 +17,10 @@ import caniusepython3 as ciu
 import io
 import tempfile
 import unittest
-import unittest.mock  # Python 3.3
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 EXAMPLE_REQUIREMENTS = """
@@ -174,7 +177,7 @@ class NetworkTests(unittest.TestCase):
         self.assertTrue(all(project == project.lower() for project in projects))
         self.assertTrue(ciu.OVERRIDES.issubset(projects))
 
-    @unittest.mock.patch('sys.stdout', io.StringIO())
+    @mock.patch('sys.stdout', io.StringIO())
     def test_e2e(self):
         # Make sure at least one project that will never be in Python 3 is
         # included.
