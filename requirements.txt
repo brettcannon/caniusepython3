@@ -1,5 +1,0 @@
-# Installation
-setuptools
-# Usage
-distlib
-pip
