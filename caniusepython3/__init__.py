@@ -25,6 +25,10 @@ import multiprocessing
 import pkgutil
 import re
 import sys
+try:
+    import urllib.request as urllib_request
+except ImportError:
+    import urllib2 as urllib_request
 import xml.parsers.expat
 try:
     import xmlrpc.client as xmlrpc_client
@@ -35,12 +39,6 @@ try:
     CPU_COUNT = max(2, multiprocessing.cpu_count())
 except NotImplementedError:
     CPU_COUNT = 2
-
-# Make sure we are using all possible trove classifiers to tell if a project
-# supports Python 3.
-NEWEST_MINOR_VERSION = 4
-if sys.version_info[0] == 3:
-    assert NEWEST_MINOR_VERSION >= sys.version_info[1]
 
 PROJECT_NAME = re.compile(r'[\w.-]+')
 
@@ -64,6 +62,20 @@ def overrides():
     return frozenset(json.loads(raw_bytes.decode('utf-8')).keys())
 
 
+def py3_classifiers():
+    """Fetch the Python 3-related trove classifiers."""
+    url = 'https://pypi.python.org/pypi?%3Aaction=list_classifiers'
+    with urllib_request.urlopen(url) as response:
+        if response.status != 200:
+            msg = 'PyPI responded with status {0} for {1}'.format(response.status, url)
+            raise ValueError(msg)
+        data = response.read()
+    classifiers = data.decode('utf-8').splitlines()
+    base_classifier = 'Programming Language :: Python :: 3'
+    return (classifier for classifier in classifiers
+            if classifier.startswith(base_classifier))
+
+
 def projects_matching_classifier(classifier):
     """Find all projects matching the specified trove classifier."""
     client = xmlrpc_client.ServerProxy('http://pypi.python.org/pypi')
@@ -84,15 +96,11 @@ def projects_matching_classifier(classifier):
 
 
 def all_py3_projects():
-    base_classifier = 'Programming Language :: Python :: 3'
-    classifiers = [base_classifier]
-    classifiers.extend('{0}.{1}'.format(base_classifier, i)
-                       for i in range(NEWEST_MINOR_VERSION + 1))
     projects = set()
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=CPU_COUNT)
     with thread_pool_executor as executor:
-        for result in map(projects_matching_classifier, classifiers):
+        for result in map(projects_matching_classifier, py3_classifiers()):
             projects.update(result)
     manual_overrides = overrides()
     stale_overrides = projects.intersection(manual_overrides)

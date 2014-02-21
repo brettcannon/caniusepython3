@@ -73,6 +73,21 @@ class GraphResolutionTests(unittest.TestCase):
 #@unittest.skip('faster testing')
 class NetworkTests(unittest.TestCase):
 
+    def py3_classifiers(self):
+        key_classifier = 'Programming Language :: Python :: 3'
+        classifiers = frozenset(ciu.py3_classifiers())
+        if hasattr(self, 'assertIn'):
+            self.asssertIn(key_classifier, classifiers)
+        else:
+            self.assertTrue(key_classifier in classifiers)
+        if hasattr(self, 'assertGreaterEqual'):
+            self.assertGreaterEqual(len(classifiers), 5)
+        else:
+            self.assertTrue(len(classifiers) >= 5)
+        for classifier in classifiers:
+            self.assertTrue(classifier.startswith(key_classifier))
+
+
     def test_all_py3_projects(self):
         projects = ciu.all_py3_projects()
         if hasattr(self, 'assertGreater'):
