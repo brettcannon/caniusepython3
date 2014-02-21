@@ -19,8 +19,10 @@ from __future__ import unicode_literals
 import distlib.locators
 
 import concurrent.futures
+import json
 import logging
 import multiprocessing
+import pkgutil
 import re
 import sys
 import xml.parsers.expat
@@ -42,31 +44,6 @@ if sys.version_info[0] == 3:
 
 PROJECT_NAME = re.compile(r'[\w.-]+')
 
-OVERRIDES = frozenset(x.lower() for x in [
-    'beautifulsoup',  # beautifulsoup4
-    'ipaddress',  # stdlib
-    'mox',  # mox3
-    'mox3', # Missing classifier
-    'multiprocessing',  # stdlib
-    'ordereddict', # stdlib
-    'pbr',  # Missing classifier
-    'pylint',  # Missing classifier
-    'pyopenssl',  # Missing classifier
-    'pysqlite',  # stdlib
-    'python-keystoneclient',  # Missing classifier
-    'python-memcached',  # python3-memcached
-    'python-novaclient',  # Missing classifier
-    'pyvirtualdisplay',  # Missing classifier
-    'rsa',  # Missing classifier
-    'ssl',  # stdlib
-    'trollius',  # asyncio
-    'unittest2',  # stdlib
-    'uuid',  # stdlib
-    'wsgiref',  #stdlib
-    'xlwt',  # xlwt-future
-    'zc.recipe.egg',  # Missing classifier
-])
-
 
 class LowerDict(dict):
 
@@ -75,6 +52,16 @@ class LowerDict(dict):
 
     def __setitem__(self, key, value):
         return super(LowerDict, self).__setitem__(key.lower(), value)
+
+
+def overrides():
+    """Load a set containing projects who are missing the proper Python 3 classifier.
+
+    Project names are always lowercased.
+
+    """
+    raw_bytes = pkgutil.get_data(__name__, 'overrides.json')
+    return frozenset(json.loads(raw_bytes.decode('utf-8')).keys())
 
 
 def projects_matching_classifier(classifier):
@@ -107,11 +94,12 @@ def all_py3_projects():
     with thread_pool_executor as executor:
         for result in map(projects_matching_classifier, classifiers):
             projects.update(result)
-    stale_overrides = projects.intersection(OVERRIDES)
-    logging.info('Adding {0} overrides'.format(len(OVERRIDES)))
+    manual_overrides = overrides()
+    stale_overrides = projects.intersection(manual_overrides)
+    logging.info('Adding {0} overrides'.format(len(manual_overrides)))
     if stale_overrides:
         logging.warn('Stale overrides: {0}'.format(stale_overrides))
-    projects.update(OVERRIDES)
+    projects.update(manual_overrides)
     return projects
 
 

@@ -45,6 +45,13 @@ class NameTests(unittest.TestCase):
         self.assertEqual(got, want)
 
 
+class OverridesTests(unittest.TestCase):
+
+    def test_all_lowercase(self):
+        for name in ciu.overrides():
+            self.assertEqual(name, name.lower())
+
+
 class GraphResolutionTests(unittest.TestCase):
 
     def test_all_projects_okay(self):
@@ -73,7 +80,7 @@ class NetworkTests(unittest.TestCase):
         else:
             self.assertTrue(len(projects) > 3000)
         self.assertTrue(all(project == project.lower() for project in projects))
-        self.assertTrue(ciu.OVERRIDES.issubset(projects))
+        self.assertTrue(ciu.overrides().issubset(projects))
 
     def test_blocking_dependencies(self):
         got = ciu.blocking_dependencies(['unittest2'], {})
