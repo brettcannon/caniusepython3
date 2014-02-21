@@ -67,8 +67,12 @@ def py3_classifiers():
     url = 'https://pypi.python.org/pypi?%3Aaction=list_classifiers'
     response = urllib_request.urlopen(url)
     try:
-        if response.status != 200:
-            msg = 'PyPI responded with status {0} for {1}'.format(response.status, url)
+        try:
+            status = response.status
+        except AttributeError:
+            status = response.code
+        if status != 200:
+            msg = 'PyPI responded with status {0} for {1}'.format(status, url)
             raise ValueError(msg)
         data = response.read()
     finally:
