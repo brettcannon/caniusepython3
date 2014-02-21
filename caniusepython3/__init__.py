@@ -65,11 +65,14 @@ def overrides():
 def py3_classifiers():
     """Fetch the Python 3-related trove classifiers."""
     url = 'https://pypi.python.org/pypi?%3Aaction=list_classifiers'
-    with urllib_request.urlopen(url) as response:
+    response = urllib_request.urlopen(url)
+    try:
         if response.status != 200:
             msg = 'PyPI responded with status {0} for {1}'.format(response.status, url)
             raise ValueError(msg)
         data = response.read()
+    finally:
+        response.close()
     classifiers = data.decode('utf-8').splitlines()
     base_classifier = 'Programming Language :: Python :: 3'
     return (classifier for classifier in classifiers
