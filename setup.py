@@ -16,7 +16,7 @@ setup(name='caniusepython3',
       setup_requires=['setuptools'],
       install_requires=['distlib', 'pip', 'argparse', 'futures', 'mock'],
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'Environment :: Console',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Apache Software License',
