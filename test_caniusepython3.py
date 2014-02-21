@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import unicode_literals
+
 import caniusepython3 as ciu
 
 import io
@@ -49,8 +51,9 @@ Platform: UNKNOWN
 
 class CLITests(unittest.TestCase):
 
-    expected_requirements = {'FooProject', 'Fizzy', 'PickyThing', 'Hello'}
-    expected_metadata = {'foo', 'bar'}
+    expected_requirements = frozenset(['FooProject', 'Fizzy', 'PickyThing',
+                                       'Hello'])
+    expected_metadata = frozenset(['foo', 'bar'])
 
     def test_requirements(self):
         with tempfile.NamedTemporaryFile('w') as file:
@@ -82,7 +85,7 @@ class CLITests(unittest.TestCase):
     def test_cli_for_projects(self):
         args = ['--projects', 'foo,bar']
         got = ciu.projects_from_cli(args)
-        self.assertEqual(set(got), {'foo', 'bar'})
+        self.assertEqual(set(got), frozenset(['foo', 'bar']))
 
     def test_message_plural(self):
         blockers = [['A'], ['B']]
@@ -160,12 +163,13 @@ class GraphResolutionTests(unittest.TestCase):
     def test_leaf_okay(self):
         # A -> B where B is okay.
         reasons = {'A': None}
-        self.assertEqual({('A',)}, ciu.reasons_to_paths(reasons))
+        self.assertEqual(frozenset([('A',)]), ciu.reasons_to_paths(reasons))
 
     def test_leaf_bad(self):
         # A -> B -> C where all projects are bad.
         reasons = {'A': None, 'B': 'A', 'C': 'B'}
-        self.assertEqual({('C', 'B', 'A')}, ciu.reasons_to_paths(reasons))
+        self.assertEqual(frozenset([('C', 'B', 'A')]),
+                         ciu.reasons_to_paths(reasons))
 
 
 #@unittest.skip('faster testing')
@@ -173,7 +177,10 @@ class NetworkTests(unittest.TestCase):
 
     def test_all_py3_projects(self):
         projects = ciu.all_py3_projects()
-        self.assertGreater(len(projects), 3000)
+        if hasattr(self, 'assertGreater'):
+            self.assertGreater(len(projects), 3000)
+        else:
+            self.assertTrue(len(projects) > 3000)
         self.assertTrue(all(project == project.lower() for project in projects))
         self.assertTrue(ciu.OVERRIDES.issubset(projects))
 

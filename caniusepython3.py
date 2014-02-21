@@ -16,18 +16,25 @@
 
 """Calculate whether the specified package(s) and their dependencies support Python 3."""
 
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import distlib.locators
 import distlib.metadata
 import pip.req
 
-import argparse  # Python 3.2
-import concurrent.futures  # Python 3.2
+import argparse
+import concurrent.futures
 import io
 import logging
 import multiprocessing
 import re
 import sys
-import xmlrpc.client
+import xml.parsers.expat
+try:
+    import xmlrpc.client as xmlrpc_client
+except ImportError:
+    import xmlrpclib as xmlrpc_client
 
 try:
     CPU_COUNT = max(2, multiprocessing.cpu_count())
@@ -37,12 +44,12 @@ except NotImplementedError:
 # Make sure we are using all possible trove classifiers to tell if a project
 # supports Python 3.
 NEWEST_MINOR_VERSION = 4
-if sys.version_info.major == 3:
-    assert NEWEST_MINOR_VERSION >= sys.version_info.minor
+if sys.version_info[0] == 3:
+    assert NEWEST_MINOR_VERSION >= sys.version_info[1]
 
 PROJECT_NAME = re.compile(r'[\w.-]+')
 
-OVERRIDES = {x.lower() for x in {
+OVERRIDES = frozenset(x.lower() for x in [
     'beautifulsoup',  # beautifulsoup4
     'ipaddress',  # stdlib
     'mox',  # mox3
@@ -65,43 +72,52 @@ OVERRIDES = {x.lower() for x in {
     'wsgiref',  #stdlib
     'xlwt',  # xlwt-future
     'zc.recipe.egg',  # Missing classifier
-}}
+])
 
 
 class LowerDict(dict):
 
     def __getitem__(self, key):
-        return super().__getitem__(key.lower())
+        return super(LowerDict, self).__getitem__(key.lower())
 
     def __setitem__(self, key, value):
-        return super().__setitem__(key.lower(), value)
+        return super(LowerDict, self).__setitem__(key.lower(), value)
 
 
 def projects_matching_classifier(classifier):
     """Find all projects matching the specified trove classifier."""
-    client = xmlrpc.client.ServerProxy('http://pypi.python.org/pypi')
+    client = xmlrpc_client.ServerProxy('http://pypi.python.org/pypi')
     try:
-        logging.info('Fetching project list for {!r}'.format(classifier))
-        return (result[0].lower() for result in client.browse([classifier]))
+        logging.info('Fetching project list for {0!r}'.format(classifier))
+        return frozenset(result[0].lower()
+                         for result in client.browse([classifier]))
+    except xml.parsers.expat.ExpatError:
+        # Python 2.6 doesn't like empty results.
+        logging.info("PyPI didn't return any results")
+        return frozenset()
     finally:
-        client('close')()
+        try:
+            client('close')()
+        except xml.parsers.expat.ExpatError:
+            # The close hack is not in Python 2.6.
+            pass
 
 
 def all_py3_projects():
     base_classifier = 'Programming Language :: Python :: 3'
     classifiers = [base_classifier]
-    classifiers.extend('{}.{}'.format(base_classifier, i)
+    classifiers.extend('{0}.{1}'.format(base_classifier, i)
                        for i in range(NEWEST_MINOR_VERSION + 1))
     projects = set()
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=CPU_COUNT)
     with thread_pool_executor as executor:
-        for result in executor.map(projects_matching_classifier, classifiers):
+        for result in map(projects_matching_classifier, classifiers):
             projects.update(result)
     stale_overrides = projects.intersection(OVERRIDES)
-    logging.info('Adding {} overrides'.format(len(OVERRIDES)))
+    logging.info('Adding {0} overrides'.format(len(OVERRIDES)))
     if stale_overrides:
-        logging.warn('Stale overrides: {}'.format(stale_overrides))
+        logging.warn('Stale overrides: {0}'.format(stale_overrides))
     projects.update(OVERRIDES)
     return projects
 
@@ -132,10 +148,10 @@ def reasons_to_paths(reasons):
 def dependencies(project_name):
     """Get the dependencies for a project."""
     deps = []
-    logging.info('Locating {}'.format(project_name))
+    logging.info('Locating {0}'.format(project_name))
     located = distlib.locators.locate(project_name, prereleases=True)
     if located is None:
-        logging.warn('{} not found'.format(project_name))
+        logging.warn('{0} not found'.format(project_name))
         return []
     for dep in located.run_requires:
         # Drop any version details from the dependency name.
@@ -155,7 +171,7 @@ def blocking_dependencies(projects, py3_projects):
     """
     check = [project.lower()
              for project in projects if project.lower() not in py3_projects]
-    reasons = LowerDict({project: None for project in check})
+    reasons = LowerDict((project, None) for project in check)
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=CPU_COUNT)
     with thread_pool_executor as executor:
@@ -207,7 +223,7 @@ def projects_from_cli(args):
     if parsed.requirements:
         projects.extend(projects_from_requirements(parsed.requirements))
     if parsed.metadata:
-        with open(parsed.metadata) as file:
+        with io.open(parsed.metadata) as file:
             projects.extend(projects_from_metadata(file.read()))
     if parsed.projects:
         projects.extend(parsed.projects)
@@ -223,11 +239,11 @@ def message(blockers):
     for blocker_reasons in blockers:
         for blocker in blocker_reasons:
             flattened_blockers.add(blocker)
-    need = 'You need {} project{} to transition to Python 3.'
+    need = 'You need {0} project{1} to transition to Python 3.'
     formatted_need = need.format(len(flattened_blockers),
                       's' if len(flattened_blockers) != 1 else '')
-    can_port = ('Of {} {} project{}, {} {} no direct dependencies blocking '
-                '{} transition:')
+    can_port = ('Of {0} {1} project{2}, {3} {4} no direct dependencies '
+                'blocking {5} transition:')
     formatted_can_port = can_port.format(
             'those' if len(flattened_blockers) != 1 else 'that',
             len(flattened_blockers),
@@ -259,15 +275,15 @@ def pprint_blockers(blockers):
 
 def main(args=sys.argv[1:]):
     projects = projects_from_cli(args)
-    logging.info('{} top-level projects to check'.format(len(projects)))
+    logging.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
     blockers = blocking_dependencies(projects, all_py3_projects())
 
-    print()
+    print('')
     for line in message(blockers):
         print(line)
 
-    print()
+    print('')
     for line in pprint_blockers(blockers):
         print(' ', line)
 
