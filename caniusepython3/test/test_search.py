@@ -18,10 +18,6 @@ import caniusepython3 as ciu
 
 import io
 import unittest
-try:
-    from unittest import mock
-except ImportError:
-    import mock
 
 
 class NameTests(unittest.TestCase):
