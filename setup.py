@@ -11,7 +11,7 @@ setup(name='caniusepython3',
       author='Brett Cannon',
       author_email='brett@python.org',
       url='https://github.com/brettcannon/caniusepython3',
-      py_modules=['caniusepython3'],
+      packages=['caniusepython3'],
       setup_requires=['setuptools'],
       install_requires=['distlib', 'pip', 'argparse', 'futures', 'mock'],
       classifiers=[
@@ -28,7 +28,7 @@ setup(name='caniusepython3',
       ],
       entry_points={
           'console_scripts': [
-              'caniusepython3=caniusepython3:main',
+              'caniusepython3=caniusepython3.__main__:main',
           ]
       },
       zip_safe=True,
