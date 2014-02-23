@@ -128,6 +128,13 @@ class CLITests(unittest.TestCase):
         got = ciu_main.pprint_blockers(repeated)
         self.assertEqual(list(got), ['B', 'A (which is blocking C)'])
 
+    @mock.patch('argparse.ArgumentParser.error')
+    def test_projects_must_be_specified(self, parser_error):
+        ciu_main.projects_from_cli([])
+        self.assertEqual(
+            mock.call("Missing 'requirements', 'metadata', or 'projects'"),
+            parser_error.call_args)
+
 
 #@unittest.skip('faster testing')
 class NetworkTests(unittest.TestCase):

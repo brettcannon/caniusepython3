@@ -56,6 +56,9 @@ def projects_from_cli(args):
                         help='verbose output')
     parsed = parser.parse_args(args)
 
+    if not (parsed.requirements or parsed.metadata or parsed.projects):
+        parser.error("Missing 'requirements', 'metadata', or 'projects'")
+
     projects = []
     if parsed.verbose:
         logging.getLogger().setLevel(logging.INFO)
