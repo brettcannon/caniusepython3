@@ -16,7 +16,7 @@ will also list what projects have no explicit dependency blocking their
 transition so you can ask them consider starting a port to Python 3.
 <!-- END long_description -->
 
-[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](https://travis-ci.org/brettcannon/caniusepython3)
+[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](http://img.shields.io/travis/brettcannon/caniusepython3.svg)
 
 
 How do you tell if a project has been ported to Python 3?
