@@ -8,7 +8,6 @@
     "ordereddict": "http://docs.python.org/3/library/collections.html#collections.OrderedDict",
     "pbr": "http://docs.openstack.org/developer/pbr/",
     "pylint": "https://bitbucket.org/logilab/pylint/src/default/setup.py",
-    "pyopenssl": "https://pypi.python.org/pypi/pyOpenSSL",
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
     "python-memcached": "https://pypi.python.org/pypi/python3-memcached",
     "python-novaclient": "https://github.com/openstack/python-novaclient/blob/master/tox.ini",
