@@ -29,7 +29,7 @@ import sys
 def projects_from_requirements(requirements_path):
     """Extract the project dependencies from a Requirements specification."""
     reqs = pip.req.parse_requirements(requirements_path)
-    return [req.name for req in reqs]
+    return [req.name for req in reqs if not req.editable]
 
 
 def projects_from_metadata(metadata):
@@ -43,8 +43,7 @@ def projects_from_cli(args):
     description = ('Determine if a set of project dependencies will work with '
                    'Python 3')
     parser = argparse.ArgumentParser(description=description)
-    req_help = ('path to a pkg_resources requirements file '
-                '(e.g. requirements.txt)')
+    req_help = ('path to a pip requirements file (e.g. requirements.txt)')
     parser.add_argument('--requirements', '-r', nargs='?',
                         help=req_help)
     meta_help = 'path to a PEP 426 metadata file (e.g. PKG-INFO, pydist.json)'
