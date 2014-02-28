@@ -29,7 +29,20 @@ import sys
 def projects_from_requirements(requirements_path):
     """Extract the project dependencies from a Requirements specification."""
     reqs = pip.req.parse_requirements(requirements_path)
-    return [req.name for req in reqs if not req.editable]
+    valid_reqs = []
+    for req in reqs:
+        if not req.name:
+            logging.warning('A requirement lacks a name '
+                         '(e.g. no `#egg` on a `file:` path)')
+        elif req.editable:
+            logging.warning(
+                'Skipping {0}: editable projects unsupported'.format(req.name))
+        elif req.url and req.url.startswith('file:'):
+            logging.warning(
+                'Skipping {0}: file-specified projects unsupported'.format(req.name))
+        else:
+            valid_reqs.append(req.name)
+    return valid_reqs
 
 
 def projects_from_metadata(metadata):

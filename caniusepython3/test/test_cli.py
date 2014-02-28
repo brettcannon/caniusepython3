@@ -34,6 +34,9 @@ Fizzy [foo, bar]
 PickyThing<1.6,>1.9,!=1.9.6,<2.0a0,==2.4c1
 Hello
 -e git+https://github.com/brettcannon/caniusepython3#egg=caniusepython3
+file:../caniusepython3#egg=caniusepython3
+# Docs say to specify an #egg argument, but apparently it's optional.
+file:../../lib/project
 """
 
 EXAMPLE_METADATA = """Metadata-Version: 1.2
