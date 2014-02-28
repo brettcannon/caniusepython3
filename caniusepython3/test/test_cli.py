@@ -17,6 +17,7 @@ from __future__ import unicode_literals
 import caniusepython3.__main__ as ciu_main
 
 import io
+import logging
 import tempfile
 import unittest
 try:
@@ -58,6 +59,14 @@ class CLITests(unittest.TestCase):
     expected_requirements = frozenset(['FooProject', 'Fizzy', 'PickyThing',
                                        'Hello'])
     expected_metadata = frozenset(['foo', 'bar'])
+
+    def setUp(self):
+        log = logging.getLogger('ciu')
+        self._prev_log_level = log.getEffectiveLevel()
+        logging.getLogger('ciu').setLevel(1000)
+
+    def tearDown(self):
+        logging.getLogger('ciu').setLevel(self._prev_log_level)
 
     def test_requirements(self):
         with tempfile.NamedTemporaryFile('w') as file:

@@ -85,14 +85,15 @@ def py3_classifiers():
 
 def projects_matching_classifier(classifier):
     """Find all projects matching the specified trove classifier."""
+    log = logging.getLogger('ciu')
     client = xmlrpc_client.ServerProxy('http://pypi.python.org/pypi')
     try:
-        logging.info('Fetching project list for {0!r}'.format(classifier))
+        log.info('Fetching project list for {0!r}'.format(classifier))
         return frozenset(result[0].lower()
                          for result in client.browse([classifier]))
     except xml.parsers.expat.ExpatError:
         # Python 2.6 doesn't like empty results.
-        logging.info("PyPI didn't return any results")
+        log.info("PyPI didn't return any results")
         return frozenset()
     finally:
         try:
@@ -103,6 +104,7 @@ def projects_matching_classifier(classifier):
 
 
 def all_py3_projects():
+    log = logging.getLogger('ciu')
     projects = set()
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=CPU_COUNT)
@@ -111,9 +113,9 @@ def all_py3_projects():
             projects.update(result)
     manual_overrides = overrides()
     stale_overrides = projects.intersection(manual_overrides)
-    logging.info('Adding {0} overrides'.format(len(manual_overrides)))
+    log.info('Adding {0} overrides'.format(len(manual_overrides)))
     if stale_overrides:
-        logging.warn('Stale overrides: {0}'.format(stale_overrides))
+        log.warn('Stale overrides: {0}'.format(stale_overrides))
     projects.update(manual_overrides)
     return projects
 
@@ -143,11 +145,12 @@ def reasons_to_paths(reasons):
 
 def dependencies(project_name):
     """Get the dependencies for a project."""
+    log = logging.getLogger('ciu')
     deps = []
-    logging.info('Locating {0}'.format(project_name))
+    log.info('Locating {0}'.format(project_name))
     located = distlib.locators.locate(project_name, prereleases=True)
     if located is None:
-        logging.warn('{0} not found'.format(project_name))
+        log.warn('{0} not found'.format(project_name))
         return []
     for dep in located.run_requires:
         # Drop any version details from the dependency name.

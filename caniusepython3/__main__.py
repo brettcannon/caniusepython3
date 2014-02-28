@@ -28,17 +28,18 @@ import sys
 
 def projects_from_requirements(requirements_path):
     """Extract the project dependencies from a Requirements specification."""
+    log = logging.getLogger('ciu')
     reqs = pip.req.parse_requirements(requirements_path)
     valid_reqs = []
     for req in reqs:
         if not req.name:
-            logging.warning('A requirement lacks a name '
-                         '(e.g. no `#egg` on a `file:` path)')
+            log.warning('A requirement lacks a name '
+                        '(e.g. no `#egg` on a `file:` path)')
         elif req.editable:
-            logging.warning(
+            log.warning(
                 'Skipping {0}: editable projects unsupported'.format(req.name))
         elif req.url and req.url.startswith('file:'):
-            logging.warning(
+            log.warning(
                 'Skipping {0}: file-specified projects unsupported'.format(req.name))
         else:
             valid_reqs.append(req.name)
@@ -73,7 +74,7 @@ def projects_from_cli(args):
 
     projects = []
     if parsed.verbose:
-        logging.getLogger().setLevel(logging.INFO)
+        logging.getLogger('ciu').setLevel(logging.INFO)
     if parsed.requirements:
         projects.extend(projects_from_requirements(parsed.requirements))
     if parsed.metadata:
@@ -128,8 +129,9 @@ def pprint_blockers(blockers):
 
 
 def main(args=sys.argv[1:]):
+    log = logging.getLogger('ciu')
     projects = projects_from_cli(args)
-    logging.info('{0} top-level projects to check'.format(len(projects)))
+    log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
     blockers = ciu.blocking_dependencies(projects, ciu.all_py3_projects())
 
