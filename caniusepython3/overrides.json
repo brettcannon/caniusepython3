@@ -9,6 +9,7 @@
     "pbr": "http://docs.openstack.org/developer/pbr/",
     "pylint": "https://bitbucket.org/logilab/pylint/src/default/setup.py",
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
+    "python-keystoneclient": "https://github.com/brettcannon/caniusepython3/issues/15",
     "python-memcached": "https://pypi.python.org/pypi/python3-memcached",
     "python-novaclient": "https://github.com/openstack/python-novaclient/blob/master/tox.ini",
     "pyvirtualdisplay": "https://pypi.python.org/pypi/PyVirtualDisplay",
