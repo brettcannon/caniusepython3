@@ -108,6 +108,7 @@ def message(blockers):
             'their' if len(blockers) != 1 else 'its')
     return formatted_need, formatted_can_port
 
+
 def pprint_blockers(blockers):
     """Pretty print blockers into a sequence of strings.
 
@@ -128,9 +129,9 @@ def pprint_blockers(blockers):
     return pprinted
 
 
-def main(args=sys.argv[1:]):
+def check(projects):
+    """Check the specified projects for Python 3 compatibility."""
     log = logging.getLogger('ciu')
-    projects = projects_from_cli(args)
     log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
     blockers = ciu.blocking_dependencies(projects, ciu.all_py3_projects())
@@ -142,6 +143,10 @@ def main(args=sys.argv[1:]):
     print('')
     for line in pprint_blockers(blockers):
         print(' ', line)
+
+
+def main(args=sys.argv[1:]):
+    check(projects_from_cli(args))
 
 
 if __name__ == '__main__':

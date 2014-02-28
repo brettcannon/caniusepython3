@@ -5,7 +5,7 @@ with open('README.md') as file:
     long_description = file.read().partition('<!-- END long_description -->')[0]
 
 setup(name='caniusepython3',
-      version='1.0',
+      version='1.1.0',
       description='Determine what projects are blocking you from porting to Python 3',
       long_description=long_description,
       author='Brett Cannon',
@@ -13,8 +13,9 @@ setup(name='caniusepython3',
       url='https://github.com/brettcannon/caniusepython3',
       packages=['caniusepython3', 'caniusepython3.test'],
       include_package_data=True,
-      setup_requires=['setuptools'],
-      install_requires=['distlib', 'pip', 'argparse', 'futures', 'mock'],
+      install_requires=['distlib', 'setuptools', 'pip',  # Input flexibility
+                        'argparse', 'futures',  # Functionality
+                        'mock'],  # Testing
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Console',
@@ -29,8 +30,11 @@ setup(name='caniusepython3',
       ],
       entry_points={
           'console_scripts': [
-              'caniusepython3=caniusepython3.__main__:main',
-          ]
+              'caniusepython3 = caniusepython3.__main__:main',
+          ],
+          'distutils.commands': [
+              'caniusepython3 = caniusepython3.command:Command',
+          ],
       },
       zip_safe=True,
 )
