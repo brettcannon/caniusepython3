@@ -1,5 +1,9 @@
 from setuptools import setup
 
+
+# Installed name used for various commands (both script and setuptools).
+command_name = 'caniusepython3'  # 'icanhazpython3'
+
 with open('README.md') as file:
     # Try my best to have at least the intro in Markdown/reST.
     long_description = file.read().partition('<!-- END long_description -->')[0]
@@ -30,10 +34,10 @@ setup(name='caniusepython3',
       ],
       entry_points={
           'console_scripts': [
-              'caniusepython3 = caniusepython3.__main__:main',
+              '{0} = caniusepython3.__main__:main'.format(command_name),
           ],
           'distutils.commands': [
-              'caniusepython3 = caniusepython3.command:Command',
+              '{0} = caniusepython3.command:Command'.format(command_name),
           ],
       },
       zip_safe=True,

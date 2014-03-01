@@ -73,3 +73,9 @@ various sources of help. If you want a specific starting point there are
 [HOWTOs](http://docs.python.org/3/howto/index.html) in the Python documentation
 on [porting pure Python modules](http://docs.python.org/3/howto/pyporting.html)
 and [extension modules](http://docs.python.org/3/howto/cporting.html).
+
+Secret bonus feature
+---------------------
+If you would like to use a different name for the either the script or
+setuptools command, then change the `command_name` line in `setup.py`. Reddit
+suggests `icanhazpython3`.
