@@ -1,5 +1,6 @@
 {
     "beautifulsoup": "https://pypi.python.org/pypi/beautifulsoup4",
+    "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "ecdsa": "https://github.com/warner/python-ecdsa/blob/master/README.md",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
     "ipaddress": "http://docs.python.org/3/library/ipaddress.html",
