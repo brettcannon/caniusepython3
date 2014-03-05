@@ -26,23 +26,24 @@ import logging
 import sys
 
 
-def projects_from_requirements(requirements_path):
+def projects_from_requirements(requirements):
     """Extract the project dependencies from a Requirements specification."""
     log = logging.getLogger('ciu')
-    reqs = pip.req.parse_requirements(requirements_path)
     valid_reqs = []
-    for req in reqs:
-        if not req.name:
-            log.warning('A requirement lacks a name '
-                        '(e.g. no `#egg` on a `file:` path)')
-        elif req.editable:
-            log.warning(
-                'Skipping {0}: editable projects unsupported'.format(req.name))
-        elif req.url and req.url.startswith('file:'):
-            log.warning(
-                'Skipping {0}: file-specified projects unsupported'.format(req.name))
-        else:
-            valid_reqs.append(req.name)
+    for requirements_path in requirements:
+        reqs = pip.req.parse_requirements(requirements_path)
+        for req in reqs:
+            if not req.name:
+                log.warning('A requirement lacks a name '
+                            '(e.g. no `#egg` on a `file:` path)')
+            elif req.editable:
+                log.warning(
+                    'Skipping {0}: editable projects unsupported'.format(req.name))
+            elif req.url and req.url.startswith('file:'):
+                log.warning(
+                    'Skipping {0}: file-specified projects unsupported'.format(req.name))
+            else:
+                valid_reqs.append(req.name)
     return valid_reqs
 
 
@@ -59,6 +60,7 @@ def projects_from_cli(args):
     parser = argparse.ArgumentParser(description=description)
     req_help = ('path to a pip requirements file (e.g. requirements.txt)')
     parser.add_argument('--requirements', '-r', nargs='?',
+                        type=lambda arg: arg.split(','),
                         help=req_help)
     meta_help = 'path to a PEP 426 metadata file (e.g. PKG-INFO, pydist.json)'
     parser.add_argument('--metadata', '-m', nargs='?',
