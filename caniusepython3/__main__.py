@@ -58,7 +58,8 @@ def projects_from_cli(args):
     description = ('Determine if a set of project dependencies will work with '
                    'Python 3')
     parser = argparse.ArgumentParser(description=description)
-    req_help = ('path to a pip requirements file (e.g. requirements.txt)')
+    req_help = ('path(s) to a pip requirements file (e.g. requirements.txt; '
+                'can be a comma-separated list of file paths)')
     parser.add_argument('--requirements', '-r', nargs='?',
                         type=lambda arg: arg.split(','),
                         help=req_help)
