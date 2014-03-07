@@ -79,8 +79,7 @@ class CLITests(unittest.TestCase):
         with tempfile.NamedTemporaryFile('w') as f1:
             with tempfile.NamedTemporaryFile('w') as f2:
                 f1.write(EXAMPLE_REQUIREMENTS)
-                f1.flush()
-                f2.write('foobar')
+                f2.write('foobar\n')
                 f2.flush()
                 got = ciu_main.projects_from_requirements([f1.name, f2.name])
         expected_requirements = frozenset(
