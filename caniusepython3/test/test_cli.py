@@ -77,8 +77,9 @@ class CLITests(unittest.TestCase):
 
     def test_multiple_requirements_files(self):
         with tempfile.NamedTemporaryFile('w') as f1:
+            f1.write(EXAMPLE_REQUIREMENTS)
+            f1.flush()
             with tempfile.NamedTemporaryFile('w') as f2:
-                f1.write(EXAMPLE_REQUIREMENTS)
                 f2.write('foobar\n')
                 f2.flush()
                 got = ciu_main.projects_from_requirements([f1.name, f2.name])
