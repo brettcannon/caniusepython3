@@ -72,8 +72,21 @@ class CLITests(unittest.TestCase):
         with tempfile.NamedTemporaryFile('w') as file:
             file.write(EXAMPLE_REQUIREMENTS)
             file.flush()
-            got = ciu_main.projects_from_requirements(file.name)
+            got = ciu_main.projects_from_requirements([file.name])
         self.assertEqual(set(got), self.expected_requirements)
+
+    def test_multiple_requirements_files(self):
+        with tempfile.NamedTemporaryFile('w') as f1:
+            with tempfile.NamedTemporaryFile('w') as f2:
+                f1.write(EXAMPLE_REQUIREMENTS)
+                f1.flush()
+                f2.write('foobar')
+                f2.flush()
+                got = ciu_main.projects_from_requirements([f1.name, f2.name])
+        expected_requirements = frozenset(
+            list(self.expected_requirements) + ['foobar']
+        )
+        self.assertEqual(set(got), expected_requirements)
 
     def test_metadata(self):
         got = ciu_main.projects_from_metadata(EXAMPLE_METADATA)
