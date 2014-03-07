@@ -16,6 +16,9 @@ The output of the script will tell you how many (implicit) dependencies you need
 to transition to Python 3 in order to allow you to make the same transition. It
 will also list what projects have no explicit dependency blocking their
 transition so you can ask them consider starting a port to Python 3.
+
+If you prefer a web interface, please use https://caniusepython3.com by
+Jannis Leidel.
 <!-- END long_description -->
 
 [![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](http://img.shields.io/travis/brettcannon/caniusepython3.svg)
