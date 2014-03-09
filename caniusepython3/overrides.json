@@ -19,6 +19,7 @@
     "ssl": "http://docs.python.org/3/library/ssl.html",
     "unittest2": "http://docs.python.org/3/library/unittest.html",
     "uuid": "http://docs.python.org/3/library/uuid.html",
+    "uwsgi": "https://pypi.python.org/pypi/uWSGI",
     "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
     "xlwt": "https://pypi.python.org/pypi/xlwt-future",
     "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/"
