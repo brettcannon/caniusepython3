@@ -9,7 +9,7 @@ with open('README.md') as file:
     long_description = file.read().partition('<!-- END long_description -->')[0]
 
 setup(name='caniusepython3',
-      version='1.2.0',
+      version='1.2.1',
       description='Determine what projects are blocking you from porting to Python 3',
       long_description=long_description,
       author='Brett Cannon',
