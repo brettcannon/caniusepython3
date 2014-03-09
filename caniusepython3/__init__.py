@@ -42,6 +42,9 @@ except NotImplementedError:
 
 PROJECT_NAME = re.compile(r'[\w.-]+')
 
+# Without this, the 'ciu' logger will emit nothing.
+logging.basicConfig(format='[%(levelname)s] %(msg)s')
+
 
 class LowerDict(dict):
 
