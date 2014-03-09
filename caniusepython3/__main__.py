@@ -134,6 +134,7 @@ def pprint_blockers(blockers):
 
 def check(projects):
     """Check the specified projects for Python 3 compatibility."""
+    logging.basicConfig(format='%(levelname)s:%(msg)s')
     log = logging.getLogger('ciu')
     log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
