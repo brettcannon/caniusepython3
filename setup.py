@@ -20,6 +20,7 @@ setup(name='caniusepython3',
       install_requires=['distlib', 'setuptools', 'pip',  # Input flexibility
                         'argparse', 'futures',  # Functionality
                         'mock'],  # Testing
+      test_suite='caniusepython3.test',
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Console',
