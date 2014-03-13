@@ -123,7 +123,7 @@ class CLITests(unittest.TestCase):
                 'their transition:')
         self.assertEqual(messages[1], want)
 
-    def test_message_plural(self):
+    def test_message_singular(self):
         blockers = [['A']]
         messages = ciu_main.message(blockers)
         self.assertEqual(2, len(messages))
