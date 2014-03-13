@@ -59,9 +59,9 @@ def projects_from_cli(args):
                    'Python 3')
     parser = argparse.ArgumentParser(description=description)
     req_help = ('path(s) to a pip requirements file (e.g. requirements.txt; '
-                'can be a comma-separated list of file paths)')
+                'this argument can be specified more than once)')
     parser.add_argument('--requirements', '-r', nargs='?',
-                        type=lambda arg: arg.split(','),
+                        action='append',
                         help=req_help)
     meta_help = 'path to a PEP 426 metadata file (e.g. PKG-INFO, pydist.json)'
     parser.add_argument('--metadata', '-m', nargs='?',
