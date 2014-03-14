@@ -181,6 +181,10 @@ class CLITests(unittest.TestCase):
             mock.call("Missing 'requirements', 'metadata', or 'projects'"),
             parser_error.call_args)
 
+    def test_verbose_output(self):
+        ciu_main.projects_from_cli(['-v', '-p', 'ipython'])
+        self.assertTrue(logging.getLogger('ciu').isEnabledFor(logging.INFO))
+
 
 #@unittest.skip('faster testing')
 class NetworkTests(unittest.TestCase):
