@@ -61,6 +61,9 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+## 2.0.2
+* Fix lack of unicode usage in a test
+
 ## 2.0.1
 * Fix syntax error
 

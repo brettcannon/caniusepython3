@@ -14,6 +14,8 @@
 
 """Calculate whether the specified package(s) and their dependencies support Python 3."""
 
+from __future__ import unicode_literals
+
 from caniusepython3 import __main__ as main
 from caniusepython3 import pypi
 
