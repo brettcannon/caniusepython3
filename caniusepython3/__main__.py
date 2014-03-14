@@ -49,8 +49,11 @@ def projects_from_requirements(requirements):
 
 def projects_from_metadata(metadata):
     """Extract the project dependencies from a metadata spec."""
-    meta = distlib.metadata.Metadata(fileobj=io.StringIO(metadata))
-    return [ciu.just_name(project) for project in meta.run_requires]
+    projects = []
+    for data in metadata:
+        meta = distlib.metadata.Metadata(fileobj=io.StringIO(data))
+        projects.extend(ciu.just_name(project) for project in meta.run_requires)
+    return projects
 
 
 def projects_from_cli(args):
@@ -77,9 +80,11 @@ def projects_from_cli(args):
     if parsed.verbose:
         logging.getLogger('ciu').setLevel(logging.INFO)
     projects.extend(projects_from_requirements(parsed.requirements))
+    metadata = []
     for metadata_path in parsed.metadata:
         with io.open(metadata_path) as file:
-            projects.extend(projects_from_metadata(file.read()))
+            metadata.append(file.read())
+    projects.extend(projects_from_metadata(metadata))
     projects.extend(parsed.projects)
 
     return projects

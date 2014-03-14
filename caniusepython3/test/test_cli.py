@@ -40,6 +40,10 @@ file:../caniusepython3#egg=caniusepython3
 file:../../lib/project
 """
 
+EXAMPLE_EXTRA_REQUIREMENTS = """
+testingstuff
+"""
+
 EXAMPLE_METADATA = """Metadata-Version: 1.2
 Name: CLVault
 Version: 0.5
@@ -54,11 +58,23 @@ Requires-Dist: bar
 Platform: UNKNOWN
 """
 
+EXAMPLE_EXTRA_METADATA = """Metadata-Version: 1.2
+Name: ExtraTest
+Version: 0.5
+Summary: Just for testing
+Home-page: nowhere
+Author: nobody
+License: Apache
+Requires-Dist: baz
+"""
+
 class CLITests(unittest.TestCase):
 
     expected_requirements = frozenset(['FooProject', 'Fizzy', 'PickyThing',
                                        'Hello'])
+    expected_extra_requirements = frozenset(['testingstuff'])
     expected_metadata = frozenset(['foo', 'bar'])
+    expected_extra_metadata = frozenset(['baz'])
 
     def setUp(self):
         log = logging.getLogger('ciu')
@@ -80,17 +96,21 @@ class CLITests(unittest.TestCase):
             f1.write(EXAMPLE_REQUIREMENTS)
             f1.flush()
             with tempfile.NamedTemporaryFile('w') as f2:
-                f2.write('foobar\n')
+                f2.write(EXAMPLE_EXTRA_REQUIREMENTS)
                 f2.flush()
                 got = ciu_main.projects_from_requirements([f1.name, f2.name])
-        expected_requirements = frozenset(
-            list(self.expected_requirements) + ['foobar']
-        )
-        self.assertEqual(set(got), expected_requirements)
+        want = self.expected_requirements.union(self.expected_extra_requirements)
+        self.assertEqual(set(got), want)
 
     def test_metadata(self):
-        got = ciu_main.projects_from_metadata(EXAMPLE_METADATA)
+        got = ciu_main.projects_from_metadata([EXAMPLE_METADATA])
         self.assertEqual(set(got), self.expected_metadata)
+
+    def test_multiple_metadata(self):
+        got = ciu_main.projects_from_metadata([EXAMPLE_METADATA,
+                                               EXAMPLE_EXTRA_METADATA])
+        want = self.expected_metadata.union(self.expected_extra_metadata)
+        self.assertEqual(set(got), want)
 
     def test_cli_for_requirements(self):
         with tempfile.NamedTemporaryFile('w') as file:
