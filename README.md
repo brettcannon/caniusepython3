@@ -61,6 +61,9 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+## 2.0.0
+* Tweak overrides
+
 ## 1.2.1
 * Fix `-v` to actually do something again
 * Tweaked overrides
