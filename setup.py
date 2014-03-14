@@ -1,8 +1,10 @@
 from setuptools import setup
 
+import os
+
 
 # Installed name used for various commands (both script and setuptools).
-command_name = 'caniusepython3'  # 'icanhazpython3'
+command_name = os.environ.get('CIU_ALT_NAME') or 'caniusepython3'
 
 with open('README_PyPI.rst') as file:
     long_description = file.read()
