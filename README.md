@@ -63,6 +63,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 ## 2.0.2
 * Fix lack of unicode usage in a test
+* Make Python 2.6 happy again due to its distate of empty XML-RPC results
 
 ## 2.0.1
 * Fix syntax error

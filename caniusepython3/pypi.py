@@ -49,9 +49,6 @@ def pypi_client():
     client = xmlrpc_client.ServerProxy('http://pypi.python.org/pypi')
     try:
         yield client
-    except xml.parsers.expat.ExpatError:
-        # Python 2.6 doesn't like empty results.
-        logging.getLogger('ciu').info("PyPI didn't return any results")
     finally:
         try:
             client('close')()
@@ -96,8 +93,13 @@ def projects_matching_classifier(classifier):
     log = logging.getLogger('ciu')
     with pypi_client() as client:
         log.info('Fetching project list for {0!r}'.format(classifier))
-        return frozenset(result[0].lower()
-                         for result in client.browse([classifier]))
+        try:
+            return frozenset(result[0].lower()
+                             for result in client.browse([classifier]))
+        except xml.parsers.expat.ExpatError:
+            # Python 2.6 doesn't like empty results.
+            logging.getLogger('ciu').info("PyPI didn't return any results")
+            return []
 
 
 def all_py3_projects(manual_overrides=None):
