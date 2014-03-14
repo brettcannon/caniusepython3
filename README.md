@@ -65,6 +65,8 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 * Tweak overrides
 * `-r`, `-m`, and `-p` now take 1+ arguments instead of a single comma-separated
   list
+* Unrecognized projects are considered ported to prevent the lack of info on
+  the unrecognized project perpetually suggesting that it's never been ported
 
 ## 1.2.1
 * Fix `-v` to actually do something again
