@@ -109,7 +109,7 @@ class CLITests(unittest.TestCase):
         self.assertEqual(set(got), self.expected_metadata)
 
     def test_cli_for_projects(self):
-        args = ['--projects', 'foo,bar']
+        args = ['--projects', 'foo', 'bar']
         got = ciu_main.projects_from_cli(args)
         self.assertEqual(set(got), frozenset(['foo', 'bar']))
 
@@ -123,7 +123,7 @@ class CLITests(unittest.TestCase):
                 'their transition:')
         self.assertEqual(messages[1], want)
 
-    def test_message_plural(self):
+    def test_message_singular(self):
         blockers = [['A']]
         messages = ciu_main.message(blockers)
         self.assertEqual(2, len(messages))
@@ -169,7 +169,7 @@ class NetworkTests(unittest.TestCase):
     def test_e2e(self):
         # Make sure at least one project that will never be in Python 3 is
         # included.
-        args = '--projects', 'numpy,scipy,matplotlib,ipython,paste'
+        args = '--projects', 'numpy', 'scipy', 'matplotlib', 'ipython', 'paste'
         ciu_main.main(args)
 
 

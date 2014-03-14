@@ -58,16 +58,14 @@ def projects_from_cli(args):
     description = ('Determine if a set of project dependencies will work with '
                    'Python 3')
     parser = argparse.ArgumentParser(description=description)
-    req_help = ('path(s) to a pip requirements file (e.g. requirements.txt; '
-                'can be a comma-separated list of file paths)')
-    parser.add_argument('--requirements', '-r', nargs='?',
-                        type=lambda arg: arg.split(','),
+    req_help = 'path(s) to a pip requirements file (e.g. requirements.txt)'
+    parser.add_argument('--requirements', '-r', nargs='+', default=(),
                         help=req_help)
-    meta_help = 'path to a PEP 426 metadata file (e.g. PKG-INFO, pydist.json)'
-    parser.add_argument('--metadata', '-m', nargs='?',
+    meta_help = 'path(s) to a PEP 426 metadata file (e.g. PKG-INFO, pydist.json)'
+    parser.add_argument('--metadata', '-m', nargs='+', default=(),
                         help=meta_help)
-    parser.add_argument('--projects', '-p', type=lambda arg: arg.split(','),
-                        nargs='?', help='a comma-separated list of projects')
+    parser.add_argument('--projects', '-p', nargs='+', default=(),
+                        help='name(s) of projects to test for Python 3 support')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='verbose output')
     parsed = parser.parse_args(args)
@@ -78,13 +76,11 @@ def projects_from_cli(args):
     projects = []
     if parsed.verbose:
         logging.getLogger('ciu').setLevel(logging.INFO)
-    if parsed.requirements:
-        projects.extend(projects_from_requirements(parsed.requirements))
-    if parsed.metadata:
-        with io.open(parsed.metadata) as file:
+    projects.extend(projects_from_requirements(parsed.requirements))
+    for metadata_path in parsed.metadata:
+        with io.open(metadata_path) as file:
             projects.extend(projects_from_metadata(file.read()))
-    if parsed.projects:
-        projects.extend(parsed.projects)
+    projects.extend(parsed.projects)
 
     return projects
 
