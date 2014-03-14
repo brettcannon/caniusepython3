@@ -26,6 +26,6 @@ how to port a project, please see the
 
 Secret, bonus feature
 ---------------------
-If you would like to use a different name for the either the script or
-setuptools command, then set the environment variable ``CIU_ALT_NAME`` to what
+If you would like to use a different name for the script and
+setuptools command then set the environment variable ``CIU_ALT_NAME`` to what
 you would like the alternative name to be. Reddit suggests "icanhazpython3".
