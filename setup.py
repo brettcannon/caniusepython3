@@ -4,9 +4,8 @@ from setuptools import setup
 # Installed name used for various commands (both script and setuptools).
 command_name = 'caniusepython3'  # 'icanhazpython3'
 
-with open('README.md') as file:
-    # Try my best to have at least the intro in Markdown/reST.
-    long_description = file.read().partition('<!-- END long_description -->')[0]
+with open('README_PyPI.rst') as file:
+    long_description = file.read()
 
 setup(name='caniusepython3',
       version='1.2.1',

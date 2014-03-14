@@ -1,31 +1,13 @@
-Can I Use Python 3?
-===================
-
-This script takes in a set of dependencies and then figures out which
-of them are holding you up from porting to Python 3.
-
-You can specify your dependencies in multiple ways::
-
-    caniusepython3 -r requirements.txt,test-requirement.txt
-    caniusepython3 -m PKG-INFO
-    caniusepython3 -p numpy,scipy,ipython
-    # If your project's setup.py uses setuptools ...
-    python setup.py caniusepython3
-
-The output of the script will tell you how many (implicit) dependencies you need
-to transition to Python 3 in order to allow you to make the same transition. It
-will also list what projects have no explicit dependency blocking their
-transition so you can ask them consider starting a port to Python 3.
-
-If you prefer a web interface, please use https://caniusepython3.com by
-Jannis Leidel.
-<!-- END long_description -->
+# Can I Use Python 3?
 
 [![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](http://img.shields.io/travis/brettcannon/caniusepython3.svg)
 
+You can read the documentation on how to use caniusepython3 from its
+[PyPI page](https://pypi.python.org/pypi/caniusepython3).
 
-How do you tell if a project has been ported to Python 3?
----------------------------------------------------------
+
+# How do you tell if a project has been ported to Python 3?
+
 On [PyPI](https://pypi.python.org/) each project specifies various
 [trove classifiers](https://pypi.python.org/pypi?%3Aaction=list_classifiers).
 There are various classifiers related to what version of Python a project can
@@ -55,8 +37,8 @@ If any of these various requirements are met, then a project is considered to
 support Python 3.
 
 
-How can I get a project ported to Python 3?
--------------------------------------------
+# How can I get a project ported to Python 3?
+
 Typically projects which have not switched to Python 3 yet are waiting for:
 
 * A dependency to be ported to Python 3
@@ -77,8 +59,18 @@ various sources of help. If you want a specific starting point there are
 on [porting pure Python modules](http://docs.python.org/3/howto/pyporting.html)
 and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
-Secret bonus feature
----------------------
-If you would like to use a different name for the either the script or
-setuptools command, then change the `command_name` line in `setup.py`. Reddit
-suggests `icanhazpython3`.
+# Change Log
+
+## 1.2.1
+* Fix `-v` to actually do something again
+* Tweaked overrides
+
+## 1.2.0
+* `-r` accepts a comma-separated list of file paths
+
+## 1.1.0
+* Setuptools command support
+* Various fixes
+
+## 1.0
+Initial release.
