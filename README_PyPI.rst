@@ -6,9 +6,9 @@ of them are holding you up from porting to Python 3.
 
 You can specify your dependencies in multiple ways::
 
-    caniusepython3 -r requirements.txt,test-requirement.txt
+    caniusepython3 -r requirements.txt test-requirement.txt
     caniusepython3 -m PKG-INFO
-    caniusepython3 -p numpy,scipy,ipython
+    caniusepython3 -p numpy scipy ipython
     # If your project's setup.py uses setuptools ...
     python setup.py caniusepython3
 
