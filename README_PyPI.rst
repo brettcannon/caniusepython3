@@ -4,6 +4,9 @@ Can I Use Python 3?
 This script takes in a set of dependencies and then figures out which
 of them are holding you up from porting to Python 3.
 
+Command-line/Web Usage
+----------------------
+
 You can specify your dependencies in multiple ways::
 
     caniusepython3 -r requirements.txt test-requirement.txt
@@ -14,11 +17,15 @@ You can specify your dependencies in multiple ways::
 
 The output of the script will tell you how many (implicit) dependencies you need
 to transition to Python 3 in order to allow you to make the same transition. It
-will also list what projects have no explicit dependency blocking their
-transition so you can ask them consider starting a port to Python 3.
+will also list what projects have no dependencies blocking their
+transition so you can ask them to start a port to Python 3.
 
 If you prefer a web interface you can use https://caniusepython3.com by
 Jannis Leidel.
+
+
+Integrating With Your Tests
+---------------------------
 
 If you want to check for Python 3 availability as part of your tests, you can
 use ``icanusepython3.check()``::
@@ -32,7 +39,7 @@ use ``icanusepython3.check()``::
         names.
 
         Any project that is not listed on PyPI will be considered ported.
-    """
+        """
 
 You can then integrate it into your tests like so::
 
