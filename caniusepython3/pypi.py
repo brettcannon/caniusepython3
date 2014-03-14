@@ -50,7 +50,6 @@ def pypi_client():
     except xml.parsers.expat.ExpatError:
         # Python 2.6 doesn't like empty results.
         logging.getLogger('ciu').info("PyPI didn't return any results")
-        return frozenset()
     finally:
         try:
             client('close')()

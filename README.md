@@ -61,6 +61,9 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+## 2.0.1
+* Fix syntax error
+
 ## 2.0.0
 * Tweak overrides
 * `-r`, `-m`, and `-p` now take 1+ arguments instead of a single comma-separated
