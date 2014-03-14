@@ -155,7 +155,7 @@ def dependencies(project_name):
     located = distlib.locators.locate(project_name, prereleases=True)
     if located is None:
         log.warn('{0} not found'.format(project_name))
-        return []
+        return None
     for dep in located.run_requires:
         # Drop any version details from the dependency name.
         deps.append(just_name(dep))
@@ -181,6 +181,12 @@ def blocking_dependencies(projects, py3_projects):
         while len(check) > 0:
             new_check = []
             for parent, deps in zip(check, executor.map(dependencies, check)):
+                if deps is None:
+                    # Can't find any results for a project, so ignore it so as
+                    # to not accidentally consider indefinitely that a project
+                    # can't port.
+                    del reasons[parent]
+                    continue
                 for dep in deps:
                     if dep in py3_projects:
                         continue
