@@ -16,6 +16,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import caniusepython3 as ciu
+from caniusepython3 import pypi
+from caniusepython3 import dependencies
 
 import distlib.metadata
 import pip.req
@@ -52,7 +54,7 @@ def projects_from_metadata(metadata):
     projects = []
     for data in metadata:
         meta = distlib.metadata.Metadata(fileobj=io.StringIO(data))
-        projects.extend(ciu.just_name(project) for project in meta.run_requires)
+        projects.extend(pypi.just_name(project) for project in meta.run_requires)
     return projects
 
 
@@ -138,7 +140,7 @@ def check(projects):
     log = logging.getLogger('ciu')
     log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
-    blockers = ciu.blocking_dependencies(projects, ciu.all_py3_projects())
+    blockers = dependencies.blocking_dependencies(projects, pypi.all_py3_projects())
 
     print('')
     for line in message(blockers):

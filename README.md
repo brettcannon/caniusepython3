@@ -67,6 +67,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
   list
 * Unrecognized projects are considered ported to prevent the lack of info on
   the unrecognized project perpetually suggesting that it's never been ported
+* Introduced `icanusepython3.check()`
 
 ## 1.2.1
 * Fix `-v` to actually do something again

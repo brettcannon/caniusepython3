@@ -20,6 +20,34 @@ transition so you can ask them consider starting a port to Python 3.
 If you prefer a web interface you can use https://caniusepython3.com by
 Jannis Leidel.
 
+If you want to check for Python 3 availability as part of your tests, you can
+use ``icanusepython3.check()``::
+
+    def check(requirements_paths=[], metadata=[], projects=[]):
+        """Return True if all of the specified dependencies have been ported to Python 3.
+
+        The requirements_paths argument takes a sequence of file paths to
+        requirements files. The 'metadata' argument takes a sequence of strings
+        representing metadata. The 'projects' argument takes a sequence of project
+        names.
+
+        Any project that is not listed on PyPI will be considered ported.
+    """
+
+You can then integrate it into your tests like so::
+
+  import unittest
+
+  import caniusepython3
+
+
+  class DependenciesOnPython3(unittest.TestCase):
+
+  def test_dependencies(self):
+    # Will begin to fail when dependencies are no longer blocking you
+    # from using Python 3.
+    self.assertFalse(caniusepython3.check(projects=['ipython']))
+
 For the change log, how to tell if a project has been ported, as well as help on
 how to port a project, please see the
 `project website <https://github.com/brettcannon/caniusepython3>`__.
