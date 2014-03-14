@@ -106,7 +106,7 @@ def projects_matching_classifier(classifier):
             pass
 
 
-def all_py3_projects():
+def all_py3_projects(manual_overrides=None):
     log = logging.getLogger('ciu')
     projects = set()
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
@@ -114,7 +114,8 @@ def all_py3_projects():
     with thread_pool_executor as executor:
         for result in map(projects_matching_classifier, py3_classifiers()):
             projects.update(result)
-    manual_overrides = overrides()
+    if manual_overrides is None:
+        manual_overrides = overrides()
     stale_overrides = projects.intersection(manual_overrides)
     log.info('Adding {0} overrides'.format(len(manual_overrides)))
     if stale_overrides:

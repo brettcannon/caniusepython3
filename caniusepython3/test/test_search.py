@@ -97,6 +97,14 @@ class NetworkTests(unittest.TestCase):
         self.assertTrue(all(project == project.lower() for project in projects))
         self.assertTrue(ciu.overrides().issubset(projects))
 
+    def test_all_py3_projects_explicit_overrides(self):
+        added_port = 'asdfasdfasdfadsffffdasfdfdfdf'
+        projects = ciu.all_py3_projects(set([added_port]))
+        if hasattr(self, 'assertIn'):
+            self.assertIn(added_port, projects)
+        else:
+            self.assertTrue(added_port in projects)
+
     def test_blocking_dependencies(self):
         got = ciu.blocking_dependencies(['unittest2'], {})
         want = set([('unittest2',)])
