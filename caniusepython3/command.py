@@ -39,7 +39,7 @@ class Command(setuptools.Command):
             for project in requirements:
                 if not project:
                     continue
-                projects.append(ciu.just_name(project))
+                projects.append(ciu.pypi.just_name(project))
         ciu_main.check(projects)
 
     def finalize_options(self):
