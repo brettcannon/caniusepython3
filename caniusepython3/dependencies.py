@@ -61,7 +61,7 @@ def dependencies(project_name):
         return None
     for dep in located.run_requires:
         # Drop any version details from the dependency name.
-        deps.append(just_name(dep))
+        deps.append(ciu.pypi.just_name(dep))
     return deps
 
 
