@@ -116,7 +116,7 @@ def all_py3_projects(manual_overrides=None):
     stale_overrides = projects.intersection(manual_overrides)
     log.info('Adding {0} overrides'.format(len(manual_overrides)))
     if stale_overrides:
-        log.warn('Stale overrides: {0}'.format(stale_overrides))
+        log.warning('Stale overrides: {0}'.format(stale_overrides))
     projects.update(manual_overrides)
     return projects
 
