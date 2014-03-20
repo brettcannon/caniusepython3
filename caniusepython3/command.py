@@ -18,6 +18,7 @@ import setuptools
 
 import caniusepython3 as ciu
 import caniusepython3.__main__ as ciu_main
+from caniusepython3 import pypi
 
 
 class Command(setuptools.Command):
@@ -39,7 +40,7 @@ class Command(setuptools.Command):
             for project in requirements:
                 if not project:
                     continue
-                projects.append(ciu.pypi.just_name(project))
+                projects.append(pypi.just_name(project))
         ciu_main.check(projects)
 
     def finalize_options(self):
