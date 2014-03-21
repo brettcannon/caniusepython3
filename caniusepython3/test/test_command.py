@@ -24,19 +24,18 @@ def make_command(requires):
 
 class RequiresTests(unittest.TestCase):
 
-    def cmd_test(self, requirements):
+    def verify_cmd(self, requirements):
         requires = {requirements: ['pip']}
         cmd = make_command(requires)
         got = cmd._dependencies()
         self.assertEqual(frozenset(got), frozenset(['pip']))
-
         return cmd
 
     def test_install_requires(self):
-        self.cmd_test('install_requires')
+        self.verify_cmd('install_requires')
 
     def test_tests_require(self):
-        self.cmd_test('tests_require')
+        self.verify_cmd('tests_require')
 
     def test_extras_require(self):
         cmd = make_command({'extras_require': {'testing': ['pip']}})
