@@ -42,7 +42,7 @@ class GraphResolutionTests(unittest.TestCase):
 class NetworkTests(unittest.TestCase):
 
     def test_blocking_dependencies(self):
-        got = dependencies.blocking_dependencies(['pastescript'], {'paste'})
+        got = dependencies.blocking_dependencies(['pastescript'], {'paste': ''})
         want = frozenset([('pastedeploy', 'pastescript')])
         self.assertEqual(frozenset(got), want)
 
