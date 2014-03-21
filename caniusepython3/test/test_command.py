@@ -19,17 +19,18 @@ from caniusepython3 import command
 from distutils import dist
 import unittest
 
+def make_command(requires):
+    return command.Command(dist.Distribution(requires))
+
 class RequiresTests(unittest.TestCase):
-
-    def cmd(self, requires):
-        return command.Command(dist.Distribution(requires))
-
 
     def cmd_test(self, requirements):
         requires = {requirements: ['pip']}
-        cmd = self.cmd(requires)
+        cmd = make_command(requires)
         got = cmd._dependencies()
         self.assertEqual(frozenset(got), frozenset(['pip']))
+
+        return cmd
 
     def test_install_requires(self):
         self.cmd_test('install_requires')
@@ -38,6 +39,19 @@ class RequiresTests(unittest.TestCase):
         self.cmd_test('tests_require')
 
     def test_extras_require(self):
-        cmd = self.cmd({'extras_require': {'testing': ['pip']}})
+        cmd = make_command({'extras_require': {'testing': ['pip']}})
         got = frozenset(cmd._dependencies())
         self.assertEqual(got, frozenset(['pip']))
+
+
+class OptionsTests(unittest.TestCase):
+
+    def test_finalize_options(self):
+        # Don't expect anything to happen.
+        make_command({}).finalize_options()
+
+
+class NetworkTests(unittest.TestCase):
+
+    def test_run(self):
+        make_command({'install_requires': ['pip']}).run()
