@@ -28,9 +28,6 @@ class LowerDict(dict):
     def __getitem__(self, key):
         return super(LowerDict, self).__getitem__(key.lower())
 
-    def __setitem__(self, key, value):
-        return super(LowerDict, self).__setitem__(key.lower(), value)
-
 
 def reasons_to_paths(reasons):
     """Calculate the dependency paths to the reasons of the blockers.
