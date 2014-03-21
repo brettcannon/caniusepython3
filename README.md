@@ -61,6 +61,12 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+## 2.0.3
+* Fixed `setup.py caniusepython3` to work with `extras_require` properly
+* Fix various errors triggered from the moving of the `just_name()` function to
+  a new module in 2.0.0 (patch by Vaibhav Sagar w/ input from Jannis Leidel)
+* Usual overrides tweaks (thanks to CyrilRoelandteNovance for contributing)
+
 ## 2.0.2
 * Fix lack of unicode usage in a test
 * Make Python 2.6 happy again due to its distate of empty XML-RPC results

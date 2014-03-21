@@ -10,7 +10,7 @@ with open('README_PyPI.rst') as file:
     long_description = file.read()
 
 setup(name='caniusepython3',
-      version='2.0.2',
+      version='2.0.3',
       description='Determine what projects are blocking you from porting to Python 3',
       long_description=long_description,
       author='Brett Cannon',
