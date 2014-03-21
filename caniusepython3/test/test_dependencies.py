@@ -46,6 +46,10 @@ class NetworkTests(unittest.TestCase):
         want = set([('unittest2',)])
         self.assertEqual(got, want)
 
+    def test_dependencies(self):
+        got = dependencies.dependencies('pastescript')
+        self.assertEqual(set(got), frozenset(['pastedeploy', 'paste']))
+
 
 if __name__ == '__main__':
     unittest.main()
