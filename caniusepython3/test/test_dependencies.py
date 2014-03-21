@@ -42,14 +42,24 @@ class GraphResolutionTests(unittest.TestCase):
 class NetworkTests(unittest.TestCase):
 
     def test_blocking_dependencies(self):
-        got = dependencies.blocking_dependencies(['unittest2'], {})
-        want = set([('unittest2',)])
-        self.assertEqual(got, want)
+        got = dependencies.blocking_dependencies(['pastescript'], {'paste'})
+        want = frozenset([('pastedeploy', 'pastescript')])
+        self.assertEqual(frozenset(got), want)
 
     def test_dependencies(self):
         got = dependencies.dependencies('pastescript')
         self.assertEqual(set(got), frozenset(['pastedeploy', 'paste']))
 
+    def test_dependencies_no_project(self):
+        got = dependencies.dependencies('sdflksjdfsadfsadfad')
+        if hasattr(self, 'assertIsNone'):
+            self.assertIsNone(got)
+        else:
+            self.assertTrue(got is None)
+
+    def test_blocking_dependencies_no_project(self):
+        got = dependencies.blocking_dependencies(['asdfsadfdsfsdffdfadf'], {})
+        self.assertEqual(got, frozenset())
 
 if __name__ == '__main__':
     unittest.main()
