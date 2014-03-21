@@ -27,21 +27,24 @@ class Command(setuptools.Command):
 
     user_options = []
 
-    _require_fields = ('install_requires', 'extras_require', 'setup_requires',
-                       'tests_require')
-
-    def initialize_options(self):
-        pass
-
-    def run(self):
+    def _dependencies(self):
         projects = []
-        for attr in self._require_fields:
+        for attr in ('install_requires', 'tests_require'):
             requirements = getattr(self.distribution, attr, None) or []
             for project in requirements:
                 if not project:
                     continue
                 projects.append(pypi.just_name(project))
-        ciu_main.check(projects)
+        extras = getattr(self.distribution, 'extras_require', None) or {}
+        for value in extras.values():
+            projects.extend(map(pypi.just_name, value))
+        return projects
+
+    def initialize_options(self):
+        pass
+
+    def run(self):
+        ciu_main.check(self._dependencies())
 
     def finalize_options(self):
         pass

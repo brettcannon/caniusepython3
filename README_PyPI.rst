@@ -12,7 +12,8 @@ You can specify your dependencies in multiple ways::
     caniusepython3 -r requirements.txt test-requirement.txt
     caniusepython3 -m PKG-INFO
     caniusepython3 -p numpy scipy ipython
-    # If your project's setup.py uses setuptools ...
+    # If your project's setup.py uses setuptools
+    # (note that setup_requires can't be checked) ...
     python setup.py caniusepython3
 
 The output of the script will tell you how many (implicit) dependencies you need
