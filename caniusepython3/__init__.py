@@ -28,7 +28,7 @@ logging.basicConfig(format='[%(levelname)s] %(msg)s')
 
 try:
     CPU_COUNT = max(2, multiprocessing.cpu_count())
-except NotImplementedError:
+except NotImplementedError:  #pragma: no cover
     CPU_COUNT = 2
 
 

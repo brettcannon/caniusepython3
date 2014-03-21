@@ -23,18 +23,18 @@ import pkgutil
 import re
 try:
     import urllib.request as urllib_request
-except ImportError:
+except ImportError:  #pragma: no cover
     import urllib2 as urllib_request
 import xml.parsers.expat
 try:
     import xmlrpc.client as xmlrpc_client
-except ImportError:
+except ImportError:  #pragma: no cover
     import xmlrpclib as xmlrpc_client
 
 
 try:
     CPU_COUNT = max(2, multiprocessing.cpu_count())
-except NotImplementedError:
+except NotImplementedError:  #pragma: no cover
     CPU_COUNT = 2
 
 PROJECT_NAME = re.compile(r'[\w.-]+')
@@ -52,7 +52,7 @@ def pypi_client():
     finally:
         try:
             client('close')()
-        except xml.parsers.expat.ExpatError:
+        except xml.parsers.expat.ExpatError:  #pragma: no cover
             # The close hack is not in Python 2.6.
             pass
 
@@ -74,9 +74,9 @@ def py3_classifiers():
     try:
         try:
             status = response.status
-        except AttributeError:
+        except AttributeError:  #pragma: no cover
             status = response.code
-        if status != 200:
+        if status != 200:  #pragma: no cover
             msg = 'PyPI responded with status {0} for {1}'.format(status, url)
             raise ValueError(msg)
         data = response.read()
@@ -96,7 +96,7 @@ def projects_matching_classifier(classifier):
         try:
             return frozenset(result[0].lower()
                              for result in client.browse([classifier]))
-        except xml.parsers.expat.ExpatError:
+        except xml.parsers.expat.ExpatError:  #pragma: no cover
             # Python 2.6 doesn't like empty results.
             logging.getLogger('ciu').info("PyPI didn't return any results")
             return []
@@ -115,7 +115,7 @@ def all_py3_projects(manual_overrides=None):
         manual_overrides = overrides()
     stale_overrides = projects.intersection(manual_overrides)
     log.info('Adding {0} overrides'.format(len(manual_overrides)))
-    if stale_overrides:
+    if stale_overrides:  #pragma: no cover
         log.warning('Stale overrides: {0}'.format(stale_overrides))
     projects.update(manual_overrides)
     return projects

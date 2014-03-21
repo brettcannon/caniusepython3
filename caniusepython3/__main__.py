@@ -155,5 +155,5 @@ def main(args=sys.argv[1:]):
     check(projects_from_cli(args))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  #pragma: no cover
     main()
