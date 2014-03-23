@@ -1,6 +1,7 @@
 {
     "beautifulsoup": "https://pypi.python.org/pypi/beautifulsoup4",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
+    "extras": "https://pypi.python.org/pypi/extras",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
     "ipaddress": "http://docs.python.org/3/library/ipaddress.html",
     "mox": "https://pypi.python.org/pypi/mox3",
@@ -19,6 +20,7 @@
     "unittest2": "http://docs.python.org/3/library/unittest.html",
     "uuid": "http://docs.python.org/3/library/uuid.html",
     "uwsgi": "https://pypi.python.org/pypi/uWSGI",
+    "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
     "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
     "xlwt": "https://pypi.python.org/pypi/xlwt-future",
     "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/"
