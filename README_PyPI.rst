@@ -45,16 +45,13 @@ use ``icanusepython3.check()``::
 You can then integrate it into your tests like so::
 
   import unittest
-
   import caniusepython3
 
-
   class DependenciesOnPython3(unittest.TestCase):
-
-  def test_dependencies(self):
-    # Will begin to fail when dependencies are no longer blocking you
-    # from using Python 3.
-    self.assertFalse(caniusepython3.check(projects=['ipython']))
+    def test_dependencies(self):
+      # Will begin to fail when dependencies are no longer blocking you
+      # from using Python 3.
+      self.assertFalse(caniusepython3.check(projects=['ipython']))
 
 For the change log, how to tell if a project has been ported, as well as help on
 how to port a project, please see the
