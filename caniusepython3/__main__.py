@@ -72,7 +72,7 @@ def projects_from_cli(args):
     parser.add_argument('--projects', '-p', nargs='+', default=(),
                         help='name(s) of projects to test for Python 3 support')
     parser.add_argument('--verbose', '-v', action='store_true',
-                        help='verbose output')
+                        help='verbose output (e.g. list compatibility overrides)')
     parsed = parser.parse_args(args)
 
     if not (parsed.requirements or parsed.metadata or parsed.projects):
