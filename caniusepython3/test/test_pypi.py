@@ -75,7 +75,7 @@ class NetworkTests(unittest.TestCase):
         else:
             self.assertTrue(len(projects) > 3000)
         self.assertTrue(all(project == project.lower() for project in projects))
-        self.assertTrue(pypi.overrides().issubset(projects))
+        self.assertTrue(frozenset(pypi.overrides().keys()).issubset(projects))
 
     def test_all_py3_projects_explicit_overrides(self):
         added_port = 'asdfasdfasdfadsffffdasfdfdfdf'

@@ -64,7 +64,7 @@ def overrides():
 
     """
     raw_bytes = pkgutil.get_data(__name__, 'overrides.json')
-    return frozenset(json.loads(raw_bytes.decode('utf-8')).keys())
+    return json.loads(raw_bytes.decode('utf-8'))
 
 
 def py3_classifiers():
@@ -114,7 +114,15 @@ def all_py3_projects(manual_overrides=None):
     if manual_overrides is None:
         manual_overrides = overrides()
     stale_overrides = projects.intersection(manual_overrides)
-    log.info('Adding {0} overrides'.format(len(manual_overrides)))
+    log.info('Adding {0} overrides:'.format(len(manual_overrides)))
+    for override in sorted(manual_overrides):
+        msg = override
+        try:
+            msg += ' ({0})'.format(manual_overrides[override])
+        except TypeError:
+            # No reason a set can't be used.
+            pass
+        log.info('    ' + msg)
     if stale_overrides:  #pragma: no cover
         log.warning('Stale overrides: {0}'.format(stale_overrides))
     projects.update(manual_overrides)
