@@ -25,16 +25,16 @@ project is considered to support Python 3 (project owners: it is preferred you
 **at least** specify `Programming Language :: Python :: 3` as that is how you
 end up listed on the [Python3 Packages list on PyPI](https://pypi.python.org/pypi?%3Aaction=packages_rss)).
 
-The other way is through a manual override in `caniusepython3` itself. This
-project maintains a hard-coded list of projects which are considered ported
-because:
+The other way is through a [manual override](https://github.com/brettcannon/caniusepython3/blob/master/caniusepython3/overrides.json) in
+`caniusepython3` itself. This list of projects exists because:
 
 * They are now part of [Python's standard library](http://docs.python.org/3/py-modindex.html) in some release of Python 3
 * Their Python 3 port is under a different name
 * They are missing a Python 3 trove classifier but have actually been ported
 
 If any of these various requirements are met, then a project is considered to
-support Python 3.
+support Python 3 and thus will be added to the manual overrides list. You can
+see the list of overrides when you run the script with verbose output turned on.
 
 
 # How can I get a project ported to Python 3?
