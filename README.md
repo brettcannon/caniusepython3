@@ -61,7 +61,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
-## What will be 2.1.0
+## 2.1.0
 * Verbose output will print what manual overrides are used and why
   (when available)
 * Fix logging to only be configured when running as a script as well as fix a
