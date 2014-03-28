@@ -156,4 +156,6 @@ def main(args=sys.argv[1:]):
 
 
 if __name__ == '__main__':  #pragma: no cover
+    # Without this, the 'ciu' logger will emit nothing.
+    logging.basicConfig(format='[%(levelname)s] %(message)s')
     main()

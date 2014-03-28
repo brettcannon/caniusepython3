@@ -19,12 +19,8 @@ from __future__ import unicode_literals
 from caniusepython3 import __main__ as main
 from caniusepython3 import pypi
 
-import logging
 import multiprocessing
 
-
-# Without this, the 'ciu' logger will emit nothing.
-logging.basicConfig(format='[%(levelname)s] %(msg)s')
 
 try:
     CPU_COUNT = max(2, multiprocessing.cpu_count())
