@@ -55,7 +55,7 @@ def dependencies(project_name):
     log.info('Locating {0}'.format(project_name))
     located = distlib.locators.locate(project_name, prereleases=True)
     if located is None:
-        log.warn('{0} not found'.format(project_name))
+        log.warning('{0} not found'.format(project_name))
         return None
     for dep in located.run_requires:
         # Drop any version details from the dependency name.
