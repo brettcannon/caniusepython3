@@ -3,13 +3,16 @@
 [![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](http://img.shields.io/travis/brettcannon/caniusepython3.svg)
 
 You can read the documentation on how to use caniusepython3 from its
-[PyPI page](https://pypi.python.org/pypi/caniusepython3).
+[PyPI page](https://pypi.python.org/pypi/caniusepython3). A [web interface](https://github.com/jezdez/caniusepython3.com)
+is also available.
 
 
 # How do you tell if a project has been ported to Python 3?
 
-On [PyPI](https://pypi.python.org/) each project specifies various
-[trove classifiers](https://pypi.python.org/pypi?%3Aaction=list_classifiers).
+On [PyPI](https://pypi.python.org/) each project can specify various
+[trove classifiers](https://pypi.python.org/pypi?%3Aaction=list_classifiers)
+(typically in a project's `setup.py` through a [`classifier`](https://docs.python.org/3/distutils/setupscript.html#additional-meta-data)
+argument to `setup()`).
 There are various classifiers related to what version of Python a project can
 run on. E.g.:
 
@@ -23,7 +26,8 @@ run on. E.g.:
 As long as a trove classifier for some version of Python 3 is specified then the
 project is considered to support Python 3 (project owners: it is preferred you
 **at least** specify `Programming Language :: Python :: 3` as that is how you
-end up listed on the [Python3 Packages list on PyPI](https://pypi.python.org/pypi?%3Aaction=packages_rss)).
+end up listed on the [Python 3 Packages list on PyPI](https://pypi.python.org/pypi?%3Aaction=packages_rss);
+you can represent Python 2 support with `Programming Language :: Python`).
 
 The other way is through a [manual override](https://github.com/brettcannon/caniusepython3/blob/master/caniusepython3/overrides.json) in
 `caniusepython3` itself. This list of projects exists because:
