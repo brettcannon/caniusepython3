@@ -40,6 +40,18 @@ If any of these various requirements are met, then a project is considered to
 support Python 3 and thus will be added to the manual overrides list. You can
 see the list of overrides when you run the script with verbose output turned on.
 
+## What if I know of a project that should be added to the overrides file?
+
+If a project has Python 3 support in a release on PyPI but they have not added the
+proper trove classifier, then either submit a
+[pull request](https://github.com/brettcannon/caniusepython3/pulls) or file an
+[issue](https://github.com/brettcannon/caniusepython3/issues) with the name of the
+project and a link to some proof that a release available on PyPI has indeed been
+ported (e.g. PyPI page stating the support, tox.ini file showing tests being run
+against Python 3, etc.). Projects that have Python 3 support in their version control
+system but not yet available on PyPI will **not** be considered for inclusion in the
+overrides file.
+
 
 # How can I get a project ported to Python 3?
 
