@@ -78,6 +78,9 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 # Change Log
 
 # 2.1.1
+* Normalize the names of direct dependencies for proper Python 3 compatibility
+  checking
+  ([issue #55](https://github.com/brettcannon/caniusepython3/issues/55))
 * Properly set the logging details when executed from the entry point
 * Usual overrides tweaks
 

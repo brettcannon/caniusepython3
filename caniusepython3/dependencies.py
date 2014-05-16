@@ -73,8 +73,16 @@ def blocking_dependencies(projects, py3_projects):
     dependencies checked are those required to run the project.
 
     """
-    check = [project.lower()
-             for project in projects if project.lower() not in py3_projects]
+    log = logging.getLogger('ciu')
+    check = []
+    for project in projects:
+        dist = distlib.locators.locate(project)
+        if dist is None:
+            log.warning('{0} not found'.format(project))
+            continue
+        project = dist.name.lower()  # PyPI can be forgiving about name formats.
+        if project not in py3_projects:
+            check.append(project)
     reasons = LowerDict((project, None) for project in check)
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=ciu.CPU_COUNT)

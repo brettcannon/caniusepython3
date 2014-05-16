@@ -61,5 +61,11 @@ class NetworkTests(unittest.TestCase):
         got = dependencies.blocking_dependencies(['asdfsadfdsfsdffdfadf'], {})
         self.assertEqual(got, frozenset())
 
+    def test_top_level_project_normalization(self):
+        py3 = {'wsgi_intercept': ''}
+        abnormal_name = 'WSGI-intercept'  # Note dash instead of underscore.
+        got = dependencies.blocking_dependencies([abnormal_name], py3)
+        self.assertEqual(got, frozenset())
+
 if __name__ == '__main__':
     unittest.main()
