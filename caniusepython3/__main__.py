@@ -152,10 +152,10 @@ def check(projects):
 
 
 def main(args=sys.argv[1:]):
+    # Without this, the 'ciu' logger will emit nothing.
+    logging.basicConfig(format='[%(levelname)s] %(message)s')
     check(projects_from_cli(args))
 
 
 if __name__ == '__main__':  #pragma: no cover
-    # Without this, the 'ciu' logger will emit nothing.
-    logging.basicConfig(format='[%(levelname)s] %(message)s')
     main()
