@@ -77,6 +77,10 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 2.1.1
+* Properly set the logging details when executed from the entry point
+* Usual overrides tweaks
+
 ## 2.1.0
 * Verbose output will print what manual overrides are used and why
   (when available)
