@@ -3,6 +3,7 @@
     "beautifulsoup": "https://pypi.python.org/pypi/beautifulsoup4",
     "bcdoc":"https://github.com/boto/bcdoc/blob/master/tox.ini",
     "botocore":"https://github.com/boto/botocore/blob/master/tox.ini",
+    "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "extras": "https://pypi.python.org/pypi/extras",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
