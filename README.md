@@ -30,7 +30,7 @@ end up listed on the [Python 3 Packages list on PyPI](https://pypi.python.org/py
 you can represent Python 2 support with `Programming Language :: Python`).
 
 The other way is through a [manual override](https://github.com/brettcannon/caniusepython3/blob/master/caniusepython3/overrides.json) in
-`caniusepython3` itself. This list of projects exists because:
+`caniusepython3` itself. Projects ends up on this list because:
 
 * They are now part of [Python's standard library](http://docs.python.org/3/py-modindex.html) in some release of Python 3
 * Their Python 3 port is under a different name
