@@ -1,6 +1,6 @@
 # Can I Use Python 3?
 
-[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.png?branch=master)](http://img.shields.io/travis/brettcannon/caniusepython3.svg)
+[![Build Status](http://img.shields.io/travis/brettcannon/caniusepython3.svg)](https://travis-ci.org/brettcannon/caniusepython3)
 
 You can read the documentation on how to use caniusepython3 from its
 [PyPI page](https://pypi.python.org/pypi/caniusepython3). A [web interface](https://github.com/jezdez/caniusepython3.com)
@@ -78,6 +78,11 @@ on [porting pure Python modules](http://docs.python.org/3/howto/pyporting.html)
 and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
+
+# 2.1.2
+* Avoid infinite recursion when there is a circular dependency
+  ([issue #60](https://github.com/brettcannon/caniusepython3/issues/60))
+* Usual overrides tweaks
 
 # 2.1.1
 * Normalize the names of direct dependencies for proper Python 3 compatibility
