@@ -18,6 +18,10 @@ from caniusepython3 import dependencies
 
 import io
 import unittest
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class GraphResolutionTests(unittest.TestCase):
@@ -37,6 +41,17 @@ class GraphResolutionTests(unittest.TestCase):
         reasons = {'A': None, 'B': 'A', 'C': 'B'}
         self.assertEqual(frozenset([('C', 'B', 'A')]),
                          dependencies.reasons_to_paths(reasons))
+
+
+class BlockingDependenciesTests(unittest.TestCase):
+
+    @mock.patch('caniusepython3.dependencies.dependencies')
+    def test_recursion(self, dependencies_mock):
+        deps = {'a': ['b'], 'b': ['a']}
+        dependencies_mock.side_effect = lambda name: deps[name]
+        got = dependencies.blocking_dependencies(['a'], {})
+        self.assertEqual(frozenset(), got)
+
 
 
 class NetworkTests(unittest.TestCase):

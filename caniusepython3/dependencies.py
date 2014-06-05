@@ -75,6 +75,7 @@ def blocking_dependencies(projects, py3_projects):
     """
     log = logging.getLogger('ciu')
     check = []
+    evaluated = set()
     for project in projects:
         dist = distlib.locators.locate(project)
         if dist is None:
@@ -97,6 +98,11 @@ def blocking_dependencies(projects, py3_projects):
                     del reasons[parent]
                     continue
                 for dep in deps:
+                    if dep in evaluated:
+                        log.info('{0} already checked'.format(dep))
+                        continue
+                    else:
+                        evaluated.add(dep)
                     if dep in py3_projects:
                         continue
                     reasons[dep] = parent
