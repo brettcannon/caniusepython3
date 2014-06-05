@@ -67,8 +67,9 @@ down your dependency graph to help a more direct dependency make the transition.
 
 Which brings up the second point: volunteering to do a port. Most projects
 happily accept help, they just have not done the port yet because they have
-not had the time. Some projects are simply waiting for people to ask for it, so
-even speaking up politely and requesting a port can get the process started.
+not had the time ("volunteering" can also take the form of paying someone to do
+the port on your behalf). Some projects are simply waiting for people to ask for it,
+so even speaking up politely and requesting a port can get the process started.
 
 If you are looking for help to port a project, you can always search online for
 various sources of help. If you want a specific starting point there are
