@@ -38,7 +38,8 @@ The other way is through a [manual override](https://github.com/brettcannon/cani
 
 If any of these various requirements are met, then a project is considered to
 support Python 3 and thus will be added to the manual overrides list. You can
-see the list of overrides when you run the script with verbose output turned on.
+see the list of overrides when you use caniusepython3's CLI with verbose output
+turned on.
 
 ## What if I know of a project that should be added to the overrides file?
 
