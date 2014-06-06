@@ -23,7 +23,6 @@
     "python-memcached": "https://pypi.python.org/pypi/python3-memcached",
     "pyvirtualdisplay": "https://pypi.python.org/pypi/PyVirtualDisplay",
     "regex": "https://pypi.python.org/pypi/regex",
-    "requests-oauthlib": "https://pypi.python.org/pypi/requests-oauthlib",
     "rsa": "https://pypi.python.org/pypi/rsa",
     "ssh": "https://github.com/bitprophet/ssh/",
     "ssl": "http://docs.python.org/3/library/ssl.html",
