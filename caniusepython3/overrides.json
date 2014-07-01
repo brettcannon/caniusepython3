@@ -5,7 +5,7 @@
     "botocore":"https://github.com/boto/botocore/blob/master/tox.ini",
     "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
-    "dnspython": "http://www.dnspython.org",
+    "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "extras": "https://pypi.python.org/pypi/extras",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
     "ipaddress": "http://docs.python.org/3/library/ipaddress.html",
