@@ -1,3 +1,8 @@
+"""Pylint checker to enforce Python 2/3 compatible syntax.
+
+See the documentation for what checkers pylint includes by default
+which compliment this file.
+"""
 from __future__ import absolute_import, print_function
 
 import symbol
@@ -9,24 +14,23 @@ from pylint import checkers, interfaces
 from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
-## Straight-forward
+## Straight-forward ########################
+### from __future__ import absolute_import
 ### No exec with arguments
 ### No __metaclass__
 ### No dict.iter*()
 ### No parameter unpacking
 ### round() different
 ### No list.sort(cmp=)
-## Scoping
+## Scoping #################################
 ### no sorted(cmp=)
 ### io.open() over open()
 ### list(filter()) or future_builtins.filter()
 ### No exception object escaping `except` scope
 ### No listcomp variable escaping
-## Don't know
+## Don't know ##############################
 ### indexing bytes
 
-# Python 2.6
-## from __future__ import absolute_import (only needed 2.6 or 2.5)
 # Python 2.5
 ## codecs.open over open()/file()
 
