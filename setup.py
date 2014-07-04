@@ -19,8 +19,8 @@ setup(name='caniusepython3',
       packages=['caniusepython3', 'caniusepython3.test'],
       include_package_data=True,
       install_requires=['distlib', 'setuptools', 'pip',  # Input flexibility
-                        'argparse', 'futures',  # Functionality
-                        'mock'],  # Testing
+                        'argparse', 'futures'],  # Functionality
+      tests_require=['mock'],  # Testing
       test_suite='caniusepython3.test',
       classifiers=[
           'Development Status :: 5 - Production/Stable',

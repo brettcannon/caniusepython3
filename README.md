@@ -79,6 +79,10 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 2.2.0 (_under development_)
+* Move [mock](https://pypi.python.org/pypi/mock) to `tests_require` in `setup.py`
+* Usual override tweaks
+
 # 2.1.2
 * Avoid infinite recursion when there is a circular dependency
   ([issue #60](https://github.com/brettcannon/caniusepython3/issues/60))
