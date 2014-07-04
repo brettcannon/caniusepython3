@@ -1,0 +1,8 @@
+[MASTER]
+load-plugins=caniusepython3.pylint_checker
+
+[MESSAGES REPORT]
+enable=old-style-class,raising-string,old-raise-syntax,old-ne-operator,backtick,unpacking-in-except,indexing-exception
+
+[REPORTS]
+reports=no
