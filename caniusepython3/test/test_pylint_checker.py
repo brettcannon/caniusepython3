@@ -3,7 +3,10 @@ from __future__ import absolute_import
 import io
 import sys
 import tokenize
-import unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 
 from astroid import test_utils
 from pylint import testutils
@@ -81,62 +84,62 @@ class SixCheckerTest(testutils.CheckerTestCase):
         with self.assertNoMessages():
             self.checker.visit_name(node)
 
-    def builtin_test(self, builtin_name, message):
+    def check_not_builtin(self, builtin_name, message):
         node = test_utils.extract_node(builtin_name + '  #@')
         with self.assertAddsMessages(testutils.Message(message, node=node)):
             self.checker.visit_name(node)
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_buffer_builtin(self):
-        self.builtin_test('buffer', 'buffer-builtin')
+        self.check_not_builtin('buffer', 'buffer-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_apply_builtin(self):
-        self.builtin_test('apply', 'apply-builtin')
+        self.check_not_builtin('apply', 'apply-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_cmp_builtin(self):
-        self.builtin_test('cmp', 'cmp-builtin')
+        self.check_not_builtin('cmp', 'cmp-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_file_builtin(self):
-        self.builtin_test('file', 'file-builtin')
+        self.check_not_builtin('file', 'file-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_raw_input_builtin(self):
-        self.builtin_test('raw_input', 'raw_input-builtin')
+        self.check_not_builtin('raw_input', 'raw_input-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_long_builtin(self):
-        self.builtin_test('long', 'long-builtin')
+        self.check_not_builtin('long', 'long-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_coerce_builtin(self):
-        self.builtin_test('coerce', 'coerce-builtin')
+        self.check_not_builtin('coerce', 'coerce-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_execfile_builtin(self):
-        self.builtin_test('execfile', 'execfile-builtin')
+        self.check_not_builtin('execfile', 'execfile-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_xrange_builtin(self):
-        self.builtin_test('xrange', 'xrange-builtin')
+        self.check_not_builtin('xrange', 'xrange-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_unicode_builtin(self):
-        self.builtin_test('unicode', 'unicode-builtin')
+        self.check_not_builtin('unicode', 'unicode-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_StandardError(self):
-        self.builtin_test('StandardError', 'standarderror-builtin')
+        self.check_not_builtin('StandardError', 'standarderror-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_map_builtin(self):
-        self.builtin_test('map', 'map-builtin')
+        self.check_not_builtin('map', 'map-builtin')
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_zip_builtin(self):
-        self.builtin_test('zip', 'zip-builtin')
+        self.check_not_builtin('zip', 'zip-builtin')
 
     def test_division(self):
         node = test_utils.extract_node('3 / 2  #@')
@@ -181,7 +184,7 @@ class UnicodeCheckerTest(testutils.CheckerTestCase):
     def test_native_string(self):
         arg = u"val = 'abc'"
         tokens = self.tokenize(arg)
-        with self.assertAddsMessages(testutils.Message('native-string', line=arg)):
+        with self.assertAddsMessages(testutils.Message('native-string', line=1)):
             self.checker.process_tokens(tokens)
 
     def test_future_unicode(self):
@@ -213,7 +216,7 @@ class SyntaxCheckerTest(testutils.CheckerTestCase):
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_py2_octal_literal(self):
         tokens = self.tokenize(u'012')
-        with self.assertAddsMessages(testutils.Message('octal-literal', line=u'012')):
+        with self.assertAddsMessages(testutils.Message('octal-literal', line=1)):
             self.checker.process_tokens(tokens)
 
     def test_py3_octal_literal(self):
@@ -224,13 +227,13 @@ class SyntaxCheckerTest(testutils.CheckerTestCase):
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_long_L(self):
         tokens = self.tokenize(u'123L')
-        with self.assertAddsMessages(testutils.Message('long-literal', line=u'123L')):
+        with self.assertAddsMessages(testutils.Message('long-literal', line=1)):
             self.checker.process_tokens(tokens)
 
     @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
     def test_long_l(self):
         tokens = self.tokenize(u'123l')
-        with self.assertAddsMessages(testutils.Message('long-literal', line=u'123l')):
+        with self.assertAddsMessages(testutils.Message('long-literal', line=1)):
             self.checker.process_tokens(tokens)
 
 

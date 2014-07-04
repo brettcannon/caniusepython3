@@ -10,5 +10,5 @@ python:
 
 install:
     - pip install -e .
-    - pip install mock pylint
+    - pip install mock pylint unittest2
 script: nosetests
