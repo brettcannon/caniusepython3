@@ -8,7 +8,5 @@ python:
     - "3.4"
     - "pypy"
 
-install:
-    - pip install -e .
-    - pip install mock pylint unittest2
-script: nosetests
+install: pip install -e .
+script: python setup.py test

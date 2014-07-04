@@ -1,10 +1,19 @@
 from setuptools import setup
 
 import os
+import sys
 
 
 # Installed name used for various commands (both script and setuptools).
 command_name = os.environ.get('CIU_ALT_NAME') or 'caniusepython3'
+
+install_requires = ['distlib', 'setuptools', 'pip']
+test_requires = ['pylint']
+if sys.version_info[0:2] == (3, 2) or sys.version_info[0] < 3:
+    test_requires.append('mock')
+if sys.version_info[0] < 3:
+    install_requires.extend(['argparse', 'futures'])
+    test_requires.append('unittest2')
 
 with open('README_PyPI.rst') as file:
     long_description = file.read()
@@ -18,9 +27,8 @@ setup(name='caniusepython3',
       url='https://github.com/brettcannon/caniusepython3',
       packages=['caniusepython3', 'caniusepython3.test'],
       include_package_data=True,
-      install_requires=['distlib', 'setuptools', 'pip',  # Input flexibility
-                        'argparse', 'futures'],  # Functionality
-      tests_require=['mock', 'pylint', 'unittest2'],  # Testing
+      install_requires=install_requires,
+      tests_require=test_requires,
       test_suite='caniusepython3.test',
       classifiers=[
           'Development Status :: 5 - Production/Stable',
