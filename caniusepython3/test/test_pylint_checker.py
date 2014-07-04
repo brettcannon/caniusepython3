@@ -3,15 +3,12 @@ from __future__ import absolute_import
 import io
 import sys
 import tokenize
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 from astroid import test_utils
 from pylint import testutils
 
 from caniusepython3 import pylint_checker as checker
+from caniusepython3.test import unittest
 
 
 class SixCheckerTest(testutils.CheckerTestCase):
