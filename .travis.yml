@@ -8,5 +8,7 @@ python:
     - "3.4"
     - "pypy"
 
-install: pip install -e .
+install:
+    - pip install -e .
+    - pip install mock pylint
 script: nosetests
