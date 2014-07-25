@@ -155,7 +155,7 @@ class SixChecker(checkers.BaseChecker):
                   'no-absolute-import',
                   'Used when an import is performed w/o'
                   '``from __future__ import absolute_import``',
-                  {'maxversion': (3,0)}),
+                  {'maxversion': (3, 0)}),
     }
 
     def __init__(self, *args, **kwargs):
@@ -171,6 +171,7 @@ class SixChecker(checkers.BaseChecker):
     def visit_exec(self, node):
         self.add_message('exec-statement', node=node)
 
+    @utils.check_messages('no-absolute-import')
     def visit_from(self, node):
         if node.modname == u'__future__' :
             for name, _ in node.names:
@@ -181,6 +182,7 @@ class SixChecker(checkers.BaseChecker):
         elif not self._future_absolute_import:
             self.add_message('no-absolute-import', node=node)
 
+    @utils.check_messages('no-absolute-import')
     def visit_import(self, node):
         if not self._future_absolute_import:
             self.add_message('no-absolute-import', node=node)
