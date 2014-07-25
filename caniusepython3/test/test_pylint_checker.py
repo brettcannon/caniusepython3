@@ -10,12 +10,16 @@ from pylint import testutils
 from caniusepython3 import pylint_checker as checker
 from caniusepython3.test import unittest
 
+def python2_only(test):
+    """Decorator for any tests that will fail under Python 3."""
+    return unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')(test)
+
 
 class SixCheckerTest(testutils.CheckerTestCase):
 
     CHECKER_CLASS = checker.SixChecker
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_print_statement(self):
         node = test_utils.extract_node('print "Hello, World!" #@')
         with self.assertAddsMessages(testutils.Message('print-statement', node=node)):
@@ -86,55 +90,55 @@ class SixCheckerTest(testutils.CheckerTestCase):
         with self.assertAddsMessages(testutils.Message(message, node=node)):
             self.checker.visit_name(node)
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_buffer_builtin(self):
         self.check_not_builtin('buffer', 'buffer-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_apply_builtin(self):
         self.check_not_builtin('apply', 'apply-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_cmp_builtin(self):
         self.check_not_builtin('cmp', 'cmp-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_file_builtin(self):
         self.check_not_builtin('file', 'file-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_raw_input_builtin(self):
         self.check_not_builtin('raw_input', 'raw_input-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_long_builtin(self):
         self.check_not_builtin('long', 'long-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_coerce_builtin(self):
         self.check_not_builtin('coerce', 'coerce-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_execfile_builtin(self):
         self.check_not_builtin('execfile', 'execfile-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_xrange_builtin(self):
         self.check_not_builtin('xrange', 'xrange-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_unicode_builtin(self):
         self.check_not_builtin('unicode', 'unicode-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_StandardError(self):
         self.check_not_builtin('StandardError', 'standarderror-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_map_builtin(self):
         self.check_not_builtin('map', 'map-builtin')
 
-    @unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')
+    @python2_only
     def test_zip_builtin(self):
         self.check_not_builtin('zip', 'zip-builtin')
 
@@ -177,6 +181,7 @@ class SixCheckerTest(testutils.CheckerTestCase):
             for module in (module_import, module_from):
                 self.walk(module)
 
+    @python2_only
     def test_exec(self):
         node = test_utils.extract_node('exec "2 + 3"  #@')
         with self.assertAddsMessages(testutils.Message('exec-statement', node=node)):
