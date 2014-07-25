@@ -16,12 +16,14 @@ from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
-### No dict.iter*()
 ### round() different
+####-------------------
+### No dict.iter*()
 ### No list.sort(cmp=)
 ## Scoping #################################
-### no sorted(cmp=)
 ### io.open() over open()
+### no sorted(cmp=)
+####-------------------
 ### list(filter()) or future_builtins.filter()
 ### No exception object escaping `except` scope
 ### No listcomp variable escaping
