@@ -182,6 +182,11 @@ class SixCheckerTest(testutils.CheckerTestCase):
         with self.assertAddsMessages(testutils.Message('exec-statement', node=node)):
             self.checker.visit_exec(node)
 
+    def test_metaclass_attr(self):
+        node = test_utils.extract_node('class Foo(object):\n __metaclass__ = type  #@')
+        with self.assertAddsMessages(testutils.Message('metaclass-attribute', node=node)):
+            self.checker.visit_assign(node)
+
 
 class UnicodeCheckerTest(testutils.CheckerTestCase):
 

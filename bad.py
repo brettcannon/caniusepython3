@@ -12,6 +12,7 @@ NO_INDEXING_EXCEPTIONS = Exception(1)[0]
 u"old comparison" <> u"only for FLUFL"
 `u"backticks"`
 class Bad:
+    __metaclass__ = type
     def __getslice__(self, i, j): pass
     def __setslice__(self, i, j, value): pass
     def __cmp__(self, other): pass

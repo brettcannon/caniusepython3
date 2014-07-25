@@ -15,7 +15,6 @@ from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
-### No __metaclass__
 ### No dict.iter*()
 ### No parameter unpacking
 ### round() different
@@ -158,6 +157,11 @@ class SixChecker(checkers.BaseChecker):
                   'Used when an import is performed w/o'
                   '``from __future__ import absolute_import``',
                   {'maxversion': (3, 0)}),
+        'W6022': ('__metaclass__ assigned',
+                  'metaclass-attribute',
+                  'Assignment to the __metaclass__ attribute'
+                  "(Python 3 sets the metaclass in the class' parameter list)",
+                  {'maxversion': (3, 0)}),
     }
 
     def __init__(self, *args, **kwargs):
@@ -226,6 +230,12 @@ class SixChecker(checkers.BaseChecker):
                            }
             if node.name in bad_builtins:
                 self.add_message(bad_builtins[node.name], node=node)
+
+    @utils.check_messages('metaclass-attribute')
+    def visit_assign(self, node):
+        for target in node.targets:
+            if u'__metaclass__' == target.name:
+                self.add_message('metaclass-attribute', node=node)
 
 
 class UnicodeChecker(checkers.BaseTokenChecker):
