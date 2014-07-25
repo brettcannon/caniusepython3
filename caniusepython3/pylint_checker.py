@@ -38,6 +38,8 @@ class SixChecker(checkers.BaseChecker):
 
     name = 'six'
     msgs = {
+        # Errors for what will syntactically break in Python 3, warnings for
+        # everything else.
         'E6001': ('Use of a print statement',
                   'print-statement',
                   'Used when a print statement is found '
@@ -271,12 +273,12 @@ class SyntaxChecker(checkers.BaseTokenChecker):
 
     name = 'six'
     msgs = {
-        'W6101': ('octal literal',
+        'E6101': ('octal literal',
                   'octal-literal',
                   'Used when a octal literal w/ ``0`` prefix is defined '
                   '(Python 3 uses ``0o``)',
                   {'maxversion': (3, 0)}),
-        'W6102': ('long literal',
+        'E6102': ('long literal',
                   'long-literal',
                   'Used when a long literal is defined '
                   '(Python 3 unified int and long)',
