@@ -16,7 +16,6 @@ from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
-### round() different
 ####-------------------
 ### No dict.iter*()
 ### No list.sort(cmp=)
@@ -169,6 +168,11 @@ class SixChecker(checkers.BaseChecker):
                   'Assignment to the __metaclass__ attribute'
                   "(Python 3 sets the metaclass in the class' parameter list)",
                   {'maxversion': (3, 0)}),
+        'W6023': ('round built-in referenced',
+                  'round-builtin',
+                  'Used when the round built-in function is referenced '
+                  '(semantics different in Python 3)',
+                  {'maxversion': (3, 0)}),
     }
 
     def __init__(self, *args, **kwargs):
@@ -240,6 +244,7 @@ class SixChecker(checkers.BaseChecker):
                             'StandardError': 'standarderror-builtin',
                             'map': 'map-builtin',  # Technically only care when used.
                             'zip': 'zip-builtin',  # Technically only care when used.
+                            'round': 'round-builtin',  # Technically only care when used.
                            }
             if node.name in bad_builtins:
                 self.add_message(bad_builtins[node.name], node=node)

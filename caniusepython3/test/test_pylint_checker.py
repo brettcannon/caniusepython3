@@ -142,6 +142,10 @@ class SixCheckerTest(testutils.CheckerTestCase):
     def test_zip_builtin(self):
         self.check_not_builtin('zip', 'zip-builtin')
 
+    @python2_only
+    def test_round_builtin(self):
+        self.check_not_builtin('round', 'round-builtin')
+
     def test_division(self):
         node = test_utils.extract_node('3 / 2  #@')
         with self.assertAddsMessages(testutils.Message('division', node=node)):
