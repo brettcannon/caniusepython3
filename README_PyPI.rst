@@ -108,6 +108,7 @@ The checks provided by ``caniusepython3`` are:
 * Raw strings (i.e. a string literal missing a ``b``/``u`` prefix or
   ``from __future__ import unicode_literals``)
 * Imports w/o ``from __future__ import absolute_import``
+* Assignment to ``__metaclass__``
 
 If you want to understand why these warnings/errors exist,
 `Porting to Python 3 <http://python3porting.com/>`__ has a comprehensive list of
