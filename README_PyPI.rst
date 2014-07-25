@@ -97,7 +97,7 @@ Pylint makes it easy to turn off warnings.
 
 The checks provided by ``caniusepython3`` are:
 
-* Use of the ``print`` statement
+* Use of the ``print`` or ``exec`` statement
 * ``__getslice__``, ``__setslice__``, ``__cmp__``, ``__coerce__``,
   ``__unicode__``, and ``next`` methods defined
 * ``buffer``, ``apply``, ``cmp``, ``file``, ``raw_input``, ``long``, ``coerce``,

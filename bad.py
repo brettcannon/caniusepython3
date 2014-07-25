@@ -3,6 +3,7 @@ for."""
 #pylint: disable=no-init,too-few-public-methods,pointless-statement,unreachable,pointless-string-statement,multiple-statements,missing-docstring,invalid-name
 import os
 print u'hello, world'
+exec '2 + 3'
 raise "a string"  # pylint: disable=native-string
 raise Exception, u"old syntax"
 try: pass

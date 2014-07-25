@@ -15,7 +15,6 @@ from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
-### No exec with arguments
 ### No __metaclass__
 ### No dict.iter*()
 ### No parameter unpacking
@@ -42,6 +41,11 @@ class SixChecker(checkers.BaseChecker):
         'E6001': ('Use of a print statement',
                   'print-statement',
                   'Used when a print statement is found '
+                  '(invalid syntax in Python 3)',
+                  {'maxversion': (3, 0)}),
+        'E6002': ('Use of an exec statement',
+                  'exec-statement',
+                  'Used when an exec statement is found'
                   '(invalid syntax in Python 3)',
                   {'maxversion': (3, 0)}),
         'W6001': ('__getslice__ defined',
@@ -162,6 +166,10 @@ class SixChecker(checkers.BaseChecker):
     @utils.check_messages('print-statement')
     def visit_print(self, node):
         self.add_message('print-statement', node=node)
+
+    @utils.check_messages('exec-statement')
+    def visit_exec(self, node):
+        self.add_message('exec-statement', node=node)
 
     def visit_from(self, node):
         if node.modname == u'__future__' :

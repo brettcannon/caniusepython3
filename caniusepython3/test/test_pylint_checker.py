@@ -177,6 +177,11 @@ class SixCheckerTest(testutils.CheckerTestCase):
             for module in (module_import, module_from):
                 self.walk(module)
 
+    def test_exec(self):
+        node = test_utils.extract_node('exec "2 + 3"  #@')
+        with self.assertAddsMessages(testutils.Message('exec-statement', node=node)):
+            self.checker.visit_exec(node)
+
 
 class UnicodeCheckerTest(testutils.CheckerTestCase):
 
