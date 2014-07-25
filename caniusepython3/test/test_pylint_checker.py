@@ -192,6 +192,13 @@ class SixCheckerTest(testutils.CheckerTestCase):
         with self.assertAddsMessages(testutils.Message('metaclass-attribute', node=node)):
             self.checker.visit_assign(node)
 
+    @python2_only
+    def test_parameter_unpacking(self):
+        node = test_utils.extract_node('def func((a, b)):#@\n pass')
+        arg = node.args.args[0]
+        with self.assertAddsMessages(testutils.Message('parameter-unpacking', node=arg)):
+            self.walk(node)
+
 
 class UnicodeCheckerTest(testutils.CheckerTestCase):
 

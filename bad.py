@@ -4,11 +4,14 @@ for.
 When run through Pylint using the included pylintrc in the project you should
 see a warning for nearly every line.
 """
-#pylint: disable=locally-disabled,no-init,too-few-public-methods,pointless-statement,unreachable,pointless-string-statement,multiple-statements,missing-docstring,invalid-name
-import os  # pylint: disable=unused-import
+# pylint: disable=locally-disabled,no-init,too-few-public-methods
+# pylint: disable=locally-disabled,pointless-statement,unreachable
+# pylint: disable=locally-disabled,pointless-string-statement,multiple-statements
+# pylint: disable=locally-disabled,missing-docstring,invalid-name
+import os  # pylint: disable=locally-disabled,unused-import
 print u'hello, world'
-exec u'2 + 3'  # pylint: disable=exec-used
-raise "a string"  # pylint: disable=native-string
+exec u'2 + 3'  # pylint: disable=locally-disabled,exec-used
+raise "a string"  # pylint: disable=locally-disabled,native-string
 raise Exception, u"old syntax"
 try: pass
 except ZeroDivisionError, (a, b): pass
@@ -40,3 +43,4 @@ zip([1, 2, 3], [4, 5, 6])
 012
 123L
 3 / 2
+def parameter_unpacking(a, (b, c)): pass  # pylint: disable=locally-disabled,redefined-outer-name,unused-argument

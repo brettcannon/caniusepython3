@@ -10,13 +10,13 @@ import token
 import tokenize
 
 import astroid
+from astroid import nodes
 from pylint import checkers, interfaces
 from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
 ### No dict.iter*()
-### No parameter unpacking
 ### round() different
 ### No list.sort(cmp=)
 ## Scoping #################################
@@ -48,6 +48,11 @@ class SixChecker(checkers.BaseChecker):
                   'exec-statement',
                   'Used when an exec statement is found'
                   '(invalid syntax in Python 3)',
+                  {'maxversion': (3, 0)}),
+        'E6003': ('Parameter unpacking specified',
+                  'parameter-unpacking',
+                  'Used when parameter unpacking is specified for a function'
+                  "(Python 3 doesn't allow it)",
                   {'maxversion': (3, 0)}),
         'W6001': ('__getslice__ defined',
                   'getslice-method',
@@ -211,6 +216,12 @@ class SixChecker(checkers.BaseChecker):
                        'next': 'next-method'}
         if node.is_method() and node.name in bad_methods:
             self.add_message(bad_methods[node.name], node=node)
+
+    @utils.check_messages('parameter-unpacking')
+    def visit_arguments(self, node):
+        for arg in node.args:
+            if isinstance(arg, nodes.Tuple):
+                self.add_message('parameter-unpacking', node=arg)
 
     def visit_name(self, node):
         if node.lookup(node.name)[0].name == '__builtin__':
