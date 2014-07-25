@@ -160,6 +160,23 @@ class SixCheckerTest(testutils.CheckerTestCase):
             for node in (left_node, right_node):
                 self.checker.visit_binop(node)
 
+    def test_relative_import(self):
+        node = test_utils.extract_node('import string  #@')
+        with self.assertAddsMessages(testutils.Message('no-absolute-import', node=node)):
+            self.checker.visit_import(node)
+
+    def test_relative_from_import(self):
+        node = test_utils.extract_node('from os import path  #@')
+        with self.assertAddsMessages(testutils.Message('no-absolute-import', node=node)):
+            self.checker.visit_import(node)
+
+    def test_absolute_import(self):
+        module_import = test_utils.build_module('from __future__ import absolute_import; import os')
+        module_from = test_utils.build_module('from __future__ import absolute_import; from os import path')
+        with self.assertNoMessages():
+            for module in (module_import, module_from):
+                self.walk(module)
+
 
 class UnicodeCheckerTest(testutils.CheckerTestCase):
 

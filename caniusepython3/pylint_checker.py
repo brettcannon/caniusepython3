@@ -148,10 +148,16 @@ class SixChecker(checkers.BaseChecker):
                   '``from __future__ import division``'
                   '(Python 3 returns a float for int division unconditionally)',
                   {'maxversion': (3, 0)}),
+        'W6021': ('import w/o ``from __future__ import absolute_import``',
+                  'no-absolute-import',
+                  'Used when an import is performed w/o'
+                  '``from __future__ import absolute_import``',
+                  {'maxversion': (3,0)}),
     }
 
     def __init__(self, *args, **kwargs):
         self._future_division = False
+        self._future_absolute_import = False
         super(SixChecker, self).__init__(*args, **kwargs)
 
     @utils.check_messages('print-statement')
@@ -163,7 +169,14 @@ class SixChecker(checkers.BaseChecker):
             for name, _ in node.names:
                 if name == u'division':
                     self._future_division = True
-                    break
+                elif name == u'absolute_import':
+                    self._future_absolute_import = True
+        elif not self._future_absolute_import:
+            self.add_message('no-absolute-import', node=node)
+
+    def visit_import(self, node):
+        if not self._future_absolute_import:
+            self.add_message('no-absolute-import', node=node)
 
     @utils.check_messages('division')
     def visit_binop(self, node):

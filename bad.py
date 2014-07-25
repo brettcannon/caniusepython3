@@ -1,7 +1,7 @@
 """This module contains an example of everything the custom checker looks
 for."""
 #pylint: disable=no-init,too-few-public-methods,pointless-statement,unreachable,pointless-string-statement,multiple-statements,missing-docstring,invalid-name
-
+import os
 print u'hello, world'
 raise "a string"  # pylint: disable=native-string
 raise Exception, u"old syntax"
