@@ -16,20 +16,16 @@ from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
-####-------------------
 ### No dict.iter*()
 ### No list.sort(cmp=)
 ## Scoping #################################
 ### no sorted(cmp=)
-####-------------------
 ### list(filter()) or future_builtins.filter()
 ### No exception object escaping `except` scope
 ### No listcomp variable escaping
 ## Don't know how to catch #################
 ### indexing bytes
 
-# Python 2.5
-## codecs.open over open()/file()
 
 class SixChecker(checkers.BaseChecker):
 
