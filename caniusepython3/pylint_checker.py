@@ -15,7 +15,6 @@ from pylint.checkers import utils
 
 # http://python3porting.com/differences.html
 ## Straight-forward ########################
-### from __future__ import absolute_import
 ### No exec with arguments
 ### No __metaclass__
 ### No dict.iter*()
