@@ -2,9 +2,13 @@
 
 [![Build Status](http://img.shields.io/travis/brettcannon/caniusepython3.svg)](https://travis-ci.org/brettcannon/caniusepython3)
 
-You can read the documentation on how to use caniusepython3 from its
+You can read the documentation on how to use `caniusepython3` from its
 [PyPI page](https://pypi.python.org/pypi/caniusepython3). A [web interface](https://github.com/jezdez/caniusepython3.com)
 is also available.
+
+
+# How do I make my project's code be Python 2/3 source-compatible?
+See the [Python porting HOWTO](https://docs.python.org/3/howto/pyporting.html).
 
 
 # How do you tell if a project has been ported to Python 3?
@@ -78,6 +82,12 @@ on [porting pure Python modules](http://docs.python.org/3/howto/pyporting.html)
 and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
+
+# 3.0.0 (_under development_ + 2.2.0 changes below)
+* Dropped support for Python 3.2
+* Added `caniusepython3.pylint_checker` to provide a custom checker for
+  [pylint](http://pylint.org/) to make sure ported code to Python 2/3 does not
+  regress
 
 # 2.2.0 (_under development_)
 * Move [mock](https://pypi.python.org/pypi/mock) to `tests_require` in `setup.py`

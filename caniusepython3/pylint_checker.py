@@ -28,7 +28,7 @@ from pylint.checkers import utils
 ### list(filter()) or future_builtins.filter()
 ### No exception object escaping `except` scope
 ### No listcomp variable escaping
-## Don't know ##############################
+## Don't know how to catch #################
 ### indexing bytes
 
 # Python 2.5
