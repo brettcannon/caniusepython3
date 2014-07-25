@@ -20,7 +20,6 @@ from pylint.checkers import utils
 ### No dict.iter*()
 ### No list.sort(cmp=)
 ## Scoping #################################
-### io.open() over open()
 ### no sorted(cmp=)
 ####-------------------
 ### list(filter()) or future_builtins.filter()
@@ -173,6 +172,11 @@ class SixChecker(checkers.BaseChecker):
                   'Used when the round built-in function is referenced '
                   '(semantics different in Python 3)',
                   {'maxversion': (3, 0)}),
+        'W6024': ('open built-in referenced',
+                  'open-builtin',
+                  'Used when the open built-in function is referenced '
+                  '(semantics different in Python 3; use io.open or codecs.open)',
+                  {'maxversion': (3, 0)}),
     }
 
     def __init__(self, *args, **kwargs):
@@ -242,9 +246,12 @@ class SixChecker(checkers.BaseChecker):
                             'xrange': 'xrange-builtin',
                             'unicode': 'unicode-builtin',
                             'StandardError': 'standarderror-builtin',
-                            'map': 'map-builtin',  # Technically only care when used.
-                            'zip': 'zip-builtin',  # Technically only care when used.
-                            'round': 'round-builtin',  # Technically only care when used.
+                            # Built-ins listed below are for semantic reasons
+                            # instead of flat-out missing in Python 3.
+                            'map': 'map-builtin',
+                            'zip': 'zip-builtin',
+                            'round': 'round-builtin',
+                            'open': 'open-builtin',
                            }
             if node.name in bad_builtins:
                 self.add_message(bad_builtins[node.name], node=node)

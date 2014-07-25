@@ -102,7 +102,7 @@ The checks provided by ``caniusepython3`` are:
   ``__unicode__``, and ``next`` methods defined
 * ``buffer``, ``apply``, ``cmp``, ``file``, ``raw_input``, ``long``, ``coerce``,
   ``execfile``, ``xrange``, ``unicode``, ``StandardError``, ``map``, ``round``,
-  and ``zip`` built-ins referenced
+  ``zip``, and ``open`` built-ins referenced
 * Non-floor division without ``from __future__ import division``
 * Python 2-style octal and long literals
 * Raw strings (i.e. a string literal missing a ``b``/``u`` prefix or

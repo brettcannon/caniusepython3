@@ -45,3 +45,4 @@ zip([1, 2, 3], [4, 5, 6])
 3 / 2
 def parameter_unpacking(a, (b, c)): pass  # pylint: disable=locally-disabled,redefined-outer-name,unused-argument
 round(1.5)
+open(u'file.txt', u'r')
