@@ -1,9 +1,13 @@
 """This module contains an example of everything the custom checker looks
-for."""
-#pylint: disable=no-init,too-few-public-methods,pointless-statement,unreachable,pointless-string-statement,multiple-statements,missing-docstring,invalid-name
-import os
+for.
+
+When run through Pylint using the included pylintrc in the project you should
+see a warning for nearly every line.
+"""
+#pylint: disable=locally-disabled,no-init,too-few-public-methods,pointless-statement,unreachable,pointless-string-statement,multiple-statements,missing-docstring,invalid-name
+import os  # pylint: disable=unused-import
 print u'hello, world'
-exec '2 + 3'
+exec u'2 + 3'  # pylint: disable=exec-used
 raise "a string"  # pylint: disable=native-string
 raise Exception, u"old syntax"
 try: pass
