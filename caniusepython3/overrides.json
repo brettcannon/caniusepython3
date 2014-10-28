@@ -25,7 +25,7 @@
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
     "pystache": "https://pypi.python.org/pypi/pystache",
     "python-memcached": "https://pypi.python.org/pypi/python3-memcached",
-    "python-neutronclient": "https://github.com/openstack/python-neutronclient/blob/2.3.9/tox.ini",
+    "python-neutronclient": "https://pypi.python.org/pypi/python-neutronclient",
     "pyvirtualdisplay": "https://pypi.python.org/pypi/PyVirtualDisplay",
     "regex": "https://pypi.python.org/pypi/regex",
     "rsa": "https://pypi.python.org/pypi/rsa",
