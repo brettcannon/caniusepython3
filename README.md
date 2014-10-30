@@ -1,6 +1,6 @@
 # Can I Use Python 3?
 
-[![Build Status](http://img.shields.io/travis/brettcannon/caniusepython3.svg)](https://travis-ci.org/brettcannon/caniusepython3)
+[![Build Status](https://travis-ci.org/brettcannon/caniusepython3.svg?branch=master)](https://travis-ci.org/brettcannon/caniusepython3)
 
 You can read the documentation on how to use caniusepython3 from its
 [PyPI page](https://pypi.python.org/pypi/caniusepython3). A [web interface](https://github.com/jezdez/caniusepython3.com)
