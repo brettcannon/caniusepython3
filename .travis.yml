@@ -9,5 +9,7 @@ python:
     - "3.3"
     - "3.4"
 
-install: pip install -e -U .
+install:
+    - pip install -e .
+    - pip install -U mock unittest2
 script: nosetests
