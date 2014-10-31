@@ -15,9 +15,9 @@
 from __future__ import unicode_literals
 
 import caniusepython3 as ciu
+from caniusepython3.test import unittest
 
 import tempfile
-import unittest
 
 EXAMPLE_METADATA = """Metadata-Version: 1.2
 Name: TestingMetadata

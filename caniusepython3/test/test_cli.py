@@ -15,15 +15,11 @@
 from __future__ import unicode_literals
 
 import caniusepython3.__main__ as ciu_main
+from caniusepython3.test import mock, unittest
 
 import io
 import logging
 import tempfile
-import unittest
-try:
-    from unittest import mock
-except ImportError:
-    import mock
 
 
 EXAMPLE_REQUIREMENTS = """

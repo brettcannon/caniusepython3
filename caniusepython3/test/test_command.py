@@ -15,9 +15,9 @@
 from __future__ import unicode_literals
 
 from caniusepython3 import command
+from caniusepython3.test import unittest
 
 from distutils import dist
-import unittest
 
 def make_command(requires):
     return command.Command(dist.Distribution(requires))

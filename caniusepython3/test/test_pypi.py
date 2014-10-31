@@ -15,8 +15,7 @@
 from __future__ import unicode_literals
 
 from caniusepython3 import pypi
-
-import unittest
+from caniusepython3.test import unittest
 
 
 class NameTests(unittest.TestCase):
@@ -56,39 +55,24 @@ class NetworkTests(unittest.TestCase):
     def py3_classifiers(self):
         key_classifier = 'Programming Language :: Python :: 3'
         classifiers = frozenset(pypi.py3_classifiers())
-        if hasattr(self, 'assertIn'):
-            self.asssertIn(key_classifier, classifiers)
-        else:
-            self.assertTrue(key_classifier in classifiers)
-        if hasattr(self, 'assertGreaterEqual'):
-            self.assertGreaterEqual(len(classifiers), 5)
-        else:
-            self.assertTrue(len(classifiers) >= 5)
+        self.asssertIn(key_classifier, classifiers)
+        self.assertGreaterEqual(len(classifiers), 5)
         for classifier in classifiers:
             self.assertTrue(classifier.startswith(key_classifier))
 
 
     def test_all_py3_projects(self):
         projects = pypi.all_py3_projects()
-        if hasattr(self, 'assertGreater'):
-            self.assertGreater(len(projects), 3000)
-        else:
-            self.assertTrue(len(projects) > 3000)
+        self.assertGreater(len(projects), 3000)
         self.assertTrue(all(project == project.lower() for project in projects))
         self.assertTrue(frozenset(pypi.overrides().keys()).issubset(projects))
 
     def test_all_py3_projects_explicit_overrides(self):
         added_port = 'asdfasdfasdfadsffffdasfdfdfdf'
         projects = pypi.all_py3_projects(set([added_port]))
-        if hasattr(self, 'assertIn'):
-            self.assertIn(added_port, projects)
-        else:
-            self.assertTrue(added_port in projects)
+        self.assertIn(added_port, projects)
 
     def test_all_projects(self):
         projects = pypi.all_projects()
         self.assertTrue(all(project == project.lower() for project in projects))
-        if hasattr(self, 'assertGreaterEqual'):
-            self.assertGreaterEqual(len(projects), 40000)
-        else:
-            self.assertTrue(len(projects) >= 40000)
+        self.assertGreaterEqual(len(projects), 40000)

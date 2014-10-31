@@ -80,6 +80,8 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 # Change Log
 
 # 2.2.0 (_under development_)
+* Move to [unittest2](https://pypi.python.org/pypi/unittest2) as a developer
+  dependency
 * Move [mock](https://pypi.python.org/pypi/mock) to `tests_require` in `setup.py`
 * Usual override tweaks
 

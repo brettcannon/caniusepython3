@@ -15,13 +15,9 @@
 from __future__ import unicode_literals
 
 from caniusepython3 import dependencies
+from caniusepython3.test import mock, unittest
 
 import io
-import unittest
-try:
-    from unittest import mock
-except ImportError:
-    import mock
 
 
 class GraphResolutionTests(unittest.TestCase):
@@ -67,10 +63,7 @@ class NetworkTests(unittest.TestCase):
 
     def test_dependencies_no_project(self):
         got = dependencies.dependencies('sdflksjdfsadfsadfad')
-        if hasattr(self, 'assertIsNone'):
-            self.assertIsNone(got)
-        else:
-            self.assertTrue(got is None)
+        self.assertIsNone(got)
 
     def test_blocking_dependencies_no_project(self):
         got = dependencies.blocking_dependencies(['asdfsadfdsfsdffdfadf'], {})
