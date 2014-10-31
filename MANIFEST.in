@@ -1,3 +1,4 @@
 include README_PyPI.rst
 include caniusepython3/overrides.json
 include LICENSE
+include dev_requirements.txt

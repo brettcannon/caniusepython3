@@ -9,6 +9,9 @@ command_name = os.environ.get('CIU_ALT_NAME') or 'caniusepython3'
 with open('README_PyPI.rst') as file:
     long_description = file.read()
 
+with open('dev_requirements.txt') as file:
+    tests_require = [dep.strip() for dep in file.readlines()]
+
 setup(name='caniusepython3',
       version='2.1.2',
       description='Determine what projects are blocking you from porting to Python 3',
@@ -20,7 +23,7 @@ setup(name='caniusepython3',
       include_package_data=True,
       install_requires=['distlib', 'setuptools', 'pip',  # Input flexibility
                         'argparse', 'futures'],  # Functionality
-      tests_require=['mock', 'unittest2'],  # Testing
+      tests_require=tests_require,  # Testing, external due to Travis
       test_suite='caniusepython3.test',
       classifiers=[
           'Development Status :: 5 - Production/Stable',

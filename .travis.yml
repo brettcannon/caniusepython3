@@ -11,5 +11,5 @@ python:
 
 install:
     - pip install -e .
-    - pip install -U mock unittest2
+    - pip install -r dev_requirements.txt
 script: nosetests
