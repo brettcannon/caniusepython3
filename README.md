@@ -79,10 +79,13 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
-# 2.2.0 (_under development_)
+# 2.2.0
+* Suppress an `xmlrpclib.Fault` exception under Python 2.6 when trying to close
+  an XML-RPC connection (can't close a connection under Python 2.6 anyway and
+  the exception has only been seen on [Travis](https://travis-ci.org/))
 * Move to [unittest2](https://pypi.python.org/pypi/unittest2) as a developer
   dependency
-* Move [mock](https://pypi.python.org/pypi/mock) to `tests_require` in `setup.py`
+* Move [mock](https://pypi.python.org/pypi/mock) to a developer dependency
 * Usual override tweaks
 
 # 2.1.2
