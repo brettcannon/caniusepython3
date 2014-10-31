@@ -52,7 +52,7 @@ def pypi_client():
     finally:
         try:
             client('close')()
-        except xml.parsers.expat.ExpatError:  #pragma: no cover
+        except (xml.parsers.expat.ExpatError, xmlrpc_client.Fault):  #pragma: no cover
             # The close hack is not in Python 2.6.
             pass
 
