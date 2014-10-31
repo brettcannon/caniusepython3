@@ -11,5 +11,5 @@ python:
 
 install:
     - pip install -e .
-    - pip install -r dev_requirements.txt
+    - pip install -U -r dev_requirements.txt
 script: nosetests
