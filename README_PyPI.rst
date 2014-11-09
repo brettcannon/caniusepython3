@@ -29,7 +29,7 @@ Integrating With Your Tests
 ---------------------------
 
 If you want to check for Python 3 availability as part of your tests, you can
-use ``icanusepython3.check()``::
+use ``caniusepython3.check()``::
 
     def check(requirements_paths=[], metadata=[], projects=[]):
         """Return True if all of the specified dependencies have been ported to Python 3.
