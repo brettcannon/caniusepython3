@@ -23,6 +23,7 @@
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
     "python-memcached": "https://pypi.python.org/pypi/python3-memcached",
     "python-neutronclient": "https://pypi.python.org/pypi/python-neutronclient",
+    "pytz": "https://pypi.python.org/pypi/pytz",
     "pyvirtualdisplay": "https://pypi.python.org/pypi/PyVirtualDisplay",
     "regex": "https://pypi.python.org/pypi/regex",
     "rsa": "https://pypi.python.org/pypi/rsa",
