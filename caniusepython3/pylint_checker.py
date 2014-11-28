@@ -32,7 +32,7 @@ class StrictPython3Checker(checkers.BaseChecker):
 
     __implements__ = interfaces.IAstroidChecker
 
-    name = 'strictpython3'
+    name = 'python3'
     msgs = {
         # Errors for what will syntactically break in Python 3, warnings for
         # everything else.
@@ -79,7 +79,7 @@ class UnicodeChecker(checkers.BaseTokenChecker):
 
     __implements__ = interfaces.ITokenChecker
 
-    name = 'strictpython3'
+    name = 'python3'
     msgs = {
         'W6100': ('native string literal',
                   'native-string',
