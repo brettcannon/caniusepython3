@@ -13,15 +13,19 @@
 # limitations under the License.
 from __future__ import absolute_import, unicode_literals
 
-import io
+from caniusepython3.test import unittest
 import sys
+
+if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
+    raise unittest.SkipTest('Pylint requires Python 2.7 or Python 3')
+
+import io
 import tokenize
 
 from astroid import test_utils
 from pylint import testutils
 
 from caniusepython3 import pylint_checker as checker
-from caniusepython3.test import unittest
 
 def python2_only(test):
     """Decorator for any tests that will fail under Python 3."""
