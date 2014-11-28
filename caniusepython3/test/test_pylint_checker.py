@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 
 import io
 import sys
@@ -66,42 +66,40 @@ class UnicodeCheckerTest(testutils.CheckerTestCase):
         return tokenize.generate_tokens(io.StringIO(source).readline)
 
     def test_bytes_okay(self):
-        tokens = self.tokenize(u"b'abc'")
+        tokens = self.tokenize("b'abc'")
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
     def test_unicode_okay(self):
-        tokens = self.tokenize(u"u'abc'")
+        tokens = self.tokenize("u'abc'")
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
     def test_native_string(self):
-        arg = u"val = 'abc'"
+        arg = "val = 'abc'"
         tokens = self.tokenize(arg)
         with self.assertAddsMessages(testutils.Message('native-string', line=1)):
             self.checker.process_tokens(tokens)
 
     def test_future_unicode(self):
-        arg = u"from __future__ import unicode_literals; val = 'abc'"
+        arg = "from __future__ import unicode_literals; val = 'abc'"
         tokens = self.tokenize(arg)
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
     def test_future_unicode_after_module_docstring(self):
-        module = u'"""Module docstring"""\nfrom __future__ import unicode_literals'
+        module = '"""Module docstring"""\nfrom __future__ import unicode_literals'
         tokens = self.tokenize(module)
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
     def test_future_unicode_after_shebang_and_module_docstring(self):
-        module = u'#! /usr/bin/python2.7\n"""Module docstring"""\nfrom __future__ import unicode_literals'
+        module = '#! /usr/bin/python2.7\n"""Module docstring"""\nfrom __future__ import unicode_literals'
         tokens = self.tokenize(module)
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
 
 if __name__ == '__main__':
-    #from logilab.common.testlib import unittest_main
-    #unittest_main()
     import unittest
     unittest.main()
