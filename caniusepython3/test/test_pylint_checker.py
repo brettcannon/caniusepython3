@@ -29,7 +29,7 @@ try:
 except (ImportError, SyntaxError):
     ALL_GOOD = False
     CheckerTestCase = unittest.TestCase
-    StrictlyPython3Checker = None
+    StrictPython3Checker = None
     UnicodeChecker = None
 
 
