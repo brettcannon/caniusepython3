@@ -57,6 +57,31 @@ For the change log, how to tell if a project has been ported, as well as help on
 how to port a project, please see the
 `project website <https://github.com/brettcannon/caniusepython3>`__.
 
+Extending ``pylint --py3k``
+---------------------------
+
+In `Pylint <https://pypi.python.org/pypi/pylint>`__ 1.4, a ``--py3k`` option was
+added to the linting tool to turn on checks for Python 2/3
+incompatibilities (all other checks are turned off). While great,
+those checks are a little conservative in order to always be accurate. To fill
+out those checks with stricter -- albeit potentially inaccurate -- checkers,
+``caniusepython3.pylint_checker`` exists. On top of everything ``pylint --py3k``
+already checks for, it adds checks for:
+
+#. Uses of ``map()`` (returns an iterator in Python 3)
+#. Uses of ``open()`` (in Python3, ``open()`` is actually ``io.open()``)
+#. Uses of ``range()`` (return an iterator in Python 3)
+#. Uses of ``round()`` (different semantics)
+#. Uses of ``zip()`` (returns an iterator in Python 3)
+#. String literals that do not have a ``b``/``u`` prefix or
+   ``from __future__ import unicode_literals``
+
+If you wish to use the checker with Pylint, you can add it to your Pylint
+configuration file, e.g.::
+
+    [MASTER]
+    load-plugins=caniusepython3.pylint_checker
+
 Secret, bonus feature
 ---------------------
 If you would like to use a different name for the script and

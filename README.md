@@ -79,6 +79,10 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 3.3.0 (under development)
+* Introduce `caniusepython3.pylint_checker` which extends `pylint --py3k` with
+  very strict porting checks
+
 # 2.2.0
 * Suppress an `xmlrpclib.Fault` exception under Python 2.6 when trying to close
   an XML-RPC connection (can't close a connection under Python 2.6 anyway and
