@@ -14,25 +14,27 @@
 from __future__ import absolute_import, unicode_literals
 
 from caniusepython3.test import unittest
-import sys
 
-if ((sys.version_info[0] == 2 and sys.version_info[1] <= 6) or
-        (sys.version_info[0] == 3 and sys.version_info[1] <= 2)):
-    raise unittest.SkipTest('Pylint requires Python 2.7/3.3 or newer')
+ALL_GOOD = True
+try:
+    import io
+    import sys
+    import tokenize
 
-import io
-import tokenize
+    from astroid import test_utils
+    from pylint import testutils
 
-from astroid import test_utils
-from pylint import testutils
+    from caniusepython3 import pylint_checker as checker
+except (ImportError, SyntaxError):
+    ALL_GOOD = False
 
-from caniusepython3 import pylint_checker as checker
 
 def python2_only(test):
     """Decorator for any tests that will fail under Python 3."""
     return unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')(test)
 
 
+unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
 class StrictPython3CheckerTest(testutils.CheckerTestCase):
 
     CHECKER_CLASS = checker.StrictPython3Checker
