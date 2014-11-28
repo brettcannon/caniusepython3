@@ -33,7 +33,8 @@ except (ImportError, SyntaxError):
     UnicodeChecker = None
 
 def new_enough(test):
-    @unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
+    return unittest.skipIf(not ALL_GOOD,
+            'Pylint requires Python 2.7/3.3 or newer')(test)
 
 def python2_only(test):
     """Decorator for any tests that will fail under Python 3."""
