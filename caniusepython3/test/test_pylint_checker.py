@@ -32,13 +32,14 @@ except (ImportError, SyntaxError):
     StrictPython3Checker = None
     UnicodeChecker = None
 
+def new_enough(test):
+    @unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
 
 def python2_only(test):
     """Decorator for any tests that will fail under Python 3."""
     return unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')(test)
 
-
-@unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
+@new_enough
 class StrictPython3CheckerTest(CheckerTestCase):
 
     CHECKER_CLASS = StrictPython3Checker
@@ -69,6 +70,7 @@ class StrictPython3CheckerTest(CheckerTestCase):
         self.check_not_builtin('open', 'open-builtin')
 
 
+@new_enough
 class UnicodeCheckerTest(CheckerTestCase):
 
     CHECKER_CLASS = UnicodeChecker
