@@ -16,8 +16,9 @@ from __future__ import absolute_import, unicode_literals
 from caniusepython3.test import unittest
 import sys
 
-if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
-    raise unittest.SkipTest('Pylint requires Python 2.7 or Python 3')
+if ((sys.version_info[0] == 2 and sys.version_info[1] <= 6) or
+        (sys.version_info[0] == 3 and sys.version_info[1] <= 2)):
+    raise unittest.SkipTest('Pylint requires Python 2.7/3.3 or newer')
 
 import io
 import tokenize
