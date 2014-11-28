@@ -38,7 +38,7 @@ def python2_only(test):
     return unittest.skipIf(sys.version_info[0] > 2, 'Python 2 only')(test)
 
 
-unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
+@unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
 class StrictPython3CheckerTest(CheckerTestCase):
 
     CHECKER_CLASS = StrictPython3Checker
