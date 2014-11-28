@@ -25,10 +25,12 @@ try:
     from pylint import testutils
     from pylint.testutils import CheckerTestCase
 
-    from caniusepython3 import pylint_checker as checker
+    from caniusepython3.pylint_checker import StrictPython3Checker, UnicodeChecker
 except (ImportError, SyntaxError):
     ALL_GOOD = False
     CheckerTestCase = unittest.TestCase
+    StrictlyPython3Checker = None
+    UnicodeChecker = None
 
 
 def python2_only(test):
@@ -39,7 +41,7 @@ def python2_only(test):
 unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
 class StrictPython3CheckerTest(CheckerTestCase):
 
-    CHECKER_CLASS = checker.StrictPython3Checker
+    CHECKER_CLASS = StrictPython3Checker
 
     def check_not_builtin(self, builtin_name, message):
         node = test_utils.extract_node(builtin_name + '  #@')
@@ -69,7 +71,7 @@ class StrictPython3CheckerTest(CheckerTestCase):
 
 class UnicodeCheckerTest(CheckerTestCase):
 
-    CHECKER_CLASS = checker.UnicodeChecker
+    CHECKER_CLASS = UnicodeChecker
 
     def tokenize(self, source):
         return tokenize.generate_tokens(io.StringIO(source).readline)
