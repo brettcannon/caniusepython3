@@ -23,10 +23,12 @@ try:
 
     from astroid import test_utils
     from pylint import testutils
+    from pylint.testutils import CheckerTestCase
 
     from caniusepython3 import pylint_checker as checker
 except (ImportError, SyntaxError):
     ALL_GOOD = False
+    CheckerTestCase = unittest.TestCase
 
 
 def python2_only(test):
@@ -35,7 +37,7 @@ def python2_only(test):
 
 
 unittest.skipIf(not ALL_GOOD, 'Pylint requires Python 2.7/3.3 or newer')
-class StrictPython3CheckerTest(testutils.CheckerTestCase):
+class StrictPython3CheckerTest(CheckerTestCase):
 
     CHECKER_CLASS = checker.StrictPython3Checker
 
@@ -65,7 +67,7 @@ class StrictPython3CheckerTest(testutils.CheckerTestCase):
         self.check_not_builtin('open', 'open-builtin')
 
 
-class UnicodeCheckerTest(testutils.CheckerTestCase):
+class UnicodeCheckerTest(CheckerTestCase):
 
     CHECKER_CLASS = checker.UnicodeChecker
 
