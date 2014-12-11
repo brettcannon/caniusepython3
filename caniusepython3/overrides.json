@@ -28,6 +28,7 @@
     "rsa": "https://pypi.python.org/pypi/rsa",
     "ssh": "https://github.com/bitprophet/ssh/",
     "ssl": "http://docs.python.org/3/library/ssl.html",
+    "suds": "https://pypi.python.org/pypi/suds-jurko",
     "unittest2": "http://docs.python.org/3/library/unittest.html",
     "uuid": "http://docs.python.org/3/library/uuid.html",
     "uwsgi": "https://pypi.python.org/pypi/uWSGI",
