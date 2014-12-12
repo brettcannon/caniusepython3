@@ -51,6 +51,14 @@ class StrictPython3CheckerTest(CheckerTestCase):
             self.checker.visit_name(node)
 
     @python2_only
+    def test_input_builtin(self):
+        self.check_not_builtin('input', 'input-builtin')
+
+    @python2_only
+    def test_filter_builtin(self):
+        self.check_not_builtin('filter', 'filter-builtin')
+
+    @python2_only
     def test_map_builtin(self):
         self.check_not_builtin('map', 'map-builtin')
 

@@ -36,38 +36,51 @@ class StrictPython3Checker(checkers.BaseChecker):
     msgs = {
         # Errors for what will syntactically break in Python 3, warnings for
         # everything else.
-        'W6001': ('map built-in referenced',
+        'W6001': ('input built-in referenced',
+                  'input-builtin',
+                  'Used when the input built-in function is referenced '
+                  '(semantics different in Python 3; '
+                  'use `from six.moves import input`)',
+                  {'maxversion': (3, 0)}),
+        'W6002': ('filter built-in referenced',
+                  'filter-builtin',
+                  'Used when the filter built-in function is referenced '
+                  '(semantics different in Python 3; '
+                  'use `from six.moves import filter`)',
+                  {'maxversion': (3, 0)}),
+        'W6003': ('map built-in referenced',
                   'map-builtin',
                   'Used when the map built-in function is referenced '
                   '(semantics different in Python 3; '
                   'use `from six.moves import map`)',
                   {'maxversion': (3, 0)}),
-        'W6002': ('range built-in referenced',
+        'W6004': ('range built-in referenced',
                   'range-builtin',
                   'Used when the range built-in function is referenced '
                   '(semantics different in Python 3; '
                   'use `from six.moves import range`)',
                   {'maxversion': (3, 0)}),
-        'W6003': ('zip built-in referenced',
+        'W6005': ('zip built-in referenced',
                   'zip-builtin',
                   'Used when the zip built-in function is referenced '
                   '(semantics different in Python 3; '
                   'use `from six.move import zip`)',
                   {'maxversion': (3, 0)}),
-        'W6004': ('open built-in referenced',
+        'W6006': ('open built-in referenced',
                   'open-builtin',
                   'Used when the open built-in function is referenced '
                   '(semantics different in Python 3; '
                   'use `from io import open`)',
                 {'maxversion': (3, 0)}),
-        'W6005': ('round built-in referenced',
+        'W6007': ('round built-in referenced',
                   'round-builtin',
                   'Used when the round built-in function is referenced '
                   '(semantics different in Python 3)',
                   {'maxversion': (3, 0)}),
     }
 
-    _changed_builtins = frozenset(['map', 'open', 'range', 'round', 'zip'])
+    _changed_builtins = frozenset(['input', 'filter', 'map', 'open', 'range',
+                                   'round', 'zip'])
 
     def visit_name(self, node):
         if node.lookup(node.name)[0].name == '__builtin__':
