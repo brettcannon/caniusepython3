@@ -68,9 +68,11 @@ out those checks with stricter -- albeit potentially inaccurate -- checkers,
 ``caniusepython3.pylint_checker`` exists. On top of everything ``pylint --py3k``
 already checks for, it adds checks for:
 
+#. Uses of ``filter()`` (returns an interator in Python 3)
+#. Uses of ``input()`` (equivalent to ``raw_input()`` in Python 3)
 #. Uses of ``map()`` (returns an iterator in Python 3)
 #. Uses of ``open()`` (in Python3, ``open()`` is actually ``io.open()``)
-#. Uses of ``range()`` (return an iterator in Python 3)
+#. Uses of ``range()`` (returns an iterator in Python 3)
 #. Uses of ``round()`` (different semantics)
 #. Uses of ``zip()`` (returns an iterator in Python 3)
 #. String literals that do not have a ``b``/``u`` prefix or
