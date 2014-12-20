@@ -54,7 +54,7 @@ def dependencies(project_name):
     deps = []
     log.info('Locating {0}'.format(project_name))
     located = distlib.locators.locate(project_name, prereleases=True)
-    if located is None:
+    if not located:
         log.warning('{0} not found'.format(project_name))
         return None
     for dep in located.run_requires:
@@ -78,7 +78,7 @@ def blocking_dependencies(projects, py3_projects):
     evaluated = set()
     for project in projects:
         dist = distlib.locators.locate(project)
-        if dist is None:
+        if not dist:
             log.warning('{0} not found'.format(project))
             continue
         project = dist.name.lower()  # PyPI can be forgiving about name formats.
