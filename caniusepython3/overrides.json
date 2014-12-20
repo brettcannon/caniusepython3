@@ -1,5 +1,4 @@
 {
-    "awscli":"https://pypi.python.org/pypi/awscli",
     "beautifulsoup": "https://pypi.python.org/pypi/beautifulsoup4",
     "bcdoc":"https://github.com/boto/bcdoc/blob/master/tox.ini",
     "botocore":"https://github.com/boto/botocore/blob/master/tox.ini",
