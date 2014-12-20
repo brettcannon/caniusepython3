@@ -79,9 +79,11 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
-# 3.3.0 (under development)
+# 3.0.0 (under development)
 * Introduce `caniusepython3.pylint_checker` which extends `pylint --py3k` with
   very strict porting checks
+* Work around a [bug in distlib](https://bitbucket.org/pypa/distlib/issue/58/distliblocatorslocate-returning-an-empty)
+* Usual override updates
 
 # 2.2.0
 * Suppress an `xmlrpclib.Fault` exception under Python 2.6 when trying to close
