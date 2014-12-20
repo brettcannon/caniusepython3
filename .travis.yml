@@ -9,6 +9,8 @@ python:
     - "3.3"
     - "3.4"
 
+sudo: false
+
 install:
     - pip install -e .
     - pip install -U -r dev_requirements.txt
