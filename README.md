@@ -83,6 +83,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 * Introduce `caniusepython3.pylint_checker` which extends `pylint --py3k` with
   very strict porting checks
 * Work around a [bug in distlib](https://bitbucket.org/pypa/distlib/issue/58/distliblocatorslocate-returning-an-empty)
+* Compatibility fix for pip 6.0 ([issue #72](https://github.com/brettcannon/caniusepython3/issues/72))
 * Usual override updates
 
 # 2.2.0

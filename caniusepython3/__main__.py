@@ -20,6 +20,7 @@ from caniusepython3 import pypi
 from caniusepython3 import dependencies
 
 import distlib.metadata
+import pip.download
 import pip.req
 
 import argparse
@@ -33,7 +34,8 @@ def projects_from_requirements(requirements):
     log = logging.getLogger('ciu')
     valid_reqs = []
     for requirements_path in requirements:
-        reqs = pip.req.parse_requirements(requirements_path)
+        reqs = pip.req.parse_requirements(requirements_path,
+                                          session=pip.download.PipSession())
         for req in reqs:
             if not req.name:
                 log.warning('A requirement lacks a name '
