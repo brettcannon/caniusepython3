@@ -22,7 +22,6 @@
     "pyrss2gen": "https://pypi.python.org/pypi/PyRSS2Gen",
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
     "python-memcached": "https://pypi.python.org/pypi/python3-memcached",
-    "python-neutronclient": "https://pypi.python.org/pypi/python-neutronclient",
     "pyvirtualdisplay": "https://pypi.python.org/pypi/PyVirtualDisplay",
     "regex": "https://pypi.python.org/pypi/regex",
     "reportlab": "https://pypi.python.org/pypi/reportlab",
