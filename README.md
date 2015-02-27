@@ -79,6 +79,13 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 3.1.0 (in-development)
+* Remove checkers for `filter`, `map`, `range`, and `zip` as they have been
+  improved upon and
+  [merged upstream in Pylint](https://docs.python.org/3/library/importlib.html#importlib.util.MAGIC_NUMBER)
+* Updated outdated documentation
+* Usual override updates
+
 # 3.0.0
 * Introduce `caniusepython3.pylint_checker` which extends `pylint --py3k` with
   very strict porting checks

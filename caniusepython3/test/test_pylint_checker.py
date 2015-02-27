@@ -51,22 +51,6 @@ class StrictPython3CheckerTest(CheckerTestCase):
             self.checker.visit_name(node)
 
     @python2_only
-    def test_filter_builtin(self):
-        self.check_not_builtin('filter', 'filter-builtin')
-
-    @python2_only
-    def test_map_builtin(self):
-        self.check_not_builtin('map', 'map-builtin')
-
-    @python2_only
-    def test_range_builtin(self):
-        self.check_not_builtin('range', 'range-builtin')
-
-    @python2_only
-    def test_zip_builtin(self):
-        self.check_not_builtin('zip', 'zip-builtin')
-
-    @python2_only
     def test_open_builtin(self):
         self.check_not_builtin('open', 'open-builtin')
 
