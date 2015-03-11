@@ -29,7 +29,9 @@ Integrating With Your Tests
 ---------------------------
 
 If you want to check for Python 3 availability as part of your tests, you can
-use ``caniusepython3.check()``::
+use ``caniusepython3.check()``:
+
+.. code-block:: python
 
     def check(requirements_paths=[], metadata=[], projects=[]):
         """Return True if all of the specified dependencies have been ported to Python 3.
@@ -42,7 +44,9 @@ use ``caniusepython3.check()``::
         Any project that is not listed on PyPI will be considered ported.
         """
 
-You can then integrate it into your tests like so::
+You can then integrate it into your tests like so:
+
+.. code-block:: python
 
   import unittest
   import caniusepython3
@@ -73,7 +77,9 @@ already checks for, it adds checks for:
    ``from __future__ import unicode_literals``
 
 If you wish to use the checker with Pylint, you can add it to your Pylint
-configuration file, e.g.::
+configuration file, e.g.:
+
+.. code-block:: ini
 
     [MASTER]
     load-plugins=caniusepython3.pylint_checker
