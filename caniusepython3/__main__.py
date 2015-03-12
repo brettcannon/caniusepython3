@@ -139,6 +139,9 @@ def pprint_blockers(blockers):
 
 def check(projects):
     """Check the specified projects for Python 3 compatibility."""
+    # Without this, the 'ciu' logger will emit nothing.
+    logging.basicConfig(format='[%(levelname)s] %(message)s')
+
     log = logging.getLogger('ciu')
     log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
@@ -154,8 +157,6 @@ def check(projects):
 
 
 def main(args=sys.argv[1:]):
-    # Without this, the 'ciu' logger will emit nothing.
-    logging.basicConfig(format='[%(levelname)s] %(message)s')
     check(projects_from_cli(args))
 
 
