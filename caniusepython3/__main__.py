@@ -97,7 +97,16 @@ def projects_from_cli(args):
 def message(blockers):
     """Create a sequence of key messages based on what is blocking."""
     if not blockers:
-        return ['You have 0 projects blocking you from using Python 3!']
+        encoding = getattr(sys.stdout, 'encoding', '')
+        if encoding:
+            encoding = encoding.lower()
+        if encoding == 'utf-8':
+            # party hat
+            flair = "\U0001F389  "
+        else:
+            flair = ''
+        return [flair +
+                'You have 0 projects blocking you from using Python 3!']
     flattened_blockers = set()
     for blocker_reasons in blockers:
         for blocker in blocker_reasons:
