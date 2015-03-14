@@ -43,12 +43,22 @@ def projects_from_requirements(requirements):
             elif req.editable:
                 log.warning(
                     'Skipping {0}: editable projects unsupported'.format(req.name))
-            elif req.url and req.url.startswith('file:'):
+            elif req_has_file_link(req):
                 log.warning(
                     'Skipping {0}: file-specified projects unsupported'.format(req.name))
             else:
                 valid_reqs.append(req.name)
     return valid_reqs
+
+
+def req_has_file_link(req):
+    url = getattr(req, 'url', None)
+    if url and url.lower().startswith('file:'):
+        return True
+    link = getattr(req, 'link', None)
+    if link and getattr(link, 'scheme', '') == 'file':
+        return True
+    return False
 
 
 def projects_from_metadata(metadata):
