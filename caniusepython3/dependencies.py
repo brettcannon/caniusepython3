@@ -77,6 +77,7 @@ def blocking_dependencies(projects, py3_projects):
     check = []
     evaluated = set()
     for project in projects:
+        log.info('Checking top-level project: {0} ...'.format(project))
         dist = distlib.locators.locate(project)
         if not dist:
             log.warning('{0} not found'.format(project))
@@ -97,7 +98,9 @@ def blocking_dependencies(projects, py3_projects):
                     # can't port.
                     del reasons[parent]
                     continue
+                log.info('Dependencies of {0}: {1}'.format(project, deps))
                 for dep in deps:
+                    log.info('Checking dependency: {0} ...'.format(dep))
                     if dep in evaluated:
                         log.info('{0} already checked'.format(dep))
                         continue
