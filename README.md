@@ -80,9 +80,15 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 # Change Log
 
 # 3.1.0 (in-development)
+* Log more details when running under `-v` (patch by @msabramo)
+* Print a 🎉 -- it's a party popper in case you have mojibake for it -- when the
+  terminal supports it and there are no blocking dependencies (patch by @msabramo)
+* Fix compatibility with pip 6.1.0 (patch by @msabramo)
+* Fix warning of missing logger when using `setup.py` integration
+  (issue #80; patch by @msabramo)
 * Remove checkers for `filter`, `map`, `range`, and `zip` as they have been
   improved upon and
-  [merged upstream in Pylint](https://docs.python.org/3/library/importlib.html#importlib.util.MAGIC_NUMBER)
+  [merged upstream in Pylint](https://bitbucket.org/logilab/pylint/pull-request/216/warn-when-filter-map-range-and-filter-are/diff)
 * Updated outdated documentation
 * Usual override updates
 
