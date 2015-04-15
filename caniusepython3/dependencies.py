@@ -78,7 +78,11 @@ def blocking_dependencies(projects, py3_projects):
     evaluated = set()
     for project in projects:
         log.info('Checking top-level project: {0} ...'.format(project))
-        dist = distlib.locators.locate(project)
+        dist = None # locate breaks on some projects like jekyll2nikola
+        try:
+            dist = distlib.locators.locate(project)
+        except AttributeError:
+            log.warning('{0} found but had to be skipped.'.format(project))
         if not dist:
             log.warning('{0} not found'.format(project))
             continue

@@ -69,6 +69,11 @@ class NetworkTests(unittest.TestCase):
         got = dependencies.blocking_dependencies(['asdfsadfdsfsdffdfadf'], {})
         self.assertEqual(got, frozenset())
 
+    def test_blocking_dependencies_locators_fails(self):
+        py3 = {'py3_project': ''}
+        breaking_project = 'jekyll2nikola'
+        got = dependencies.blocking_dependencies([breaking_project], py3)
+
     def test_top_level_project_normalization(self):
         py3 = {'wsgi_intercept': ''}
         abnormal_name = 'WSGI-intercept'  # Note dash instead of underscore.
