@@ -73,6 +73,8 @@ class NetworkTests(unittest.TestCase):
         py3 = {'py3_project': ''}
         breaking_project = 'jekyll2nikola'
         got = dependencies.blocking_dependencies([breaking_project], py3)
+        # If you'd like to test that a message is logged we can use 
+        # testfixtures.LogCapture or stdout redirects.
 
     def test_top_level_project_normalization(self):
         py3 = {'wsgi_intercept': ''}
