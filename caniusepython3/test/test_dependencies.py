@@ -50,9 +50,7 @@ class BlockingDependenciesTests(unittest.TestCase):
         self.assertEqual(frozenset(), got)
 
     def test_blocking_dependencies_locators_fails(self):
-        """
-        Testing the work around for //bitbucket.org/pypa/distlib/issue/59/
-        """
+        # Testing the work around for //bitbucket.org/pypa/distlib/issue/59/
         with mock.patch.object(distlib.locators, 'locate') as locate_mock:
             py3 = {'py3_project': ''}
             breaking_project = 'test_project'

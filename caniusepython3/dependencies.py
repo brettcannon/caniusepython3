@@ -81,7 +81,7 @@ def blocking_dependencies(projects, py3_projects):
         try:
             dist = distlib.locators.locate(project)
         except AttributeError:
-            # This is a work around //bitbucket.org/pypa/distlib/issue/59/
+            # This is a work around. //bitbucket.org/pypa/distlib/issue/59/ .
             log.warning('{0} found but had to be skipped.'.format(project))
             continue
         if not dist:
