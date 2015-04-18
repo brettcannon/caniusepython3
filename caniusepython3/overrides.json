@@ -35,6 +35,5 @@
     "uwsgi": "https://pypi.python.org/pypi/uWSGI",
     "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
     "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
-    "xlwt": "https://pypi.python.org/pypi/xlwt-future",
     "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/"
 }
