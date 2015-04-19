@@ -23,6 +23,10 @@ import concurrent.futures
 import logging
 
 
+class CircularDependencyError(Exception):
+    """Raised if there are ciruclar dependencies detected."""
+
+
 class LowerDict(dict):
 
     def __getitem__(self, key):
@@ -42,6 +46,10 @@ def reasons_to_paths(reasons):
         path = [blocker]
         parent = reasons[blocker]
         while parent:
+            if parent in path:
+                raise CircularDependencyError(dict(parent=parent,
+                                                   blocker=blocker,
+                                                   path=path))
             path.append(parent)
             parent = reasons.get(parent)
         paths.add(tuple(path))
