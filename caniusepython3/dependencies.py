@@ -78,7 +78,12 @@ def blocking_dependencies(projects, py3_projects):
     evaluated = set()
     for project in projects:
         log.info('Checking top-level project: {0} ...'.format(project))
-        dist = distlib.locators.locate(project)
+        try:
+            dist = distlib.locators.locate(project)
+        except AttributeError:
+            # This is a work around. //bitbucket.org/pypa/distlib/issue/59/ .
+            log.warning('{0} found but had to be skipped.'.format(project))
+            continue
         if not dist:
             log.warning('{0} not found'.format(project))
             continue
