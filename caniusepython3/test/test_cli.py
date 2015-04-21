@@ -149,11 +149,19 @@ class CLITests(unittest.TestCase):
                 'its transition:')
         self.assertEqual(messages[1], want)
 
-    def test_message_no_blockers(self):
+    @mock.patch('sys.stdout', autospec=True)
+    def test_message_no_blockers_flair_on_utf8_terminal(self, mock_stdout):
+        mock_stdout.encoding = 'UTF-8'
         messages = ciu_main.message([])
-        self.assertEqual(
-            ['You have 0 projects blocking you from using Python 3!'],
-            messages)
+        expected = ['\U0001f389  You have 0 projects blocking you from using Python 3!']
+        self.assertEqual(expected, messages)
+
+    @mock.patch('sys.stdout', autospec=True)
+    def test_message_no_blockers(self, mock_stdout):
+        mock_stdout.encoding = None
+        messages = ciu_main.message([])
+        expected = ['You have 0 projects blocking you from using Python 3!']
+        self.assertEqual(expected, messages)
 
     def test_pprint_blockers(self):
         simple = [['A']]
