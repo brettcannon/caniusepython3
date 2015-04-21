@@ -23,6 +23,16 @@ import io
 
 class GraphResolutionTests(unittest.TestCase):
 
+    def test_circular_dependencies(self):
+        reasons = {
+            'A': 'C',
+            'B': 'C',
+            'C': 'A',
+        }
+        self.assertRaises(dependencies.CircularDependencyError,
+                          dependencies.reasons_to_paths,
+                          reasons)
+
     def test_all_projects_okay(self):
         # A, B, and C are fine on their own.
         self.assertEqual(set(), dependencies.reasons_to_paths({}))
