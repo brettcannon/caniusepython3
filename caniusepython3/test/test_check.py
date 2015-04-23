@@ -27,7 +27,7 @@ Home-page: http://github.com/brettcannon/caniusepython3
 Author: Brett Cannon
 Author-email: brett@python.org
 License: Apache
-Requires-Dist: paste
+Requires-Dist: Twisted
 """
 
 
@@ -40,11 +40,11 @@ class CheckTest(unittest.TestCase):
         self.assertTrue(ciu.check(projects=['scipy', 'numpy', 'ipython']))
 
     def test_failure(self):
-        self.assertFalse(ciu.check(projects=['paste']))
+        self.assertFalse(ciu.check(projects=['Twisted']))
 
     def test_requirements(self):
         with tempfile.NamedTemporaryFile('w') as file:
-            file.write('paste\n')
+            file.write('Twisted\n')
             file.flush()
             self.assertFalse(ciu.check(requirements_paths=[file.name]))
 
@@ -56,7 +56,7 @@ class CheckTest(unittest.TestCase):
         pass
 
     def test_case_insensitivity(self):
-        self.assertFalse(ciu.check(projects=['PaStE']))
+        self.assertFalse(ciu.check(projects=['TwIsTeD']))
 
     def test_ignore_missing_projects(self):
         self.assertTrue(ciu.check(projects=['sdfsjdfsdlfk;jasdflkjasdfdsfsdf']))
