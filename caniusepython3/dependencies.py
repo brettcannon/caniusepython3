@@ -24,7 +24,7 @@ import logging
 
 
 class CircularDependencyError(Exception):
-    """Raised if there are ciruclar dependencies detected."""
+    """Raised if there are circular dependencies detected."""
 
 
 class LowerDict(dict):
