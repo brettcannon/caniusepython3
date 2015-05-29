@@ -80,6 +80,8 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 # Change Log
 
 # 3.1.0 (in-development)
+* Fix a failing test due to the assumed unported project being ported =)
+* Work around distlib 0.2.0 bug (patch by @rawrgulmuffins)
 * Log more details when running under `-v` (patch by @msabramo)
 * Print a 🎉 -- it's a party popper in case you have mojibake for it -- when the
   terminal supports it and there are no blocking dependencies (patch by @msabramo)
