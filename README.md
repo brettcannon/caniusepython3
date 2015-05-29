@@ -79,6 +79,9 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 3.3.0 (in development)
+* Dropped Python 2.6 and 3.2 support
+
 # 3.2.0
 * Fix a failing test due to the assumed unported project being ported =)
 * Work around distlib 0.2.0 bug (patch by @rawrgulmuffins)
