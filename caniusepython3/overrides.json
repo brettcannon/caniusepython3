@@ -3,6 +3,7 @@
     "bcdoc": "https://github.com/boto/bcdoc/blob/master/tox.ini",
     "botocore": "https://github.com/boto/botocore/blob/master/tox.ini",
     "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
+    "certifi": "https://pypi.python.org/pypi/certifi",
     "djangocms-admin-style": "https://github.com/divio/djangocms-admin-style",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
