@@ -7,7 +7,7 @@
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "extras": "https://pypi.python.org/pypi/extras",
-    "futures": "https://pypi.python.org/pypi/futures",
+    "futures": "https://docs.python.org/3.4/library/concurrent.futures.html",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
     "logbook": "https://pythonhosted.org/Logbook/features.html",
