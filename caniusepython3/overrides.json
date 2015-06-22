@@ -36,5 +36,6 @@
     "uwsgi": "https://pypi.python.org/pypi/uWSGI",
     "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
     "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
-    "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/"
+    "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/",
+    "flask-login": "https://github.com/maxcountryman/flask-login/blob/master/setup.py"
 }
