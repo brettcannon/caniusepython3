@@ -7,6 +7,7 @@
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "extras": "https://pypi.python.org/pypi/extras",
+    "flask-login": "https://github.com/maxcountryman/flask-login/blob/master/setup.py",
     "futures": "https://docs.python.org/3/library/concurrent.futures.html",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
@@ -36,6 +37,5 @@
     "uwsgi": "https://pypi.python.org/pypi/uWSGI",
     "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
     "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
-    "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/",
-    "flask-login": "https://github.com/maxcountryman/flask-login/blob/master/setup.py"
+    "zc.recipe.egg": "https://pypi.python.org/pypi/zc.recipe.egg/"
 }
