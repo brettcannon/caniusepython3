@@ -10,6 +10,7 @@
     "flask-login": "https://github.com/maxcountryman/flask-login/blob/528e1efc69162b433825c4c02f62a1226eadc570/.travis.yml",
     "futures": "https://docs.python.org/3/library/concurrent.futures.html",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
+    "ipaddress": "https://docs.python.org/3/library/ipaddress.html#module-ipaddress",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
     "logbook": "https://pythonhosted.org/Logbook/features.html",
     "mox": "https://pypi.python.org/pypi/mox3",
