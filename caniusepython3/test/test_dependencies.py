@@ -73,13 +73,13 @@ class BlockingDependenciesTests(unittest.TestCase):
 class NetworkTests(unittest.TestCase):
 
     def test_blocking_dependencies(self):
-        got = dependencies.blocking_dependencies(['pastescript'], {'paste': ''})
-        want = frozenset([('pastedeploy', 'pastescript')])
+        got = dependencies.blocking_dependencies(['mozinfo'], {})
+        want = frozenset([('mozfile', 'mozinfo')])
         self.assertEqual(frozenset(got), want)
 
     def test_dependencies(self):
         got = dependencies.dependencies('pastescript')
-        self.assertEqual(set(got), frozenset(['pastedeploy', 'paste']))
+        self.assertEqual(set(got), frozenset(['six', 'pastedeploy', 'paste']))
 
     def test_dependencies_no_project(self):
         got = dependencies.dependencies('sdflksjdfsadfsadfad')
