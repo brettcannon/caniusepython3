@@ -19,6 +19,8 @@ from caniusepython3.test import unittest
 
 import tempfile
 
+py2_project = 'supervisor'
+
 EXAMPLE_METADATA = """Metadata-Version: 1.2
 Name: TestingMetadata
 Version: 0.5
@@ -27,8 +29,8 @@ Home-page: http://github.com/brettcannon/caniusepython3
 Author: Brett Cannon
 Author-email: brett@python.org
 License: Apache
-Requires-Dist: Twisted
-"""
+Requires-Dist: {}
+""".format(py2_project)
 
 
 class CheckTest(unittest.TestCase):
@@ -40,11 +42,11 @@ class CheckTest(unittest.TestCase):
         self.assertTrue(ciu.check(projects=['scipy', 'numpy', 'ipython']))
 
     def test_failure(self):
-        self.assertFalse(ciu.check(projects=['Twisted']))
+        self.assertFalse(ciu.check(projects=[py2_project]))
 
     def test_requirements(self):
         with tempfile.NamedTemporaryFile('w') as file:
-            file.write('Twisted\n')
+            file.write(py2_project+'\n')
             file.flush()
             self.assertFalse(ciu.check(requirements_paths=[file.name]))
 
@@ -56,7 +58,9 @@ class CheckTest(unittest.TestCase):
         pass
 
     def test_case_insensitivity(self):
-        self.assertFalse(ciu.check(projects=['TwIsTeD']))
+        funky_name = (py2_project[:len(py2_project)].lower() + 
+                      py2_project[len(py2_project):].upper())
+        self.assertFalse(ciu.check(projects=[funky_name]))
 
     def test_ignore_missing_projects(self):
-        self.assertTrue(ciu.check(projects=['sdfsjdfsdlfk;jasdflkjasdfdsfsdf']))
+        self.assertTrue(ciu.check(projects=['sdfsjdfsdlfk;jasdflkjasdfdfsdf']))
