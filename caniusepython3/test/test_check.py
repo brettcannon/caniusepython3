@@ -29,7 +29,7 @@ Home-page: http://github.com/brettcannon/caniusepython3
 Author: Brett Cannon
 Author-email: brett@python.org
 License: Apache
-Requires-Dist: {}
+Requires-Dist: {0}
 """.format(py2_project)
 
 
