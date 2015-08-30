@@ -32,6 +32,18 @@ except (ImportError, SyntaxError):
     StrictPython3Checker = None
     UnicodeChecker = None
 
+
+thorough_unicode_test = """'''Module Docstring'''
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+def awesome():
+        print("awesome")
+"""
+
+
 def new_enough(test):
     return unittest.skipIf(not ALL_GOOD,
             'Pylint requires Python 2.7/3.3 or newer')(test)
@@ -94,6 +106,11 @@ class UnicodeCheckerTest(CheckerTestCase):
     def test_future_unicode_after_shebang_and_module_docstring(self):
         module = '#! /usr/bin/python2.7\n"""Module docstring"""\nfrom __future__ import unicode_literals'
         tokens = self.tokenize(module)
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
+    def test_future_unicode_thoroughly(self):
+        tokens = self.tokenize(thorough_unicode_test)
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 

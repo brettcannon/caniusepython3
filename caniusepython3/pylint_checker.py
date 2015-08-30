@@ -84,7 +84,7 @@ class UnicodeChecker(checkers.BaseTokenChecker):
             # Anything else means we are past the first string in the module,
             # any comments (e.g. shebang), and no more __future__ statements
             # are possible.
-            if type_ > token.STRING and type_ < token.N_TOKENS:
+            if type_ > token.NEWLINE and type_ < token.N_TOKENS:
                 module_start = False
             elif type_ == token.STRING:
                 line_num += val.count('\n')
