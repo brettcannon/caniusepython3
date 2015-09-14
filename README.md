@@ -80,7 +80,8 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 # Change Log
 
 # 3.3.0 (in development)
-* Dropped 3.2 support
+* Added Python 3.5 support
+* Dropped Python 2.6 and 3.2 support
 * Updated tests to not use Twisted as a Python 2-only project
 * Fixed a bug where the pylint checker was incorrectly missing `from __future__ import unicode_literals` ([issue #103](https://github.com/brettcannon/caniusepython3/issues/103); reported by [David Euresti](https://github.com/euresti))
 * Usual overrides updates
