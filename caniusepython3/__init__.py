@@ -21,23 +21,6 @@ from caniusepython3 import pypi
 
 import multiprocessing
 
-import distlib.util
-
-# Use the Fastly CDN instead of red-dove.com for reliability.
-_base_project_url = 'http://ciupy3-projects.global.ssl.fastly.net/pypi/projects/'
-
-def get_project_data(name):
-    url = '%s%s/%s/project.json' % (_base_project_url, name[0].upper(), name)
-    return distlib.util._get_external_data(url)
-distlib.util.get_project_data = get_project_data
-del get_project_data
-
-def get_package_data(name, version):
-    url = ('%s%s/%s/package-%s.json' % (_base_project_url, name[0].upper(),
-                                        name, version))
-    return distlib.util._get_external_data(url)
-distlib.util.get_package_data = get_package_data
-del get_package_data
 
 try:
     CPU_COUNT = max(2, multiprocessing.cpu_count())
