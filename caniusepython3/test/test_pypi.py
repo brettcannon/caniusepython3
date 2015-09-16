@@ -15,7 +15,7 @@
 from __future__ import unicode_literals
 
 from caniusepython3 import pypi
-from caniusepython3.test import unittest
+from caniusepython3.test import unittest, skip_pypi_timeouts
 
 
 class NameTests(unittest.TestCase):
@@ -61,17 +61,20 @@ class NetworkTests(unittest.TestCase):
             self.assertTrue(classifier.startswith(key_classifier))
 
 
+    @skip_pypi_timeouts
     def test_all_py3_projects(self):
         projects = pypi.all_py3_projects()
         self.assertGreater(len(projects), 3000)
         self.assertTrue(all(project == project.lower() for project in projects))
         self.assertTrue(frozenset(pypi.overrides().keys()).issubset(projects))
 
+    @skip_pypi_timeouts
     def test_all_py3_projects_explicit_overrides(self):
         added_port = 'asdfasdfasdfadsffffdasfdfdfdf'
         projects = pypi.all_py3_projects(set([added_port]))
         self.assertIn(added_port, projects)
 
+    @skip_pypi_timeouts
     def test_all_projects(self):
         projects = pypi.all_projects()
         self.assertTrue(all(project == project.lower() for project in projects))

@@ -15,7 +15,7 @@
 from __future__ import unicode_literals
 
 import caniusepython3.__main__ as ciu_main
-from caniusepython3.test import mock, unittest
+from caniusepython3.test import mock, unittest, skip_pypi_timeouts
 
 import io
 import logging
@@ -193,6 +193,7 @@ class CLITests(unittest.TestCase):
 #@unittest.skip('faster testing')
 class NetworkTests(unittest.TestCase):
 
+    @skip_pypi_timeouts
     @mock.patch('sys.stdout', io.StringIO())
     def test_e2e(self):
         # Make sure at least one project that will never be in Python 3 is
