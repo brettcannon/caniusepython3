@@ -5,7 +5,7 @@
 0. `python setup.py sdist`
 0. `python setup.py bdist_wheel`
 0. For each file in `dist/`: `gpg2 --detach-sign -a <filename>`
-0. `twine upload dist/*` (or `./twine-upload ../../dist/*` if in a venv)
+0. `twine upload dist/*`
 0. Commit everything for the release
 0. `git tag -a vN.N.N`
 0. `git push git@github.com:brettcannon/caniusepython3.git --tags`

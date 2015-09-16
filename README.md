@@ -79,7 +79,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
-# 3.3.0 (in development)
+# 3.3.0
 * Made tests more robust in the face of PyPI timing out
 * Added Python 3.5 support
 * Dropped Python 2.6 and 3.2 support
