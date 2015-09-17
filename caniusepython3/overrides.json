@@ -1,6 +1,7 @@
 {
     "beautifulsoup": "https://pypi.python.org/pypi/beautifulsoup4",
     "bcdoc": "https://github.com/boto/bcdoc/blob/master/tox.ini",
+    "certifi": "https://pypi.python.org/pypi/certifi",
     "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
