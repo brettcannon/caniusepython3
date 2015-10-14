@@ -52,7 +52,7 @@ class StrictPython3Checker(checkers.BaseChecker):
     _changed_builtins = frozenset(['open'])
 
     def visit_name(self, node):
-        if node.lookup(node.name)[0].name == '__builtin__':
+        if getattr(node.lookup(node.name)[0], 'name', '') == '__builtin__':
             if node.name in self._changed_builtins:
                 self.add_message(node.name + '-builtin', node=node)
 
