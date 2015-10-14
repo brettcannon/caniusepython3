@@ -66,6 +66,10 @@ class StrictPython3CheckerTest(CheckerTestCase):
     def test_open_builtin(self):
         self.check_not_builtin('open', 'open-builtin')
 
+    def test_dict_comprehension(self):
+        node = test_utils.extract_node('{e:"1" for e in ["one", "two"]} #@')
+        with self.assertNoMessages():
+            self.checker.visit_name(node)
 
 @new_enough
 class UnicodeCheckerTest(CheckerTestCase):
