@@ -6,7 +6,7 @@
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "extras": "https://pypi.python.org/pypi/extras",
-    "flask-debugtoolbar": "https://github.com/mgood/flask-debugtoolbar/issues/54#issuecomment-31562145",
+    "flask-debugtoolbar": "https://pypi.python.org/pypi/Flask-DebugToolbar",
     "functools32": "https://pypi.python.org/pypi/functools32",
     "futures": "https://docs.python.org/3/library/concurrent.futures.html",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
