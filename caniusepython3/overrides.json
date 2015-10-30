@@ -9,6 +9,7 @@
     "flask-debugtoolbar": "https://pypi.python.org/pypi/Flask-DebugToolbar",
     "functools32": "https://pypi.python.org/pypi/functools32",
     "futures": "https://docs.python.org/3/library/concurrent.futures.html",
+    "hashids": "https://pypi.python.org/pypi/hashids",
     "httpretty": "https://twitter.com/CyrilRoelandt/status/437995014321238016",
     "ipaddress": "https://docs.python.org/3/library/ipaddress.html#module-ipaddress",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
