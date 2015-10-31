@@ -15,7 +15,7 @@
 from __future__ import unicode_literals
 
 from caniusepython3 import command
-from caniusepython3.test import unittest
+from caniusepython3.test import unittest, skip_pypi_timeouts
 
 from distutils import dist
 
@@ -52,5 +52,6 @@ class OptionsTests(unittest.TestCase):
 
 class NetworkTests(unittest.TestCase):
 
+    @skip_pypi_timeouts
     def test_run(self):
         make_command({'install_requires': ['pip']}).run()
