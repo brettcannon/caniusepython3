@@ -6,6 +6,7 @@
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "extras": "https://pypi.python.org/pypi/extras",
+    "fabric": "https://pypi.python.org/pypi/Fabric3",
     "flask-debugtoolbar": "https://pypi.python.org/pypi/Flask-DebugToolbar",
     "flask-mail": "http://pythonhosted.org/Flask-Mail/changelog.html#version-0-9-0",
     "flask-security": "http://pythonhosted.org/Flask-Security/changelog.html#version-1-7-3",
