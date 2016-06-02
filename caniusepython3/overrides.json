@@ -39,6 +39,7 @@
     "ssh": "https://github.com/bitprophet/ssh/",
     "ssl": "http://docs.python.org/3/library/ssl.html",
     "suds": "https://pypi.python.org/pypi/suds-jurko",
+    "testresources": "https://pypi.python.org/pypi/testresources",
     "trisdb-py": "https://github.com/tiepologian/trisdb-py/blob/master/setup.cfg",
     "unittest2": "http://docs.python.org/3/library/unittest.html",
     "uuid": "http://docs.python.org/3/library/uuid.html",
