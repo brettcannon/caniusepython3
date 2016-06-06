@@ -46,7 +46,7 @@ def just_name(supposed_name):
 
 @contextlib.contextmanager
 def pypi_client():
-    client = xmlrpc_client.ServerProxy('http://pypi.python.org/pypi')
+    client = xmlrpc_client.ServerProxy('https://pypi.io/pypi')
     try:
         yield client
     finally:
