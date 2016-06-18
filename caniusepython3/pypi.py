@@ -69,7 +69,7 @@ def overrides():
 
 def py3_classifiers():
     """Fetch the Python 3-related trove classifiers."""
-    url = 'https://pypi.python.org/pypi?%3Aaction=list_classifiers'
+    url = 'https://pypi.io/pypi?%3Aaction=list_classifiers'
     response = urllib_request.urlopen(url)
     try:
         try:
