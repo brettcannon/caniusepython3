@@ -79,6 +79,15 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 3.4.0 (under development)
+* Fix a dict comprehension failure with the pylint checker
+  (patch by [Jeroen Oldenburger](https://github.com/jeroenoldenburger))
+* Usual override updates
+* Python 3.5 support
+* Tests have been made less flaky
+* Use pypi.io instead of pypi.python.org
+* Normalize project names to help guarantee lookup success
+
 # 3.3.0
 * Made tests more robust in the face of PyPI timing out
 * Added Python 3.5 support
