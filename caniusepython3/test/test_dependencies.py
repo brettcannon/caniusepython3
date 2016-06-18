@@ -50,6 +50,19 @@ class GraphResolutionTests(unittest.TestCase):
                          dependencies.reasons_to_paths(reasons))
 
 
+class DependenciesTests(unittest.TestCase):
+
+    @mock.patch('distlib.locators.locate')
+    def test_normalization(self, locate_mock):
+        class FakeLocated(object):
+            def __init__(self, run_requires):
+                self.run_requires = run_requires
+        fake_deps = FakeLocated(['easy_thumbnail', 'stuff>=4.0.0'])
+        locate_mock.side_effect = lambda *args, **kargs: fake_deps
+        got = dependencies.dependencies('does not matter')
+        self.assertEqual({'easy-thumbnail', 'stuff'}, frozenset(got))
+
+
 class BlockingDependenciesTests(unittest.TestCase):
 
     @mock.patch('caniusepython3.dependencies.dependencies')
@@ -66,7 +79,7 @@ class BlockingDependenciesTests(unittest.TestCase):
             breaking_project = 'test_project'
             locate_mock.side_effect = AttributeError()
             got = dependencies.blocking_dependencies([breaking_project], py3)
-            # If you'd like to test that a message is logged we can use 
+            # If you'd like to test that a message is logged we can use
             # testfixtures.LogCapture or stdout redirects.
 
 
