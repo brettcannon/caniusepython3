@@ -15,6 +15,7 @@
 from __future__ import unicode_literals
 
 import distlib.locators
+import packaging.utils
 
 import caniusepython3 as ciu
 from caniusepython3 import pypi
@@ -25,12 +26,6 @@ import logging
 
 class CircularDependencyError(Exception):
     """Raised if there are circular dependencies detected."""
-
-
-class LowerDict(dict):
-
-    def __getitem__(self, key):
-        return super(LowerDict, self).__getitem__(key.lower())
 
 
 def reasons_to_paths(reasons):
@@ -65,7 +60,7 @@ def dependencies(project_name):
     if not located:
         log.warning('{0} not found'.format(project_name))
         return None
-    for dep in located.run_requires:
+    for dep in map(packaging.utils.canonicalize_name, located.run_requires):
         # Drop any version details from the dependency name.
         deps.append(pypi.just_name(dep))
     return deps
@@ -84,7 +79,7 @@ def blocking_dependencies(projects, py3_projects):
     log = logging.getLogger('ciu')
     check = []
     evaluated = set()
-    for project in projects:
+    for project in map(packaging.utils.canonicalize_name, projects):
         log.info('Checking top-level project: {0} ...'.format(project))
         try:
             dist = distlib.locators.locate(project)
@@ -98,7 +93,7 @@ def blocking_dependencies(projects, py3_projects):
         project = dist.name.lower()  # PyPI can be forgiving about name formats.
         if project not in py3_projects:
             check.append(project)
-    reasons = LowerDict((project, None) for project in check)
+    reasons = {project: None for project in check}
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=ciu.CPU_COUNT)
     with thread_pool_executor as executor:
