@@ -9,9 +9,9 @@ except ImportError:
     import mock
 
 try:
-    from xmlrpc.client import Fault
+    import xmlrpc.client as xmlrpc_client
 except ImportError:
-    from xmlrpclib import Fault
+    import xmlrpclib as xmlrpc_client
 
 import functools
 
@@ -20,8 +20,14 @@ def skip_pypi_timeouts(method):
     def closure(*args, **kwargs):
         try:
             method(*args, **kwargs)
-        except Fault as exc:
+        except xmlrpc_client.ProtocolError as exc:
+            if exc.errcode >= 500:
+                raise unittest.SkipTest('PyPI had an error (probably timed out)')
+            else:
+                raise
+        except xmlrpc_client.Fault as exc:
             if exc.faultCode == 1:
-                raise unittest.SkipTest('PyPI timed out')
-            raise
+                raise unittest.SkipTest('PyPI had an error (probably timed out)')
+            else:
+                raise
     return closure
