@@ -124,7 +124,8 @@ def all_py3_projects(manual_overrides=None):
             pass
         log.info('    ' + msg)
     if stale_overrides:  #pragma: no cover
-        log.warning('Stale overrides: {0}'.format(stale_overrides))
+        log.info('Unnecessary (and thus harmless) overrides: '
+                 '{0}'.format(stale_overrides))
     projects.update(manual_overrides)
     return projects
 
