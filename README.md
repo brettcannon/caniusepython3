@@ -79,7 +79,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
-# 3.4.0 (under development)
+# 3.4.0
 * Fix a dict comprehension failure with the pylint checker
   (patch by [Jeroen Oldenburger](https://github.com/jeroenoldenburger))
 * Usual override updates
