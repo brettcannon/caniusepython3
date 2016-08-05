@@ -1,4 +1,5 @@
 0. Make sure all changes are live and that Travis is green
+0. Verify there are no stale overrides
 0. Update README.md with release notes
 0. Update setup.py for the new version number
 0. `python3 -m pip install --upgrade setuptools twine wheel`
