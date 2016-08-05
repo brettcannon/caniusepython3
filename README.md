@@ -79,6 +79,11 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 3.4.1
+* Update the URL used for PyPI to https://pypi.org
+  (patch by [Chris Fournier](https://github.com/cfournie))
+* Usual override updates
+
 # 3.4.0
 * Fix a dict comprehension failure with the pylint checker
   (patch by [Jeroen Oldenburger](https://github.com/jeroenoldenburger))
