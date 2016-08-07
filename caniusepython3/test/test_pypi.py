@@ -56,6 +56,7 @@ class OverridesTests(unittest.TestCase):
     def test_success(self):
         overrides = pypi.manual_overrides()
         self.assertTrue(len(overrides) > 10)
+        self.assertIn("unittest2", overrides)
 
 
 class NetworkTests(unittest.TestCase):

@@ -71,3 +71,7 @@ class CheckTest(unittest.TestCase):
     @skip_pypi_timeouts
     def test_ignore_missing_projects(self):
         self.assertTrue(ciu.check(projects=['sdfsjdfsdlfk;jasdflkjasdfdfsdf']))
+
+    @skip_pypi_timeouts
+    def test_manual_overrides(self):
+        self.assertTrue(ciu.check(projects=["unittest2"]))

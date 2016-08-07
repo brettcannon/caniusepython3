@@ -83,6 +83,9 @@ class NetworkTests(unittest.TestCase):
         got = dependencies.blockers(['asdfsadfdsfsdffdfadf'])
         self.assertEqual(got, frozenset())
 
+    def test_manual_overrides(self):
+        self.assertEqual(dependencies.blockers(["unittest2"]), frozenset())
+
 
 if __name__ == '__main__':
     unittest.main()

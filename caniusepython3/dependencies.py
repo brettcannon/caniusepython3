@@ -65,12 +65,20 @@ def dependencies(project_name):
 
 def blockers(project_names):
     log = logging.getLogger('ciu')
+    overrides = pypi.manual_overrides()
+
+    def supports_py3(project_name):
+        if project_name in overrides:
+            return True
+        else:
+            return pypi.supports_py3(project_name)
+
     check = []
-    evaluated = set(pypi.manual_overrides())
+    evaluated = set(overrides)
     for project in project_names:
         log.info('Checking top-level project: {0} ...'.format(project))
         evaluated.add(project)
-        if not pypi.supports_py3(project):
+        if not supports_py3(project):
             check.append(project)
     reasons = {project: None for project in check}
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
@@ -93,7 +101,7 @@ def blockers(project_names):
                     else:
                         unchecked_deps.append(dep)
                 deps_status = zip(unchecked_deps,
-                                  executor.map(pypi.supports_py3,
+                                  executor.map(supports_py3,
                                                unchecked_deps))
                 for dep, ported in deps_status:
                     if not ported:
