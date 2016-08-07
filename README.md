@@ -79,6 +79,11 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 4.0.0 [under development]
+* Stop using PyPI's XML-RPC API and move to its JSON one for better performance
+* Load the overrides data from GitHub when possible, falling back to the data
+  included with the package when necessary
+
 # 3.4.1
 * Update the URL used for PyPI to https://pypi.org
   (patch by [Chris Fournier](https://github.com/cfournie))
