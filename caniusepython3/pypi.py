@@ -18,21 +18,12 @@ import packaging.utils
 import requests
 
 import concurrent.futures
-import contextlib
 import json
 import logging
 import multiprocessing
 import pkgutil
 import re
-try:
-    import urllib.request as urllib_request
-except ImportError:  #pragma: no cover
-    import urllib2 as urllib_request
-import xml.parsers.expat
-try:
-    import xmlrpc.client as xmlrpc_client
-except ImportError:  #pragma: no cover
-    import xmlrpclib as xmlrpc_client
+
 
 
 try:
