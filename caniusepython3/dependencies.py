@@ -54,44 +54,31 @@ def reasons_to_paths(reasons):
 def dependencies(project_name):
     """Get the dependencies for a project."""
     log = logging.getLogger('ciu')
-    deps = []
-    log.info('Locating {0}'.format(project_name))
+    log.info('Locating dependencies for {}'.format(project_name))
     located = distlib.locators.locate(project_name, prereleases=True)
     if not located:
         log.warning('{0} not found'.format(project_name))
         return None
-    for dep in map(packaging.utils.canonicalize_name, located.run_requires):
-        # Drop any version details from the dependency name.
-        deps.append(pypi.just_name(dep))
-    return deps
+    return {packaging.utils.canonicalize_name(pypi.just_name(dep))
+            for dep in located.run_requires}
 
 
-def blocking_dependencies(projects, py3_projects):
-    """Starting from 'projects', find all projects which are blocking Python 3 usage.
-
-    Any project in 'py3_projects' is considered ported and thus will not have
-    its dependencies searched. Version requirements are also ignored as it is
-    assumed that if a project is updating to support Python 3 then they will be
-    willing to update to the latest version of their dependencies. The only
-    dependencies checked are those required to run the project.
-
-    """
+def blockers(project_names):
     log = logging.getLogger('ciu')
+    overrides = pypi.manual_overrides()
+
+    def supports_py3(project_name):
+        if project_name in overrides:
+            return True
+        else:
+            return pypi.supports_py3(project_name)
+
     check = []
-    evaluated = set()
-    for project in map(packaging.utils.canonicalize_name, projects):
+    evaluated = set(overrides)
+    for project in project_names:
         log.info('Checking top-level project: {0} ...'.format(project))
-        try:
-            dist = distlib.locators.locate(project)
-        except AttributeError:
-            # This is a work around. //bitbucket.org/pypa/distlib/issue/59/ .
-            log.warning('{0} found but had to be skipped.'.format(project))
-            continue
-        if not dist:
-            log.warning('{0} not found'.format(project))
-            continue
-        project = dist.name.lower()  # PyPI can be forgiving about name formats.
-        if project not in py3_projects:
+        evaluated.add(project)
+        if not supports_py3(project):
             check.append(project)
     reasons = {project: None for project in check}
     thread_pool_executor = concurrent.futures.ThreadPoolExecutor(
@@ -107,16 +94,21 @@ def blocking_dependencies(projects, py3_projects):
                     del reasons[parent]
                     continue
                 log.info('Dependencies of {0}: {1}'.format(project, deps))
+                unchecked_deps = []
                 for dep in deps:
-                    log.info('Checking dependency: {0} ...'.format(dep))
                     if dep in evaluated:
                         log.info('{0} already checked'.format(dep))
-                        continue
                     else:
-                        evaluated.add(dep)
-                    if dep in py3_projects:
-                        continue
-                    reasons[dep] = parent
-                    new_check.append(dep)
+                        unchecked_deps.append(dep)
+                deps_status = zip(unchecked_deps,
+                                  executor.map(supports_py3,
+                                               unchecked_deps))
+                for dep, ported in deps_status:
+                    if not ported:
+                        reasons[dep] = parent
+                        new_check.append(dep)
+                    # Make sure there's no data race in recording a dependency
+                    # has been evaluated but not reported somewhere.
+                    evaluated.add(dep)
             check = new_check
     return reasons_to_paths(reasons)

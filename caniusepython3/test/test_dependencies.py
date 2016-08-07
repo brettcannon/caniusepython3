@@ -62,31 +62,12 @@ class DependenciesTests(unittest.TestCase):
         got = dependencies.dependencies('does not matter')
         self.assertEqual({'easy-thumbnail', 'stuff'}, frozenset(got))
 
-
-class BlockingDependenciesTests(unittest.TestCase):
-
-    @mock.patch('caniusepython3.dependencies.dependencies')
-    def test_recursion(self, dependencies_mock):
-        deps = {'a': ['b'], 'b': ['a']}
-        dependencies_mock.side_effect = lambda name: deps[name]
-        got = dependencies.blocking_dependencies(['a'], {})
-        self.assertEqual(frozenset(), got)
-
-    def test_blocking_dependencies_locators_fails(self):
-        # Testing the work around for //bitbucket.org/pypa/distlib/issue/59/ .
-        with mock.patch.object(distlib.locators, 'locate') as locate_mock:
-            py3 = {'py3_project': ''}
-            breaking_project = 'test_project'
-            locate_mock.side_effect = AttributeError()
-            got = dependencies.blocking_dependencies([breaking_project], py3)
-            # If you'd like to test that a message is logged we can use
-            # testfixtures.LogCapture or stdout redirects.
-
+# XXX Tests covering dependency loops, e.g. a -> b, b -> a.
 
 class NetworkTests(unittest.TestCase):
 
-    def test_blocking_dependencies(self):
-        got = dependencies.blocking_dependencies(['mozinfo'], {})
+    def test_blockers(self):
+        got = dependencies.blockers(['mozinfo'])
         want = frozenset([('mozfile', 'mozinfo')])
         self.assertEqual(frozenset(got), want)
 
@@ -98,15 +79,13 @@ class NetworkTests(unittest.TestCase):
         got = dependencies.dependencies('sdflksjdfsadfsadfad')
         self.assertIsNone(got)
 
-    def test_blocking_dependencies_no_project(self):
-        got = dependencies.blocking_dependencies(['asdfsadfdsfsdffdfadf'], {})
+    def test_blockers_no_project(self):
+        got = dependencies.blockers(['asdfsadfdsfsdffdfadf'])
         self.assertEqual(got, frozenset())
 
-    def test_top_level_project_normalization(self):
-        py3 = {'wsgi_intercept': ''}
-        abnormal_name = 'WSGI-intercept'  # Note dash instead of underscore.
-        got = dependencies.blocking_dependencies([abnormal_name], py3)
-        self.assertEqual(got, frozenset())
+    def test_manual_overrides(self):
+        self.assertEqual(dependencies.blockers(["unittest2"]), frozenset())
+
 
 if __name__ == '__main__':
     unittest.main()
