@@ -52,6 +52,11 @@ class OverridesTests(unittest.TestCase):
         for name in pypi.manual_overrides():
             self.assertEqual(name, packaging.utils.canonicalize_name(name))
 
+    @skip_pypi_timeouts
+    def test_success(self):
+        overrides = pypi.manual_overrides()
+        self.assertTrue(len(overrides) > 10)
+
 
 class NetworkTests(unittest.TestCase):
 
