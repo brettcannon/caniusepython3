@@ -38,10 +38,10 @@ def check(requirements_paths=[], metadata=[], projects=[]):
 
     Any project that is not listed on PyPI will be considered ported.
     """
-    dependencies = main.projects_from_requirements(requirements_paths)
+    dependencies = []
+    dependencies.extend(main.projects_from_requirements(requirements_paths))
     dependencies.extend(main.projects_from_metadata(metadata))
     dependencies.extend(projects)
-    dependencies = set(name.lower() for name in dependencies)
 
     py3_projects = pypi.all_py3_projects()
     all_projects = pypi.all_projects()

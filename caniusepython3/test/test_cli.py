@@ -26,7 +26,7 @@ EXAMPLE_REQUIREMENTS = """
 # From
 #  http://www.pip-installer.org/en/latest/reference/pip_install.html#requirement-specifiers
 # but without the quotes for shell protection.
-FooProject >= 1.2
+Foo.Project >= 1.2
 Fizzy [foo, bar]
 PickyThing<1.6,>1.9,!=1.9.6,<2.0a0,==2.4c1
 Hello
@@ -37,7 +37,7 @@ file:../../lib/project
 """
 
 EXAMPLE_EXTRA_REQUIREMENTS = """
-testingstuff
+testing-stuff
 """
 
 EXAMPLE_METADATA = """Metadata-Version: 1.2
@@ -50,7 +50,7 @@ Author-email: tarek@ziade.org
 License: PSF
 Keywords: keyring,password,crypt
 Requires-Dist: foo; sys.platform == 'okook'
-Requires-Dist: bar
+Requires-Dist: bar.baz
 Platform: UNKNOWN
 """
 
@@ -66,10 +66,10 @@ Requires-Dist: baz
 
 class CLITests(unittest.TestCase):
 
-    expected_requirements = frozenset(['FooProject', 'Fizzy', 'PickyThing',
-                                       'Hello'])
-    expected_extra_requirements = frozenset(['testingstuff'])
-    expected_metadata = frozenset(['foo', 'bar'])
+    expected_requirements = frozenset(['foo-project', 'fizzy', 'pickything',
+                                       'hello'])
+    expected_extra_requirements = frozenset(['testing-stuff'])
+    expected_metadata = frozenset(['foo', 'bar-baz'])
     expected_extra_metadata = frozenset(['baz'])
 
     def setUp(self):
@@ -125,9 +125,9 @@ class CLITests(unittest.TestCase):
         self.assertEqual(set(got), self.expected_metadata)
 
     def test_cli_for_projects(self):
-        args = ['--projects', 'foo', 'bar']
+        args = ['--projects', 'foo', 'bar.baz']
         got = ciu_main.projects_from_cli(args)
-        self.assertEqual(set(got), frozenset(['foo', 'bar']))
+        self.assertEqual(set(got), frozenset(['foo', 'bar-baz']))
 
     def test_message_plural(self):
         blockers = [['A'], ['B']]

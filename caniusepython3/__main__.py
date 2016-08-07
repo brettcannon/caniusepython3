@@ -20,6 +20,7 @@ from caniusepython3 import pypi
 from caniusepython3 import dependencies
 
 import distlib.metadata
+import packaging.utils
 import pip.download
 import pip.req
 
@@ -48,7 +49,7 @@ def projects_from_requirements(requirements):
                     'Skipping {0}: file-specified projects unsupported'.format(req.name))
             else:
                 valid_reqs.append(req.name)
-    return valid_reqs
+    return frozenset(map(packaging.utils.canonicalize_name, valid_reqs))
 
 
 def req_has_file_link(req):
@@ -67,7 +68,7 @@ def projects_from_metadata(metadata):
     for data in metadata:
         meta = distlib.metadata.Metadata(fileobj=io.StringIO(data))
         projects.extend(pypi.just_name(project) for project in meta.run_requires)
-    return projects
+    return frozenset(map(packaging.utils.canonicalize_name, projects))
 
 
 def projects_from_cli(args):
@@ -99,7 +100,7 @@ def projects_from_cli(args):
         with io.open(metadata_path) as file:
             metadata.append(file.read())
     projects.extend(projects_from_metadata(metadata))
-    projects.extend(parsed.projects)
+    projects.extend(map(packaging.utils.canonicalize_name, parsed.projects))
 
     return projects
 
