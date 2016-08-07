@@ -3,7 +3,7 @@
 0. Update README.md with release notes
 0. Delete `dist/*`
 0. Update setup.py for the new version number
-0. `python3 -m pip install --upgrade setuptools twine wheel`
+0. `python3 -m pip install --upgrade pip setuptools twine wheel`
 0. `python3 setup.py sdist`
 0. `python3 setup.py bdist_wheel`
 0. `twine upload dist/*`
