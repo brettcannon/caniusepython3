@@ -47,7 +47,7 @@ class Command(setuptools.Command):
     def run(self):
         passed = ciu_main.check(self._dependencies())
         if not passed:
-            sys.exit(1)
+            sys.exit(3)
 
     def finalize_options(self):
         pass
