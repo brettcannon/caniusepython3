@@ -189,6 +189,16 @@ class CLITests(unittest.TestCase):
         ciu_main.projects_from_cli(['-v', '-p', 'ipython'])
         self.assertTrue(logging.getLogger('ciu').isEnabledFor(logging.INFO))
 
+    @mock.patch('caniusepython3.dependencies.blockers', lambda projects: ['blocker'])
+    def test_nonzero_return_code(self):
+        with tempfile.NamedTemporaryFile('w') as file:
+            file.write(EXAMPLE_REQUIREMENTS)
+            file.flush()
+            args = ['--requirements', file.name]
+            with self.assertRaises(SystemExit) as context:
+                ciu_main.main(args=args)
+            self.assertNotEqual(context.exception.code, 0)
+
 
 #@unittest.skip('faster testing')
 class NetworkTests(unittest.TestCase):
