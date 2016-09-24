@@ -15,6 +15,7 @@
 from __future__ import unicode_literals
 
 import setuptools
+import sys
 
 import caniusepython3 as ciu
 import caniusepython3.__main__ as ciu_main
@@ -44,7 +45,9 @@ class Command(setuptools.Command):
         pass
 
     def run(self):
-        ciu_main.check(self._dependencies())
+        passed = ciu_main.check(self._dependencies())
+        if not passed:
+            sys.exit(3)
 
     def finalize_options(self):
         pass

@@ -15,7 +15,7 @@
 from __future__ import unicode_literals
 
 from caniusepython3 import command
-from caniusepython3.test import unittest, skip_pypi_timeouts
+from caniusepython3.test import unittest, skip_pypi_timeouts, mock
 
 from distutils import dist
 
@@ -41,6 +41,13 @@ class RequiresTests(unittest.TestCase):
         cmd = make_command({'extras_require': {'testing': ['pip']}})
         got = frozenset(cmd._dependencies())
         self.assertEqual(got, frozenset(['pip']))
+
+    @mock.patch('caniusepython3.dependencies.blockers', lambda projects: ['blocker'])
+    def test_nonzero_return_code(self):
+        cmd = make_command({'install_requires': ['pip']})
+        with self.assertRaises(SystemExit) as context:
+            cmd.run()
+        self.assertNotEqual(context.exception.code, 0)
 
 
 class OptionsTests(unittest.TestCase):

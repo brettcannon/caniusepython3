@@ -175,9 +175,13 @@ def check(projects):
     for line in pprint_blockers(blockers):
         print(' ', line)
 
+    return len(blockers) == 0
+
 
 def main(args=sys.argv[1:]):
-    check(projects_from_cli(args))
+    passed = check(projects_from_cli(args))
+    if not passed:
+      sys.exit(3)
 
 
 if __name__ == '__main__':  #pragma: no cover
