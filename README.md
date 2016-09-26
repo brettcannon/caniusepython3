@@ -81,8 +81,12 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # 4.0.0 [under development]
 * Stop using PyPI's XML-RPC API and move to its JSON one for better performance
+  (and switch to https://pypi.org)
 * Load the overrides data from GitHub when possible, falling back to the data
-  included with the package when necessary
+  included with the package when necessary (thanks to
+  [shafrom](https://github.com/shaform) for adding local, one-day caching)
+* Return a `3` error code when a command completes successfully but there are
+  found blockers (patch by [pcattori](https://github.com/shaform))
 
 # 3.4.1
 * Update the URL used for PyPI to https://pypi.org
