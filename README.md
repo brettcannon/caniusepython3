@@ -86,7 +86,7 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
   included with the package when necessary (thanks to
   [shafrom](https://github.com/shaform) for adding local, one-day caching)
 * Return a `3` error code when a command completes successfully but there are
-  found blockers (patch by [pcattori](https://github.com/shaform))
+  found blockers (patch by [pcattori](https://github.com/pcattori))
 
 # 3.4.1
 * Update the URL used for PyPI to https://pypi.org
