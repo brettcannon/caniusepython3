@@ -9,6 +9,7 @@
     "flask-security": "http://pythonhosted.org/Flask-Security/changelog.html#version-1-7-3",
     "flask-principal": "http://pythonhosted.org/Flask-Principal/changelog.html",
     "functools32": "https://pypi.python.org/pypi/functools32",
+    "geoip": "https://pypi.python.org/pypi/GeoIP/",
     "hashids": "https://pypi.python.org/pypi/hashids",
     "ipaddr": "https://docs.python.org/3/library/ipaddress.html",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
