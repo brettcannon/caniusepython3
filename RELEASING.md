@@ -4,7 +4,7 @@
 0. Delete `dist/*`
 0. Update setup.py for the new version number
 0. `python3 -m pip install --upgrade setuptools twine wheel`
-0. `python3 setup.py sdist`
+0. `python3 setup.py sdist --formats=zip`
 0. `python3 setup.py bdist_wheel`
 0. `twine upload dist/*`
 0. Commit everything for the release
