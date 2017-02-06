@@ -6,7 +6,8 @@
 0. `python3 -m pip install --user --upgrade setuptools twine wheel`
 0. `python3 setup.py sdist --formats=zip`
 0. `python3 setup.py bdist_wheel`
-0. `twine upload dist/*`
+0. `python3 -m twine upload dist/*`
 0. Commit everything for the release
 0. `git tag -a vN.N.N`
-0. `git push git@github.com:brettcannon/caniusepython3.git --tags`
+0. `git push`
+0. `git push https://github.com/brettcannon/caniusepython3.git --tags`
