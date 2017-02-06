@@ -79,10 +79,12 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
-# 5.0.0 (under development)
+# 5.0.0
 * Return a `3` error code when a command completes successfully but there are
-  found blockers (patch by [pcattori](https://github.com/pcattori))
+  found blockers (patch by [pcattori](https://github.com/pcattori);
+  accidentally left out of the 4.0.0 release)
 * Officially support Python 3.6
+* Usual overrides updates
 
 # 4.0.0
 * Stop using PyPI's XML-RPC API and move to its JSON one for better performance
