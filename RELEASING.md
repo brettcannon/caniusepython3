@@ -1,10 +1,9 @@
 0. Make sure all changes are live and that Travis is green
-0. Delete all packaging-related directories
+0. Delete all packaging-related directories(including `dist/`)
 0. Verify there are no stale overrides
 0. Update README.md with release notes
-0. Delete `dist/*`
 0. Update setup.py for the new version number
-0. `python3 -m pip install --upgrade setuptools twine wheel`
+0. `python3 -m pip install --user --upgrade setuptools twine wheel`
 0. `python3 setup.py sdist --formats=zip`
 0. `python3 setup.py bdist_wheel`
 0. `twine upload dist/*`
