@@ -1,4 +1,5 @@
 0. Make sure all changes are live and that Travis is green
+0. Delete all packaging-related directories
 0. Verify there are no stale overrides
 0. Update README.md with release notes
 0. Delete `dist/*`
