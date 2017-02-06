@@ -79,14 +79,17 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 5.0.0 (under development)
+* Return a `3` error code when a command completes successfully but there are
+  found blockers (patch by [pcattori](https://github.com/pcattori))
+* Officially support Python 3.6
+
 # 4.0.0
 * Stop using PyPI's XML-RPC API and move to its JSON one for better performance
   (and switch to https://pypi.org)
 * Load the overrides data from GitHub when possible, falling back to the data
   included with the package when necessary (thanks to
   [shafrom](https://github.com/shaform) for adding local, one-day caching)
-* Return a `3` error code when a command completes successfully but there are
-  found blockers (patch by [pcattori](https://github.com/pcattori))
 
 # 3.4.1
 * Update the URL used for PyPI to https://pypi.org
