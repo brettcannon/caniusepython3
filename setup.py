@@ -13,7 +13,7 @@ with open('dev_requirements.txt') as file:
     tests_require = [dep.strip() for dep in file.readlines()]
 
 setup(name='caniusepython3',
-      version='4.0.0',
+      version='5.0.0.dev1',
       description='Determine what projects are blocking you from porting to Python 3',
       long_description=long_description,
       author='Brett Cannon',
