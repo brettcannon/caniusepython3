@@ -29,6 +29,9 @@ import io
 import logging
 import sys
 
+# Without this, the 'ciu' logger will emit nothing.
+logging.basicConfig(format='[%(levelname)s] %(message)s')
+
 
 def projects_from_requirements(requirements):
     """Extract the project dependencies from a Requirements specification."""
@@ -159,9 +162,6 @@ def pprint_blockers(blockers):
 
 def check(projects):
     """Check the specified projects for Python 3 compatibility."""
-    # Without this, the 'ciu' logger will emit nothing.
-    logging.basicConfig(format='[%(levelname)s] %(message)s')
-
     log = logging.getLogger('ciu')
     log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
