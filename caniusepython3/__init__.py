@@ -16,7 +16,7 @@
 
 from __future__ import unicode_literals
 
-from caniusepython3 import __main__ as main
+from caniusepython3 import projects as projects_
 from caniusepython3 import pypi
 
 import multiprocessing
@@ -39,8 +39,8 @@ def check(requirements_paths=[], metadata=[], projects=[]):
     Any project that is not listed on PyPI will be considered ported.
     """
     dependencies = []
-    dependencies.extend(main.projects_from_requirements(requirements_paths))
-    dependencies.extend(main.projects_from_metadata(metadata))
+    dependencies.extend(projects_.projects_from_requirements(requirements_paths))
+    dependencies.extend(projects_.projects_from_metadata(metadata))
     dependencies.extend(projects)
 
     manual_overrides = pypi.manual_overrides()

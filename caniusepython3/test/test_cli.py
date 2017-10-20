@@ -15,6 +15,7 @@
 from __future__ import unicode_literals
 
 import caniusepython3.__main__ as ciu_main
+from caniusepython3 import projects
 from caniusepython3.test import mock, unittest, skip_pypi_timeouts
 
 import io
@@ -85,7 +86,7 @@ class CLITests(unittest.TestCase):
         with tempfile.NamedTemporaryFile('w') as file:
             file.write(EXAMPLE_REQUIREMENTS)
             file.flush()
-            got = ciu_main.projects_from_requirements([file.name])
+            got = projects.projects_from_requirements([file.name])
         self.assertEqual(set(got), self.expected_requirements)
 
     def test_multiple_requirements_files(self):
@@ -95,16 +96,16 @@ class CLITests(unittest.TestCase):
             with tempfile.NamedTemporaryFile('w') as f2:
                 f2.write(EXAMPLE_EXTRA_REQUIREMENTS)
                 f2.flush()
-                got = ciu_main.projects_from_requirements([f1.name, f2.name])
+                got = projects.projects_from_requirements([f1.name, f2.name])
         want = self.expected_requirements.union(self.expected_extra_requirements)
         self.assertEqual(set(got), want)
 
     def test_metadata(self):
-        got = ciu_main.projects_from_metadata([EXAMPLE_METADATA])
+        got = projects.projects_from_metadata([EXAMPLE_METADATA])
         self.assertEqual(set(got), self.expected_metadata)
 
     def test_multiple_metadata(self):
-        got = ciu_main.projects_from_metadata([EXAMPLE_METADATA,
+        got = projects.projects_from_metadata([EXAMPLE_METADATA,
                                                EXAMPLE_EXTRA_METADATA])
         want = self.expected_metadata.union(self.expected_extra_metadata)
         self.assertEqual(set(got), want)
