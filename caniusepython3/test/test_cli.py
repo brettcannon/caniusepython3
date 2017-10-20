@@ -26,7 +26,8 @@ EXAMPLE_REQUIREMENTS = """
 # From
 #  http://www.pip-installer.org/en/latest/reference/pip_install.html#requirement-specifiers
 # but without the quotes for shell protection.
-Foo.Project >= 1.2
+Foo.Project \
+    >= 1.2
 Fizzy [foo, bar]
 PickyThing<1.6,>1.9,!=1.9.6,<2.0a0,==2.4c1
 Hello
