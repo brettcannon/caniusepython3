@@ -20,13 +20,13 @@ from caniusepython3 import pypi
 from caniusepython3 import dependencies
 
 import distlib.metadata
+import packaging.requirements
 import packaging.utils
-import pip.download
-import pip.req
 
 import argparse
 import io
 import logging
+import re
 import sys
 
 # Without this, the 'ciu' logger will emit nothing.
@@ -38,18 +38,27 @@ def projects_from_requirements(requirements):
     log = logging.getLogger('ciu')
     valid_reqs = []
     for requirements_path in requirements:
-        reqs = pip.req.parse_requirements(requirements_path,
-                                          session=pip.download.PipSession())
+        with open(requirements_path) as file:
+            requirements_text = file.read()
+        # Drop line continuations.
+        requirements_text = re.sub(r"\\s*", "", requirements_text)
+        # Drop comments.
+        requirements_text = re.sub(r"#.*", "", requirements_text)
+        reqs = []
+        for line in requirements_text.splitlines():
+            if not line:
+                continue
+            try:
+                reqs.append(packaging.requirements.Requirement(line))
+            except packaging.requirements.InvalidRequirement:
+                log.warning('Skipping {0!r}: could not parse requirement'.format(line))
         for req in reqs:
             if not req.name:
                 log.warning('A requirement lacks a name '
                             '(e.g. no `#egg` on a `file:` path)')
-            elif req.editable:
+            elif req.url:
                 log.warning(
-                    'Skipping {0}: editable projects unsupported'.format(req.name))
-            elif req_has_file_link(req):
-                log.warning(
-                    'Skipping {0}: file-specified projects unsupported'.format(req.name))
+                    'Skipping {0}: URL-specified projects unsupported'.format(req.name))
             else:
                 valid_reqs.append(req.name)
     return frozenset(map(packaging.utils.canonicalize_name, valid_reqs))

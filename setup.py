@@ -21,7 +21,7 @@ setup(name='caniusepython3',
       url='https://github.com/brettcannon/caniusepython3',
       packages=['caniusepython3', 'caniusepython3.test'],
       include_package_data=True,
-      install_requires=['distlib', 'setuptools', 'packaging', 'pip',  # Input flexibility
+      install_requires=['distlib', 'setuptools', 'packaging',  # Input flexibility
                         'argparse', 'backports.functools_lru_cache', 'futures',
                         'requests'],  # Functionality
       tests_require=tests_require,  # Testing, external due to Travis
