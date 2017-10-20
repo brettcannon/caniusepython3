@@ -13,7 +13,7 @@ with open('dev_requirements.txt') as file:
     tests_require = [dep.strip() for dep in file.readlines()]
 
 setup(name='caniusepython3',
-      version='5.0.1.dev1',
+      version='6.0.0.dev',
       description='Determine what projects are blocking you from porting to Python 3',
       long_description=long_description,
       author='Brett Cannon',
@@ -21,6 +21,8 @@ setup(name='caniusepython3',
       url='https://github.com/brettcannon/caniusepython3',
       packages=['caniusepython3', 'caniusepython3.test'],
       include_package_data=True,
+      # Support Python 2.7 or >=3.3.
+      requires_python='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*',
       install_requires=['distlib', 'setuptools', 'packaging',  # Input flexibility
                         'argparse', 'backports.functools_lru_cache', 'futures',
                         'requests'],  # Functionality
