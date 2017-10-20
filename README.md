@@ -79,6 +79,10 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 5.0.1 (in development)
+* Fix "No handler found" output under Python 2.7
+  (patch by [arnuschky](https://github.com/arnuschky))
+
 # 5.0.0
 * Return a `3` error code when a command completes successfully but there are
   found blockers (patch by [pcattori](https://github.com/pcattori);
