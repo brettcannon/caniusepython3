@@ -30,7 +30,7 @@ project is considered to support Python 3 (project owners: it is preferred you
 **at least** specify `Programming Language :: Python :: 3` as that is how you
 end up listed on the [Python 3 Packages list on PyPI](https://pypi.python.org/pypi?%3Aaction=packages_rss);
 you can represent Python 2 support with `Programming Language :: Python`).  Note
-that Python 3.0 thru 3.3 are already [End Of Life](https://docs.python.org/devguide/index.html#branchstatus).
+that Python 3.0 through 3.3 have reached their [End Of Life](https://docs.python.org/devguide/index.html#branchstatus).
 
 The other way is through a [manual override](https://github.com/brettcannon/caniusepython3/blob/master/caniusepython3/overrides.json) in
 `caniusepython3` itself. Projects ends up on this list because:
