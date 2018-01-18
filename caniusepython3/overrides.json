@@ -26,6 +26,7 @@
     "pyrss2gen": "https://pypi.python.org/pypi/PyRSS2Gen",
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
     "python-ldap": "https://github.com/pyldap/pyldap",
+    "python-oauth2": "https://github.com/wndhydrnt/python-oauth2/blob/master/setup.py",
     "python-openid": "https://pypi.python.org/pypi/python3-openid",
     "ssh": "https://github.com/bitprophet/ssh/",
     "ssl": "http://docs.python.org/3/library/ssl.html",
