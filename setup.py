@@ -21,10 +21,11 @@ setup(name='caniusepython3',
       url='https://github.com/brettcannon/caniusepython3',
       packages=['caniusepython3', 'caniusepython3.test'],
       include_package_data=True,
-      # Support Python 2.7 or >=3.3.
-      requires_python='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*',
+      # Support Python 2.7 or >=3.4.
+      requires_python='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*',
       install_requires=['distlib', 'setuptools', 'packaging',  # Input flexibility
-                        'argparse', 'backports.functools_lru_cache', 'futures',
+                        'argparse', 'backports.functools_lru_cache',
+                        'futures ; python_version=="2.7"',
                         'requests'],  # Functionality
       tests_require=tests_require,  # Testing, external due to Travis
       test_suite='caniusepython3.test',
@@ -36,7 +37,6 @@ setup(name='caniusepython3',
           'Programming Language :: Python',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.3',
           'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
