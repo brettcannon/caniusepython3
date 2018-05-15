@@ -1,5 +1,4 @@
-venv*
-env
+.venv
 .vscode
 
 *.py[cod]
