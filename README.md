@@ -82,6 +82,10 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 7.0.0
+* Drop Python 3.3 support
+* Usual overrides updates
+
 # 6.0.0
 * Refactor some code to avoid a warning in Python 3.6
 * Stop calling pip's internals (pip 10 would break everything)
