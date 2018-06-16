@@ -22,6 +22,7 @@
     "pil": "https://pypi.python.org/pypi/Pillow",
     "py-bcrypt": "https://code.google.com/p/py-bcrypt/",
     "pycountry": "https://pypi.python.org/pypi/pycountry",
+    "pyClamd": "https://xael.org/pages/pyclamd-en.html#download",
     "pypdf": "https://pypi.python.org/pypi/PyPDF2",
     "pyrss2gen": "https://pypi.python.org/pypi/PyRSS2Gen",
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
