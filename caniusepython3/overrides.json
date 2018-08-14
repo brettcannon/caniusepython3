@@ -11,6 +11,7 @@
     "functools32": "https://pypi.python.org/pypi/functools32",
     "geoip": "https://pypi.python.org/pypi/GeoIP/",
     "grab": "https://pypi.python.org/pypi/grab",
+    "gym": "https://github.com/openai/gym/blob/master/tox.ini",
     "hashids": "https://pypi.python.org/pypi/hashids",
     "ipaddr": "https://docs.python.org/3/library/ipaddress.html",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
