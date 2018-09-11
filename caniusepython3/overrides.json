@@ -30,6 +30,7 @@
     "python-oauth2": "https://github.com/wndhydrnt/python-oauth2/blob/master/setup.py",
     "python-openid": "https://pypi.python.org/pypi/python3-openid",
     "ssh": "https://github.com/bitprophet/ssh/",
+    "sklearn": "https://pypi.python.org/pypi/scikit-learn",
     "ssl": "http://docs.python.org/3/library/ssl.html",
     "suds": "https://pypi.python.org/pypi/suds-jurko",
     "trisdb-py": "https://github.com/tiepologian/trisdb-py/blob/master/setup.cfg",
