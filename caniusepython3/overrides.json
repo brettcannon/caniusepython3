@@ -32,6 +32,7 @@
     "ssh": "https://github.com/bitprophet/ssh/",
     "sklearn": "https://pypi.org/project/scikit-learn",
     "ssl": "http://docs.python.org/3/library/ssl.html",
+    "subprocess32": "https://pypi.org/project/subprocess32/",
     "suds": "https://pypi.python.org/pypi/suds-jurko",
     "trisdb-py": "https://github.com/tiepologian/trisdb-py/blob/master/setup.cfg",
     "unittest2": "http://docs.python.org/3/library/unittest.html",
