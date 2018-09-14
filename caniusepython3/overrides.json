@@ -3,6 +3,7 @@
     "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
+    "dockerpty": "https://github.com/d11wtq/dockerpty/blob/master/tox.ini",
     "entrypoints": "https://pypi.org/project/entrypoints/#files",
     "fabric": "https://pypi.python.org/pypi/Fabric3",
     "flask-debugtoolbar": "https://pypi.python.org/pypi/Flask-DebugToolbar",
