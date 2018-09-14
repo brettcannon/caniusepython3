@@ -33,6 +33,7 @@
     "pypdf": "https://pypi.python.org/pypi/PyPDF2",
     "pyrss2gen": "https://pypi.python.org/pypi/PyRSS2Gen",
     "pysqlite": "http://docs.python.org/3/library/sqlite3.html",
+    "python-augeas": "https://src.fedoraproject.org/rpms/python-augeas/blob/master/f/python-augeas.spec",
     "python-ldap": "https://github.com/pyldap/pyldap",
     "python-oauth2": "https://github.com/wndhydrnt/python-oauth2/blob/master/setup.py",
     "python-openid": "https://pypi.python.org/pypi/python3-openid",
