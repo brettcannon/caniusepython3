@@ -37,6 +37,7 @@
     "ssl": "http://docs.python.org/3/library/ssl.html",
     "subprocess32": "https://pypi.org/project/subprocess32/",
     "suds": "https://pypi.python.org/pypi/suds-jurko",
+    "texttable": "https://github.com/foutaise/texttable/blob/master/setup.py",
     "trisdb-py": "https://github.com/tiepologian/trisdb-py/blob/master/setup.cfg",
     "unittest2": "http://docs.python.org/3/library/unittest.html",
     "uuid": "http://docs.python.org/3/library/uuid.html",
