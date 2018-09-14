@@ -1,5 +1,6 @@
 {
     "beautifulsoup": "https://pypi.python.org/pypi/beautifulsoup4",
+    "cheetah": "https://pypi.org/project/Cheetah3/",
     "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
