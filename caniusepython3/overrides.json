@@ -39,6 +39,7 @@
     "python-oauth2": "https://github.com/wndhydrnt/python-oauth2/blob/master/setup.py",
     "python-openid": "https://pypi.python.org/pypi/python3-openid",
     "requests-futures": "https://pypi.org/project/requests-futures/",
+    "sasl": "https://github.com/cloudera/python-sasl/blob/master/setup.py",
     "ssh": "https://github.com/bitprophet/ssh/",
     "sklearn": "https://pypi.org/project/scikit-learn",
     "ssl": "http://docs.python.org/3/library/ssl.html",
