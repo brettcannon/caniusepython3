@@ -23,6 +23,7 @@
     "ordereddict": "http://docs.python.org/3/library/collections.html#collections.OrderedDict",
     "pil": "https://pypi.python.org/pypi/Pillow",
     "py-bcrypt": "https://code.google.com/p/py-bcrypt/",
+    "pydevd": "https://pypi.org/project/pydevd/#files",
     "pycountry": "https://pypi.python.org/pypi/pycountry",
     "pypdf": "https://pypi.python.org/pypi/PyPDF2",
     "pyrss2gen": "https://pypi.python.org/pypi/PyRSS2Gen",
