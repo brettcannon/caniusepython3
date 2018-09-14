@@ -19,6 +19,7 @@
     "ipaddr": "https://docs.python.org/3/library/ipaddress.html",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
     "kiwisolver": "https://pypi.org/project/kiwisolver/#files",
+    "letsencrypt": "https://pypi.org/project/certbot/",
     "mox": "https://pypi.python.org/pypi/mox3",
     "multiprocessing": "http://docs.python.org/3/library/multiprocessing.html",
     "mysql-python": "https://pypi.python.org/pypi/mysqlclient",
