@@ -5,6 +5,7 @@
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "dockerpty": "https://github.com/d11wtq/dockerpty/blob/master/tox.ini",
     "entrypoints": "https://pypi.org/project/entrypoints/#files",
+    "enum": "https://docs.python.org/3/library/enum.html",
     "fabric": "https://pypi.python.org/pypi/Fabric3",
     "flask-debugtoolbar": "https://pypi.python.org/pypi/Flask-DebugToolbar",
     "flask-mail": "http://pythonhosted.org/Flask-Mail/changelog.html#version-0-9-0",
