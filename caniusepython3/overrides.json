@@ -60,6 +60,7 @@
     "python-openid": "https://pypi.python.org/pypi/python3-openid",
     "pywin32": "https://pypi.org/project/pywin32/#files",
     "requests-futures": "https://pypi.org/project/requests-futures/",
+    "routes": "https://github.com/bbangert/routes/blob/master/setup.py",
     "sasl": "https://github.com/cloudera/python-sasl/blob/master/setup.py",
     "ssh": "https://github.com/bitprophet/ssh/",
     "sklearn": "https://pypi.org/project/scikit-learn",
