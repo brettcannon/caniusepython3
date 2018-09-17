@@ -26,6 +26,7 @@
     "hjson": "https://pypi.org/project/hjson/",
     "importlib": "https://docs.python.org/3/library/importlib.html",
     "ipaddr": "https://docs.python.org/3/library/ipaddress.html",
+    "itypes": "https://github.com/tomchristie/itypes/blob/master/setup.py",
     "jinja": "http://jinja.pocoo.org/docs/switching/#jinja1",
     "jws": "https://pypi.org/project/jws/",
     "kiwisolver": "https://pypi.org/project/kiwisolver/#files",
