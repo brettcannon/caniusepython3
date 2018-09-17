@@ -35,6 +35,7 @@
     "logging": "https://docs.python.org/3/library/logging.html",
     "mox": "https://pypi.python.org/pypi/mox3",
     "multiprocessing": "http://docs.python.org/3/library/multiprocessing.html",
+    "multiprocess": "https://github.com/uqfoundation/multiprocess/blob/master/setup.py",
     "mysql-python": "https://pypi.python.org/pypi/mysqlclient",
     "numexpr": "https://github.com/pydata/numexpr/blob/master/.travis.yml",
     "ordereddict": "http://docs.python.org/3/library/collections.html#collections.OrderedDict",
