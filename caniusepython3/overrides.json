@@ -35,6 +35,7 @@
     "mysql-python": "https://pypi.python.org/pypi/mysqlclient",
     "numexpr": "https://github.com/pydata/numexpr/blob/master/.travis.yml",
     "ordereddict": "http://docs.python.org/3/library/collections.html#collections.OrderedDict",
+    "pandocfilters": "https://github.com/jgm/pandocfilters/blob/master/setup.py",
     "pefile": "https://github.com/erocarrera/pefile/blob/master/.travis.yml",
     "pil": "https://pypi.python.org/pypi/Pillow",
     "py-bcrypt": "https://code.google.com/p/py-bcrypt/",
