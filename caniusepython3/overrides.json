@@ -78,5 +78,6 @@
     "uwsgi": "https://github.com/unbit/uwsgi/blob/master/setup.py",
     "uwsgitop": "https://github.com/xrmx/uwsgitop/blob/master/setup.py#L21",
     "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
-    "wsgiref": "http://docs.python.org/3/library/wsgiref.html"
+    "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
+    "slumber": "https://pypi.org/project/slumber/"
 }
