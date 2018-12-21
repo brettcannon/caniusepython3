@@ -66,6 +66,7 @@
     "sasl": "https://github.com/cloudera/python-sasl/blob/master/setup.py",
     "ssh": "https://github.com/bitprophet/ssh/",
     "sklearn": "https://pypi.org/project/scikit-learn",
+    "slumber": "https://pypi.org/project/slumber/",
     "ssl": "http://docs.python.org/3/library/ssl.html",
     "statistics": "https://pypi.org/project/statistics/",
     "subprocess32": "https://pypi.org/project/subprocess32/",
@@ -78,6 +79,5 @@
     "uwsgi": "https://github.com/unbit/uwsgi/blob/master/setup.py",
     "uwsgitop": "https://github.com/xrmx/uwsgitop/blob/master/setup.py#L21",
     "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
-    "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
-    "slumber": "https://pypi.org/project/slumber/"
+    "wsgiref": "http://docs.python.org/3/library/wsgiref.html"
 }
