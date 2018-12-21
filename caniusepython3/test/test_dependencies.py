@@ -67,9 +67,9 @@ class DependenciesTests(unittest.TestCase):
 class NetworkTests(unittest.TestCase):
 
     def test_blockers(self):
-        got = dependencies.blockers(['mozinfo'])
-        want = frozenset([('mozfile', 'mozinfo')])
-        self.assertEqual(frozenset(got), want)
+        got = frozenset(dependencies.blockers(['ralph_scrooge']))
+        want = frozenset([('ralph', 'ralph_scrooge'), ('ralph-assets', 'ralph_scrooge')])
+        self.assertEqual(got, want)
 
     def test_dependencies(self):
         got = dependencies.dependencies('pastescript')
