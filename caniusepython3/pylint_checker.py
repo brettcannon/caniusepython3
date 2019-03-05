@@ -18,14 +18,10 @@ which compliment this file.
 """
 from __future__ import absolute_import, print_function
 
-import symbol
 import token
 import tokenize
 
-import astroid
-from astroid import nodes
 from pylint import checkers, interfaces
-from pylint.checkers import utils
 
 
 class StrictPython3Checker(checkers.BaseChecker):
