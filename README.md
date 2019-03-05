@@ -82,6 +82,10 @@ and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 # Change Log
 
+# 7.0.1 (in progress)
+* Remove unused imports from Pylint checker
+* Usual overrides updates
+
 # 7.0.0
 * Drop Python 3.3 support
 * Usual overrides updates
