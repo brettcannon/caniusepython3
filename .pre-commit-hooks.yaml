@@ -1,0 +1,7 @@
+---
+- id: caniusepython3
+  name: caniusepython3
+  entry: caniusepython3
+  language: python
+  stages: [commit]
+  description: This script takes in a set of dependencies and then figures out which of them are holding you up from porting to Python3.
