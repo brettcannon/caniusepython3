@@ -19,7 +19,7 @@ from caniusepython3.test import unittest, skip_pypi_timeouts
 
 import tempfile
 
-py2_project = 'supervisor'
+py2_project = 'pulp'  # https://pypi.org/project/PuLP/
 
 EXAMPLE_METADATA = """Metadata-Version: 1.2
 Name: TestingMetadata
