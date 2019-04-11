@@ -12,6 +12,8 @@ matrix:
     include:
       - python: "3.7"
         dist: xenial    # required for >= Python 3.7
+      - python: "3.7-dev"
+        dist: xenial    # required for >= Python 3.7
       - python: "3.8-dev"
         dist: xenial    # required for >= Python 3.7
 
