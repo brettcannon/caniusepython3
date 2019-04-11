@@ -39,6 +39,7 @@
     "multiprocess": "https://github.com/uqfoundation/multiprocess/blob/master/setup.py",
     "mysql-python": "https://pypi.python.org/pypi/mysqlclient",
     "numexpr": "https://github.com/pydata/numexpr/blob/master/.travis.yml",
+    "nvidia-ml-py3": "https://pypi.org/project/nvidia-ml-py3/",
     "ordereddict": "http://docs.python.org/3/library/collections.html#collections.OrderedDict",
     "pandocfilters": "https://github.com/jgm/pandocfilters/blob/master/setup.py",
     "pefile": "https://github.com/erocarrera/pefile/blob/master/.travis.yml",
@@ -79,5 +80,6 @@
     "uwsgi": "https://github.com/unbit/uwsgi/blob/master/setup.py",
     "uwsgitop": "https://github.com/xrmx/uwsgitop/blob/master/setup.py#L21",
     "warlock": "https://github.com/bcwaldon/warlock/blob/master/tox.ini",
-    "wsgiref": "http://docs.python.org/3/library/wsgiref.html"
+    "wsgiref": "http://docs.python.org/3/library/wsgiref.html",
+    "xgboost": "https://pypi.org/project/xgboost/#files"
 }
