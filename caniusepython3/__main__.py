@@ -18,7 +18,6 @@ from __future__ import unicode_literals
 from caniusepython3 import dependencies
 from caniusepython3 import projects as projects_
 
-import distlib.metadata
 import packaging.utils
 
 import argparse
@@ -63,7 +62,7 @@ def projects_from_cli(args):
     projects.extend(projects_.projects_from_metadata(metadata))
     projects.extend(map(packaging.utils.canonicalize_name, parsed.projects))
 
-    projects = [i for i in projects if i not in parsed.exclude]
+    projects = {i for i in projects if i not in parsed.exclude}
     return projects
 
 
