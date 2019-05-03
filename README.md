@@ -97,7 +97,7 @@ It is best used along with [pre-commit](https://pre-commit.com/) You can use it 
       sha: 'b97a4cd7'
       hooks:
           - id: caniusepython3
-            files: requirements.txt  # Update to match your requirements files accordingly.
+            files: requirements.*\.txt$  # Update to match your requirements files accordingly.
             args: [
                 --exclude=django-health-check,  # Optional can specify the `--exclude` to exclude legacy packages that are py3 incompatible while you make sure any new packages added to requirements are py3 compatible.
                 --exclude=poster,
