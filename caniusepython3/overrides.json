@@ -13,6 +13,7 @@
     "entrypoints": "https://pypi.org/project/entrypoints/#files",
     "expiringdict": "https://github.com/mailgun/expiringdict/blob/master/.travis.yml",
     "fabric": "https://pypi.python.org/pypi/Fabric3",
+    "filelock": "https://github.com/benediktschmitt/py-filelock",
     "flask-bcrypt": "https://github.com/maxcountryman/flask-bcrypt/blame/master/.travis.yml",
     "flask-debugtoolbar": "https://pypi.python.org/pypi/Flask-DebugToolbar",
     "flask-mail": "http://pythonhosted.org/Flask-Mail/changelog.html#version-0-9-0",
