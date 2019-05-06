@@ -66,6 +66,7 @@ License: Apache
 Requires-Dist: baz
 """
 
+
 class CLITests(unittest.TestCase):
 
     expected_requirements = frozenset(['foo-project', 'fizzy', 'pickything',
@@ -117,6 +118,17 @@ class CLITests(unittest.TestCase):
             args = ['--requirements', file.name]
             got = ciu_main.projects_from_cli(args)
         self.assertEqual(set(got), self.expected_requirements)
+
+    def test_excluding_requirements(self):
+        with tempfile.NamedTemporaryFile('w') as file:
+            file.write(EXAMPLE_REQUIREMENTS)
+            file.flush()
+            args = ['--requirements', file.name, '--exclude', 'pickything']
+            got = ciu_main.projects_from_cli(args)
+        expected_requirements = set(self.expected_requirements)
+        expected_requirements.remove('pickything')
+        self.assertNotIn('pickything', set(got))
+        self.assertEqual(set(got), expected_requirements)
 
     def test_cli_for_metadata(self):
         with tempfile.NamedTemporaryFile('w') as file:

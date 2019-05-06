@@ -18,7 +18,6 @@ from __future__ import unicode_literals
 from caniusepython3 import dependencies
 from caniusepython3 import projects as projects_
 
-import distlib.metadata
 import packaging.utils
 
 import argparse
@@ -45,6 +44,8 @@ def projects_from_cli(args):
                         help='name(s) of projects to test for Python 3 support')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='verbose output (e.g. list compatibility overrides)')
+    parser.add_argument('--exclude', '-e', action='append', default=[],
+                        help='Ignore list')
     parsed = parser.parse_args(args)
 
     if not (parsed.requirements or parsed.metadata or parsed.projects):
@@ -61,6 +62,7 @@ def projects_from_cli(args):
     projects.extend(projects_.projects_from_metadata(metadata))
     projects.extend(map(packaging.utils.canonicalize_name, parsed.projects))
 
+    projects = {i for i in projects if i not in parsed.exclude}
     return projects
 
 
