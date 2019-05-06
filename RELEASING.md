@@ -8,6 +8,5 @@
 0. `python3 setup.py bdist_wheel`
 0. `python3 -m twine upload dist/*`
 0. Commit everything for the release
-0. `git tag -a vN.N.N`
 0. `git push`
-0. `git push https://github.com/brettcannon/caniusepython3.git --tags`
+0. Create a [release on GitHub](https://github.com/brettcannon/caniusepython3/releases)
