@@ -4,4 +4,4 @@
   language: python
   stages: [commit]
   files: requirements\.txt$
-  description: This script takes in a set of dependencies and then figures out which of them are holding you up from porting to Python3.
+  description: 'caniusepython3: figure out what packages are holding you up from porting to Python 3.'
