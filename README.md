@@ -82,34 +82,32 @@ on [porting pure Python modules](http://docs.python.org/3/howto/pyporting.html)
 and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
 
-## Use it as a pre-commit hook
+# Can I use it as a pre-commit hook?
 
-
-Install Pre-commit
+Yes! Begin by installing [pre-commit](https://pre-commit.com/):
 
 ```
-pip install pre-commit==1.11.1
+pip install pre-commit
 pre-commit install
 ```
 
-It is best used along with [pre-commit](https://pre-commit.com/) You can use it along with pre-commit by adding the following hook in your ``.pre-commit-config.yaml`` file.
-
+You can add the following hook in your `.pre-commit-config.yaml` file.
+```yaml
     - repo: https://github.com/brettcannon/caniusepython3
-      sha: 'b97a4cd7'
+      rev: v7.1.0  # Update as desired to new releases/tags
       hooks:
           - id: caniusepython3
             files: requirements\.txt$  # Update to match your requirements files accordingly.
             args: [
-                --exclude=django-health-check,  # Optional can specify the `--exclude` to exclude legacy packages that are py3 incompatible while you make sure any new packages added to requirements are py3 compatible.
-                --exclude=poster,
-                --exclude=foursquare,
-                -r
+                -r  # Causes caniusepython3 to treat the `files` argument as a requirements file.
           ]
-            stages: [commit]  # Change it to `manual`, if `caniusepython3` take too long between commits, so as to only run them manually in build jobs.
+            stages: [commit]  # Change it to `manual`, if `caniusepython3` takes too long between commits, so as to only run them manually in build jobs.
+```
             
 If you are running manually somewhere, we can run the following command:
-
-    pre-commit run --hook-stage manual caniusepython3 --files  requirements.txt
+```
+pre-commit run --hook-stage manual caniusepython3 --files  requirements.txt
+```
 
 # Change Log
 
