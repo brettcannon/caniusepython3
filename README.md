@@ -81,6 +81,36 @@ various sources of help. If you want a specific starting point there are
 on [porting pure Python modules](http://docs.python.org/3/howto/pyporting.html)
 and [extension modules](http://docs.python.org/3/howto/cporting.html).
 
+
+## Use it as a pre-commit hook
+
+
+Install Pre-commit
+
+```
+pip install pre-commit==1.11.1
+pre-commit install
+```
+
+It is best used along with [pre-commit](https://pre-commit.com/) You can use it along with pre-commit by adding the following hook in your ``.pre-commit-config.yaml`` file.
+
+    - repo: https://github.com/brettcannon/caniusepython3
+      sha: 'b97a4cd7'
+      hooks:
+          - id: caniusepython3
+            files: requirements\.txt$  # Update to match your requirements files accordingly.
+            args: [
+                --exclude=django-health-check,  # Optional can specify the `--exclude` to exclude legacy packages that are py3 incompatible while you make sure any new packages added to requirements are py3 compatible.
+                --exclude=poster,
+                --exclude=foursquare,
+                -r
+          ]
+            stages: [commit]  # Change it to `manual`, if `caniusepython3` take too long between commits, so as to only run them manually in build jobs.
+            
+If you are running manually somewhere, we can run the following command:
+
+    pre-commit run --hook-stage manual caniusepython3 --files  requirements.txt
+
 # Change Log
 
 # 7.1.0

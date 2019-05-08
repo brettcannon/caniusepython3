@@ -1,0 +1,7 @@
+- id: caniusepython3
+  name: caniusepython3
+  entry: caniusepython3
+  language: python
+  stages: [commit]
+  files: requirements\.txt$
+  description: 'caniusepython3: figure out what packages are holding you up from porting to Python 3.'
