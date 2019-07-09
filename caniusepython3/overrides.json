@@ -12,7 +12,6 @@
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
     "dockerpty": "https://github.com/d11wtq/dockerpty/blob/master/tox.ini",
     "dulwich": "https://pypi.org/project/dulwich/#description",
-    "edgegrid-python": "https://github.com/akamai/AkamaiOPEN-edgegrid-python/blob/master/setup.py",
     "entrypoints": "https://pypi.org/project/entrypoints/#files",
     "expiringdict": "https://github.com/mailgun/expiringdict/blob/master/.travis.yml",
     "fabric": "https://pypi.python.org/pypi/Fabric3",
