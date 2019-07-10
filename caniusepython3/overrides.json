@@ -24,7 +24,7 @@
     "functools32": "https://pypi.python.org/pypi/functools32",
     "futures": "https://docs.python.org/3/library/concurrent.futures.html",
     "geoip": "https://pypi.python.org/pypi/GeoIP/",
-    "geventhttpclient": "https://github.com/gwik/geventhttpclient/blob/master/README.mdown",
+    "geventhttpclient": "https://pypi.org/project/geventhttpclient/#description",
     "google-apitools": "https://github.com/google/apitools/blob/master/.travis.yml",
     "grab": "https://pypi.python.org/pypi/grab",
     "grequests": "https://github.com/kennethreitz/grequests/blob/master/setup.py",
