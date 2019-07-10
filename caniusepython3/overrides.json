@@ -6,7 +6,7 @@
     "bs4": "https://pypi.org/project/bs4/",
     "cheetah": "https://pypi.org/project/Cheetah3/",
     "collective.recipe.template": "https://pypi.python.org/pypi/collective.recipe.template",
-    "confluent-kafka": "https://github.com/confluentinc/confluent-kafka-python/blob/master/tox.ini",
+    "confluent-kafka": "https://pypi.org/project/confluent-kafka/#files",
     "coreschema": "https://github.com/core-api/python-coreschema/blob/master/setup.py",
     "django-social-auth": "https://pypi.python.org/pypi/python-social-auth",
     "dnspython": "https://pypi.python.org/pypi/dnspython3",
