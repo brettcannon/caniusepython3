@@ -50,7 +50,7 @@
     "pandocfilters": "https://github.com/jgm/pandocfilters/blob/master/setup.py",
     "pefile": "https://github.com/erocarrera/pefile/blob/master/.travis.yml",
     "pil": "https://pypi.python.org/pypi/Pillow",
-    "proxytypes": "https://github.com/PEAK-Legacy/ProxyTypes",
+    "proxytypes": "https://pypi.org/project/ProxyTypes/#files",
     "py-bcrypt": "https://code.google.com/p/py-bcrypt/",
     "py2-ipaddress": "https://docs.python.org/3/library/ipaddress.html#module-ipaddress",
     "pydevd": "https://pypi.org/project/pydevd/#files",
