@@ -23,7 +23,6 @@
     "flask-principal": "http://pythonhosted.org/Flask-Principal/changelog.html",
     "functools32": "https://pypi.python.org/pypi/functools32",
     "futures": "https://docs.python.org/3/library/concurrent.futures.html",
-    "hash-ring": "https://github.com/Doist/hash_ring/blob/master/tox.ini",
     "geoip": "https://pypi.python.org/pypi/GeoIP/",
     "geventhttpclient": "https://github.com/gwik/geventhttpclient/blob/master/README.mdown",
     "google-apitools": "https://github.com/google/apitools/blob/master/.travis.yml",
