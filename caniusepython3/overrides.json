@@ -27,7 +27,6 @@
     "geventhttpclient": "https://pypi.org/project/geventhttpclient/#description",
     "google-apitools": "https://github.com/google/apitools/blob/master/.travis.yml",
     "grab": "https://pypi.python.org/pypi/grab",
-    "grequests": "https://github.com/kennethreitz/grequests/blob/master/setup.py",
     "gym": "https://github.com/openai/gym/blob/master/tox.ini",
     "hashids": "https://pypi.python.org/pypi/hashids",
     "hjson": "https://pypi.org/project/hjson/",
