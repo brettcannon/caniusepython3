@@ -75,7 +75,7 @@
     "ssh": "https://github.com/bitprophet/ssh/",
     "sklearn": "https://pypi.org/project/scikit-learn",
     "slumber": "https://pypi.org/project/slumber/",
-    "spotipy": "https://github.com/plamere/spotipy/blob/master/tox.ini",
+    "spotipy": "https://github.com/plamere/spotipy",
     "ssl": "http://docs.python.org/3/library/ssl.html",
     "statistics": "https://pypi.org/project/statistics/",
     "subprocess32": "https://pypi.org/project/subprocess32/",
