@@ -15,7 +15,7 @@
 from __future__ import unicode_literals
 
 import caniusepython3.__main__ as ciu_main
-from caniusepython3 import projects
+from caniusepython3 import projects, pypi
 from caniusepython3.test import mock, unittest, skip_pypi_timeouts
 
 import io
@@ -116,7 +116,8 @@ class CLITests(unittest.TestCase):
             file.write(EXAMPLE_REQUIREMENTS)
             file.flush()
             args = ['--requirements', file.name]
-            got = ciu_main.projects_from_cli(args)
+            parsed = ciu_main.arguments_from_cli(args)
+            got = ciu_main.projects_from_parsed(parsed)
         self.assertEqual(set(got), self.expected_requirements)
 
     def test_excluding_requirements(self):
@@ -124,7 +125,8 @@ class CLITests(unittest.TestCase):
             file.write(EXAMPLE_REQUIREMENTS)
             file.flush()
             args = ['--requirements', file.name, '--exclude', 'pickything']
-            got = ciu_main.projects_from_cli(args)
+            parsed = ciu_main.arguments_from_cli(args)
+            got = ciu_main.projects_from_parsed(parsed)
         expected_requirements = set(self.expected_requirements)
         expected_requirements.remove('pickything')
         self.assertNotIn('pickything', set(got))
@@ -135,13 +137,26 @@ class CLITests(unittest.TestCase):
             file.write(EXAMPLE_METADATA)
             file.flush()
             args = ['--metadata', file.name]
-            got = ciu_main.projects_from_cli(args)
+            parsed = ciu_main.arguments_from_cli(args)
+            got = ciu_main.projects_from_parsed(parsed)
         self.assertEqual(set(got), self.expected_metadata)
 
     def test_cli_for_projects(self):
         args = ['--projects', 'foo', 'bar.baz']
-        got = ciu_main.projects_from_cli(args)
+        parsed = ciu_main.arguments_from_cli(args)
+        got = ciu_main.projects_from_parsed(parsed)
         self.assertEqual(set(got), frozenset(['foo', 'bar-baz']))
+
+    def test_cli_for_index(self):
+        args = ['--projects', 'foo', 'bar.baz',
+                '--index', 'some-url']
+        parsed = ciu_main.arguments_from_cli(args)
+        self.assertEqual(parsed.index, 'some-url')
+
+    def test_cli_for_index_default(self):
+        args = ['--projects', 'foo', 'bar.baz']
+        parsed = ciu_main.arguments_from_cli(args)
+        self.assertEqual(parsed.index, 'https://pypi.org/pypi')
 
     def test_message_plural(self):
         blockers = [['A'], ['B']]
@@ -194,16 +209,17 @@ class CLITests(unittest.TestCase):
 
     @mock.patch('argparse.ArgumentParser.error')
     def test_projects_must_be_specified(self, parser_error):
-        ciu_main.projects_from_cli([])
+        ciu_main.arguments_from_cli([])
         self.assertEqual(
             mock.call("Missing 'requirements', 'metadata', or 'projects'"),
             parser_error.call_args)
 
     def test_verbose_output(self):
-        ciu_main.projects_from_cli(['-v', '-p', 'ipython'])
+        ciu_main.arguments_from_cli(['-v', '-p', 'ipython'])
         self.assertTrue(logging.getLogger('ciu').isEnabledFor(logging.INFO))
 
-    @mock.patch('caniusepython3.dependencies.blockers', lambda projects: ['blocker'])
+    @mock.patch('caniusepython3.dependencies.blockers',
+                lambda projects, index_url: ['blocker'])
     def test_nonzero_return_code(self):
         args = ['--projects', 'foo', 'bar.baz']
         with self.assertRaises(SystemExit) as context:
@@ -220,6 +236,12 @@ class NetworkTests(unittest.TestCase):
         # Make sure at least one project that will never be in Python 3 is
         # included.
         args = '--projects', 'numpy', 'scipy', 'matplotlib', 'ipython', 'paste'
+        ciu_main.main(args)
+
+    @skip_pypi_timeouts
+    @mock.patch('sys.stdout', io.StringIO())
+    def test_e2e_with_specified_index(self):
+        args = '--projects', 'paste', '--index', pypi.PYPI_INDEX_URL
         ciu_main.main(args)
 
 

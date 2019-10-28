@@ -15,7 +15,7 @@
 from __future__ import unicode_literals
 import distlib.locators
 
-from caniusepython3 import dependencies
+from caniusepython3 import dependencies, pypi
 from caniusepython3.test import mock, unittest
 
 import io

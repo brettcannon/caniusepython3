@@ -17,6 +17,7 @@ from __future__ import unicode_literals
 
 from caniusepython3 import dependencies
 from caniusepython3 import projects as projects_
+from caniusepython3 import pypi
 
 import packaging.utils
 
@@ -29,8 +30,8 @@ import sys
 logging.basicConfig(format='[%(levelname)s] %(message)s')
 
 
-def projects_from_cli(args):
-    """Take arguments through the CLI can create a list of specified projects."""
+def arguments_from_cli(args):
+    """Parse and verify arguments through the CLI meet minimum requirements."""
     description = ('Determine if a set of project dependencies will work with '
                    'Python 3')
     parser = argparse.ArgumentParser(description=description)
@@ -46,14 +47,21 @@ def projects_from_cli(args):
                         help='verbose output (e.g. list compatibility overrides)')
     parser.add_argument('--exclude', '-e', action='append', default=[],
                         help='Ignore list')
+    index_help = 'index to to search for packages (e.g. https://pypi.org/pypi)'
+    parser.add_argument('--index', '-i', default=pypi.PYPI_INDEX_URL,
+                        help=index_help)
     parsed = parser.parse_args(args)
-
     if not (parsed.requirements or parsed.metadata or parsed.projects):
         parser.error("Missing 'requirements', 'metadata', or 'projects'")
-
-    projects = []
     if parsed.verbose:
         logging.getLogger('ciu').setLevel(logging.INFO)
+
+    return parsed
+
+
+def projects_from_parsed(parsed):
+    """Take parsed arguments from CLI to create a list of specified projects."""
+    projects = []
     projects.extend(projects_.projects_from_requirements(parsed.requirements))
     metadata = []
     for metadata_path in parsed.metadata:
@@ -118,12 +126,12 @@ def pprint_blockers(blockers):
     return pprinted
 
 
-def check(projects):
+def check(projects, index_url=pypi.PYPI_INDEX_URL):
     """Check the specified projects for Python 3 compatibility."""
     log = logging.getLogger('ciu')
     log.info('{0} top-level projects to check'.format(len(projects)))
     print('Finding and checking dependencies ...')
-    blockers = dependencies.blockers(projects)
+    blockers = dependencies.blockers(projects, index_url)
 
     print('')
     for line in message(blockers):
@@ -137,7 +145,8 @@ def check(projects):
 
 
 def main(args=sys.argv[1:]):
-    passed = check(projects_from_cli(args))
+    parsed = arguments_from_cli(args)
+    passed = check(projects_from_parsed(parsed), parsed.index)
     if not passed:
       sys.exit(3)
 

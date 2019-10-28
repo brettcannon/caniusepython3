@@ -42,7 +42,8 @@ class RequiresTests(unittest.TestCase):
         got = frozenset(cmd._dependencies())
         self.assertEqual(got, frozenset(['pip']))
 
-    @mock.patch('caniusepython3.dependencies.blockers', lambda projects: ['blocker'])
+    @mock.patch('caniusepython3.dependencies.blockers',
+                lambda projects, index_url: ['blocker'])
     def test_nonzero_return_code(self):
         cmd = make_command({'install_requires': ['pip']})
         with self.assertRaises(SystemExit) as context:
