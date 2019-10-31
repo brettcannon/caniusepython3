@@ -111,6 +111,11 @@ pre-commit run --hook-stage manual caniusepython3 --files  requirements.txt
 
 # Change Log
 
+# 7.2.0 (in development)
+* Add an `--index`/`-i` flag to specify an index URL (thanks [macleodbroad-wf](https://github.com/macleodbroad-wf))
+* Add support for [pre-commit](https://pre-commit.com/) (thanks [Milind Shakya](https://github.com/milind-shakya-sp))
+* Update overrides data (thanks [Andriy Yablonskyy](https://github.com/yablonsky))
+
 # 7.1.0
 * Remove unused imports from Pylint checker
 * Usual overrides updates
