@@ -1,4 +1,4 @@
 mock
 pylint
-unittest2
+unittest2;python_version=="2.7"
 tox

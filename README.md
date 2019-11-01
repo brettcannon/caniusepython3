@@ -103,7 +103,7 @@ You can add the following hook in your `.pre-commit-config.yaml` file.
           ]
             stages: [commit]  # Change it to `manual`, if `caniusepython3` takes too long between commits, so as to only run them manually in build jobs.
 ```
-            
+
 If you are running manually somewhere, we can run the following command:
 ```
 pre-commit run --hook-stage manual caniusepython3 --files  requirements.txt
@@ -111,7 +111,7 @@ pre-commit run --hook-stage manual caniusepython3 --files  requirements.txt
 
 # Change Log
 
-# 7.2.0 (in development)
+# 7.2.0
 * Add an `--index`/`-i` flag to specify an index URL (thanks [macleodbroad-wf](https://github.com/macleodbroad-wf))
 * Add support for [pre-commit](https://pre-commit.com/) (thanks [Milind Shakya](https://github.com/milind-shakya-sp))
 * Update overrides data (thanks [Andriy Yablonskyy](https://github.com/yablonsky))
