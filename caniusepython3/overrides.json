@@ -58,6 +58,7 @@
     "pyclamd": "https://pypi.org/project/pyClamd/#files",
     "pygame": "https://pypi.org/project/Pygame/#files",
     "pykube": "https://pypi.org/project/pykube/",
+    "pymodbus": "https://github.com/riptideio/pymodbus/",
     "pypdf": "https://pypi.python.org/pypi/PyPDF2",
     "pyproj": "https://github.com/jswhit/pyproj/blob/master/setup.py",
     "pyqt5": "https://pypi.org/project/PyQt5/#files",
