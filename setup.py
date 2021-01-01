@@ -13,7 +13,7 @@ with open('dev_requirements.txt') as file:
     tests_require = [dep.strip() for dep in file.readlines()]
 
 setup(name='caniusepython3',
-      version='7.2.0',
+      version='7.3.0',
       description='Determine what projects are blocking you from porting to Python 3',
       long_description=long_description,
       long_description_content_type='text/x-rst',
@@ -24,13 +24,13 @@ setup(name='caniusepython3',
       include_package_data=True,
       requires_python='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
       install_requires=['distlib', 'setuptools', 'packaging',  # Input flexibility
-                        'argparse', 'backports.functools_lru_cache',
+                        'backports.functools_lru_cache',
                         'futures ; python_version=="2.7"',
                         'requests'],  # Functionality
       tests_require=tests_require,  # Testing, external due to Travis
       test_suite='caniusepython3.test',
       classifiers=[
-          'Development Status :: 5 - Production/Stable',
+          'Development Status :: 7 - Inactive',
           'Environment :: Console',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Apache Software License',
@@ -41,6 +41,7 @@ setup(name='caniusepython3',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
           'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.9',
       ],
       entry_points={
           'console_scripts': [

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from caniusepython3 import pypi
 
+import setuptools  # To silenace a warning.
 import distlib.metadata
 import packaging.requirements
 import packaging.utils

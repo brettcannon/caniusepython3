@@ -86,7 +86,7 @@ def message(blockers):
         else:
             flair = ''
         return [flair +
-                'You have 0 projects blocking you from using Python 3!']
+                'You (potentially) have 0 projects blocking you from using Python 3!']
     flattened_blockers = set()
     for blocker_reasons in blockers:
         for blocker in blocker_reasons:

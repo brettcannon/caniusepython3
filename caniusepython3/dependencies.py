@@ -14,6 +14,7 @@
 
 from __future__ import unicode_literals
 
+import setuptools  # To silence a warning.
 import distlib.locators
 import packaging.utils
 
@@ -57,7 +58,7 @@ def dependencies(project_name):
     log.info('Locating dependencies for {}'.format(project_name))
     located = distlib.locators.locate(project_name, prereleases=True)
     if not located:
-        log.warning('{0} not found'.format(project_name))
+        log.warning('{0} not found; false-negatives possible'.format(project_name))
         return None
     return {packaging.utils.canonicalize_name(pypi.just_name(dep))
             for dep in located.run_requires}

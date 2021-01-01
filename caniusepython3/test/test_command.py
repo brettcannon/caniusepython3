@@ -17,6 +17,7 @@ from __future__ import unicode_literals
 from caniusepython3 import command
 from caniusepython3.test import unittest, skip_pypi_timeouts, mock
 
+import setuptools  # To suppress a warning.
 from distutils import dist
 
 def make_command(requires):

@@ -1,3 +1,5 @@
+** NOTE ** This project is no longer actively developed!
+
 Can I Use Python 3?
 ===================
 

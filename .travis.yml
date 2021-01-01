@@ -7,15 +7,9 @@ python:
     - "pypy"
     - "3.5"
     - "3.6"
-
-matrix:
-    include:
-      - python: "3.7"
-        dist: xenial    # required for >= Python 3.7
-      - python: "3.7-dev"
-        dist: xenial    # required for >= Python 3.7
-      - python: "3.8-dev"
-        dist: xenial    # required for >= Python 3.7
+    - "3.7"
+    - "3.8"
+    - "3.9"
 
 install:
   - pip install tox-travis
